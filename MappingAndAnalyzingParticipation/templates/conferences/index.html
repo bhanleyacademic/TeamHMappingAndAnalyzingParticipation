@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Tutor/Mentor Conference Network – Home{% endblock %}
+{% block content %}
+<h1>Mapping &amp; Analyzing Participation</h1>
+<div class="card" style="max-width:700px;">
+  <p style="margin-bottom:0.75rem;">
+    This tool visualizes participation in <strong>Tutor/Mentor Leadership and Networking Conferences</strong>
+    hosted by Daniel F. Bassill from May 1994 through November 2015.
+    It covers <strong>{{ total }} attendance records</strong> across 42 conference events.
+  </p>
+  <p style="margin-bottom:1rem; color:#555; font-size:0.9rem;">
+    Use the dashboard to explore who participated, which organizations were most active,
+    and how engagement changed over time. Export nodes and edges for network visualization
+    in <a href="https://kumu.io" target="_blank" rel="noopener">Kumu.io</a> or
+    <a href="https://gephi.org" target="_blank" rel="noopener">Gephi</a>.
+  </p>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a class="btn" href="{% url 'conferences:dashboard' %}">Analytics Dashboard</a>
+    <a class="btn" href="{% url 'conferences:chart' %}">Frequency Chart</a>
+    <a class="btn" href="{% url 'conferences:data_quality' %}">Data Quality</a>
+  </div>
+</div>
+
+<h2>Export Network Data</h2>
+<div class="card" style="max-width:700px;">
+  <p style="margin-bottom:0.75rem; font-size:0.9rem; color:#555;">
+    Download nodes and edges CSVs ready for Kumu.io or Gephi. Four graph modes are supported:
+  </p>
+  <table>
+    <thead><tr><th>Mode</th><th>Description</th><th>Download</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Nodes</td>
+        <td>Organizations with sector, event count, record count</td>
+        <td><a class="btn btn-green btn-sm" href="{% url 'conferences:export_nodes' %}">nodes.csv</a></td>
+      </tr>
+      <tr>
+        <td>Org ↔ Event</td>
+        <td>Bipartite edges: organization to conference event</td>
+        <td><a class="btn btn-green btn-sm" href="{% url 'conferences:export_edges_org_event' %}">edges_org_event.csv</a></td>
+      </tr>
+      <tr>
+        <td>Org ↔ Org</td>
+        <td>Co-attendance edges: orgs connected by shared events (weighted)</td>
+        <td><a class="btn btn-green btn-sm" href="{% url 'conferences:export_edges_org_org' %}">edges_org_org.csv</a></td>
+      </tr>
+      <tr>
+        <td>Event → Sector → Org</td>
+        <td>Three-layer network for cross-sector analysis</td>
+        <td><a class="btn btn-green btn-sm" href="{% url 'conferences:export_edges_event_sector_org' %}">edges_3layer.csv</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

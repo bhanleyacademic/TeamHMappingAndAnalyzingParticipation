@@ -1,0 +1,195 @@
+﻿body
+{
+}
+.Caption
+{
+    font-family: Verdana;
+    font-size: 15pt;
+    font-weight: bold;
+    color: Black;
+    height: 20px;
+}
+.HomePageTablePannel
+{
+    font-size: xx-small;
+    font-family: Verdana;
+    font-size: 11px;
+    background-color: #ffffe6;
+    border-color: #99cc99;
+    border: 1;
+}
+
+.HomePageHeader
+{
+    font-size: xx-small;
+    font-family: Verdana;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #f0e68c;
+    height: 15px;
+}
+.FlatText
+{
+    font-size: 12px;
+    color: black;
+    font-family: Arial;
+    width: 180  ;
+    height: 15px;
+    border-right: black 1px solid;
+    border-top: black 1px solid;
+    border-left: black 1px solid;
+    border-bottom: black 1px solid;
+}
+.FlatButton
+{
+    border-right: silver 1px solid;
+    border-top: silver 1px solid;
+    border-left: silver 1px solid;
+    border-bottom: silver 1px solid;
+    font-weight: bold;
+    font-size: 10px;
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#8fbc8b,EndColorStr=#228b22);
+    width: 60px;
+    height: 20px;
+    color: white;
+    font-family: Verdana;
+}
+
+.HtmlTableRow
+{
+    height: 15px;
+    font-size: 12pt;
+    font-family: Verdana;
+    color: White;
+    font-weight: bold;
+    text-align: left; /*background-color: #228b22;*/
+    background-color: #006400;
+}
+
+.Label
+{
+    font-family: Verdana;
+    font-weight: normal;
+    font-size: 9pt;
+    color: Black;
+}
+.HyperLinkCustomer
+{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-family: Verda  ;
+    font-size: 11px;
+}
+.MenuHeaderText
+{
+    color: White;
+    font-weight: bold;
+    font-family: Verdana;
+    font-size: 10px;
+    background-color: #006400;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+
+.set
+{
+    float: none;
+}
+
+.MenuHeaderText1
+{
+    color: Black;
+    font-weight: bold;
+    font-family: Verdana;
+    font-size: 15px;
+    background-color: skyblue;
+    text-align: left;
+}
+
+.MasterHeader
+{
+    background-color: darkgray;
+    font-size: 14px;      color: Green;
+    font-weight: bold;
+    font-family: Verdana;
+    text-align: left;
+}
+
+.pop
+{
+    font-family: Verdana;
+    font-size: 10px;
+}
+
+.header
+{
+    color: White;
+    font-size: 14px;
+    font-family: Verdana;
+}
+
+.tp_green1px
+{
+    background: url(images/tp_green1px.gif) repeat-x;
+    height: 22px;
+}
+.anchor_txt
+{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.home_schduletxt
+{
+    font: 14px tahoma;
+    font-weight: bold;
+}
+.home_summarytxt
+{
+    fon   14px tahoma;
+    color: #303B24;
+}
+.home_eventtxt
+{
+    font: 12px tahoma;
+    color: #000000;
+    font-style: italic;
+}
+.home_eventtxt1
+{
+    font: 11px tahoma;
+    color: #000000;
+    background-color: #FFFFE0;
+}
+
+.header1
+{
+    color: Black;
+    font-size: 14px;
+    font-family: Verdana;
+}
+.btnSave
+{
+    background-position: left bottom;
+    background-attachment: fixed;
+    background-image: url(EM/Images/tp_save.gif);
+    background-repeat: repeat-y;
+}
+.label
+{
+    col  : #005fa9;
+    font-size: 12px;
+    font-family: Tahoma;
+    font-weight: bold;
+}
+.list
+{
+    color: Black;
+    font-size: 10px;
+    font-family: Tahoma;
+   
+}
+
+

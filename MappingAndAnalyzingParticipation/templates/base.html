@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Tutor/Mentor Conference Network{% endblock %}</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f5f7fa; color: #222; }
+    nav {
+      background: #1a3a5c; color: #fff; padding: 0.75rem 1.5rem;
+      display: flex; align-items: center; gap: 2rem;
+    }
+    nav a { color: #cde; text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: #fff; text-decoration: underline; }
+    nav .brand { font-weight: 700; font-size: 1rem; color: #fff; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+    h1 { font-size: 1.6rem; margin-bottom: 1rem; color: #1a3a5c; }
+    h2 { font-size: 1.2rem; margin: 1.2rem 0 0.6rem; color: #1a3a5c; }
+    .card {
+      background: #fff; border-radius: 8px; padding: 1rem 1.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 1rem;
+    }
+    .metrics { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+    .metric {
+      background: #fff; border-radius: 8px; padding: 1rem 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08); min-width: 150px; text-align: center;
+    }
+    .metric .value { font-size: 2rem; font-weight: 700; color: #1a3a5c; }
+    .metric .label { font-size: 0.8rem; color: #666; margin-top: 0.25rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+    th { background: #1a3a5c; color: #fff; padding: 0.5rem 0.75rem; text-align: left; }
+    td { padding: 0.45rem 0.75rem; border-bottom: 1px solid #eee; }
+    tr:hover td { background: #f0f4f8; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; margin-bottom: 1rem; }
+    .filters label { font-size: 0.82rem; color: #555; display: block; margin-bottom: 0.2rem; }
+    .filters select, .filters input {
+      padding: 0.4rem 0.6rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem;
+    }
+    .btn {
+      display: inline-block; padding: 0.4rem 1rem; border-radius: 4px;
+      background: #1a3a5c; color: #fff; text-decoration: none; font-size: 0.85rem;
+      border: none; cursor: pointer;
+    }
+    .btn:hover { background: #255080; }
+    .btn-sm { padding: 0.3rem 0.7rem; font-size: 0.8rem; }
+    .btn-green { background: #2e7d32; }
+    .btn-green:hover { background: #1b5e20; }
+    .warning { color: #b71c1c; font-weight: 600; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<nav>
+  <span class="brand">T/MC Conference Network</span>
+  <a href="{% url 'conferences:index' %}">Home</a>
+  <a href="{% url 'conferences:dashboard' %}">Dashboard</a>
+  <a href="{% url 'conferences:network_maps' %}">Network Maps</a>
+  <a href="{% url 'conferences:chart' %}">Frequency Chart</a>
+  <a href="{% url 'conferences:data_quality' %}">Data Quality</a>
+</nav>
+<div class="container">
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

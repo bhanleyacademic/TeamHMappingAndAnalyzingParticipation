@@ -1,0 +1,139 @@
+{% extends "base_marketing.html" %}
+{% load static %}
+{% block title %}How It Works — YourConference.Network{% endblock %}
+
+{% block content %}
+<section style="background:linear-gradient(135deg,#0d1b2a,#1a3a5c);padding:4rem 0 3rem;">
+    <div class="container text-center">
+        <h4 style="color:#4CAF50;font-size:0.88rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;">Simple Setup</h4>
+        <h1 style="color:#fff;font-size:2.4rem;font-weight:800;margin-bottom:1rem;">How It Works</h1>
+        <p style="color:#adc8e0;max-width:520px;margin:0 auto;line-height:1.75;">
+            From CSV export to network map in under five minutes.
+        </p>
+    </div>
+</section>
+
+<section style="padding:5rem 0;">
+    <div class="container">
+
+        <!-- Step 1 -->
+        <div class="row align-items-center gy-4 mb-80">
+            <div class="col-lg-6">
+                <div style="display:inline-flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+                    <span style="width:42px;height:42px;background:#1a3a5c;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;flex-shrink:0;">1</span>
+                    <h2 style="margin:0;color:#1a3a5c;">Prepare Your CSV</h2>
+                </div>
+                <p style="color:#555;line-height:1.75;margin-bottom:1.25rem;">
+                    Export your attendance records from your registration system (Eventbrite, Google Sheets, etc.)
+                    as a CSV. Our standard column format matches common registration exports:
+                </p>
+                <div style="background:#f8fafe;border:1px solid #d0dce8;border-radius:8px;padding:1.25rem;font-family:monospace;font-size:0.82rem;color:#333;overflow-x:auto;">
+                    UniqueID, First, Last, Organization - CLEANED, SNA Category - CLEANED, Conference, Month, Year, State, ...
+                </div>
+                <p style="color:#777;font-size:0.85rem;margin-top:0.75rem;">
+                    Column headers are flexible — see the
+                    <a href="https://github.com" target="_blank" rel="noopener" style="color:#2e7d32;">documentation</a>
+                    for the full spec and optional columns.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <div style="background:#0d1b2a;border-radius:12px;padding:1.5rem;font-family:monospace;color:#adc8e0;font-size:0.83rem;line-height:1.7;">
+                    <span style="color:#4CAF50;"># Example CSV rows</span><br>
+                    UniqueID,First,Last,Organization - CLEANED,SNA Category - CLEANED,Conference,Month,Year<br>
+                    <span style="color:#88c0d0;">1001,Maria,Chen,Chicago Youth Network,Program,05/2005,5,2005</span><br>
+                    <span style="color:#88c0d0;">1002,James,Lee,City of Chicago,Government,05/2005,5,2005</span><br>
+                    <span style="color:#88c0d0;">1003,Sarah,Kim,Harris Foundation,Foundation,05/2005,5,2005</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="row align-items-center gy-4 mb-80" style="flex-direction:row-reverse;">
+            <div class="col-lg-6">
+                <div style="display:inline-flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+                    <span style="width:42px;height:42px;background:#2e7d32;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;flex-shrink:0;">2</span>
+                    <h2 style="margin:0;color:#1a3a5c;">Deploy with Docker</h2>
+                </div>
+                <p style="color:#555;line-height:1.75;margin-bottom:1.25rem;">
+                    Clone the repo, copy your <code>.env</code> file, and run Docker Compose.
+                    The app starts, runs migrations, and is ready to load your data.
+                </p>
+                <div style="background:#0d1b2a;border-radius:8px;padding:1.25rem;font-family:monospace;font-size:0.83rem;color:#adc8e0;line-height:1.8;">
+                    <span style="color:#4CAF50;">$ </span>git clone https://github.com/your-org/yourconference.network<br>
+                    <span style="color:#4CAF50;">$ </span>cd yourconference.network<br>
+                    <span style="color:#4CAF50;">$ </span>cp .env.example .env  <span style="color:#666;"># edit SECRET_KEY</span><br>
+                    <span style="color:#4CAF50;">$ </span>docker compose up -d<br>
+                    <span style="color:#4CAF50;">$ </span>docker compose exec web python manage.py load_data --csv /data/my_conferences.csv
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div style="background:#f8fafe;border-radius:12px;padding:2rem;">
+                    <h4 style="color:#1a3a5c;margin-bottom:1.25rem;">Requirements</h4>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="display:flex;gap:0.6rem;margin-bottom:0.8rem;"><i class="fab fa-docker" style="color:#2196F3;margin-top:0.2rem;"></i> Docker &amp; Docker Compose (any recent version)</li>
+                        <li style="display:flex;gap:0.6rem;margin-bottom:0.8rem;"><i class="fa fa-server" style="color:#555;margin-top:0.2rem;"></i> Any Linux server or local machine (macOS/Windows with Docker Desktop)</li>
+                        <li style="display:flex;gap:0.6rem;"><i class="fa fa-file-csv" style="color:#2e7d32;margin-top:0.2rem;"></i> Your attendance CSV exported from any registration system</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-6">
+                <div style="display:inline-flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+                    <span style="width:42px;height:42px;background:#7b1fa2;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;flex-shrink:0;">3</span>
+                    <h2 style="margin:0;color:#1a3a5c;">Analyze, Visualize, Share</h2>
+                </div>
+                <p style="color:#555;line-height:1.75;margin-bottom:1.25rem;">
+                    Open your browser and explore the dashboard, network maps, and frequency charts.
+                    Filter by year, sector, or state. Export CSVs for Kumu.io or Gephi.
+                </p>
+                <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                    <a href="{% url 'core:dashboard' %}" style="display:flex;align-items:center;gap:0.75rem;background:#f0f4f8;border-radius:8px;padding:0.9rem 1.25rem;text-decoration:none;color:#1a3a5c;">
+                        <i class="fa fa-tachometer-alt" style="width:20px;color:#2e7d32;"></i>
+                        <span><strong>Analytics Dashboard</strong> — top orgs, sector distribution, event rankings</span>
+                    </a>
+                    <a href="{% url 'core:network_maps' %}" style="display:flex;align-items:center;gap:0.75rem;background:#f0f4f8;border-radius:8px;padding:0.9rem 1.25rem;text-decoration:none;color:#1a3a5c;">
+                        <i class="fa fa-project-diagram" style="width:20px;color:#1a3a5c;"></i>
+                        <span><strong>Network Maps</strong> — org–event, org–org co-attendance, 3-layer</span>
+                    </a>
+                    <a href="{% url 'core:chart' %}" style="display:flex;align-items:center;gap:0.75rem;background:#f0f4f8;border-radius:8px;padding:0.9rem 1.25rem;text-decoration:none;color:#1a3a5c;">
+                        <i class="fa fa-chart-bar" style="width:20px;color:#9C27B0;"></i>
+                        <span><strong>Frequency Chart</strong> — attendance per event by sector over time</span>
+                    </a>
+                    <a href="{% url 'core:index' %}" style="display:flex;align-items:center;gap:0.75rem;background:#f0f4f8;border-radius:8px;padding:0.9rem 1.25rem;text-decoration:none;color:#1a3a5c;">
+                        <i class="fa fa-file-download" style="width:20px;color:#FF9800;"></i>
+                        <span><strong>CSV Exports</strong> — Kumu.io and Gephi compatible formats</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <a href="{% url 'core:network_maps' %}">
+                    <img src="{% url 'core:map_org_event' %}" alt="Network Map Example"
+                         style="width:100%;max-width:480px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.15);"
+                         onerror="this.style.display='none'">
+                </a>
+                <p style="color:#888;font-size:0.82rem;margin-top:0.75rem;">Example: Organization–Event bipartite network map</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section style="background:#f0f8ff;border-top:1px solid #c8dff5;padding:4rem 0;text-align:center;">
+    <div class="container">
+        <h2 style="color:#1a3a5c;font-size:1.8rem;font-weight:700;margin-bottom:1rem;">Ready to Get Started?</h2>
+        <p style="color:#555;max-width:480px;margin:0 auto 2rem;line-height:1.7;">
+            Self-host for free in minutes, or join the waitlist for managed cloud hosting.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+            <a href="https://github.com" class="btn-github" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> Clone on GitHub
+            </a>
+            <a href="{% url 'marketing:pricing' %}" class="theme-btn">View Pricing</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

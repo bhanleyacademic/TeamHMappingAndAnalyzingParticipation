@@ -1,0 +1,452 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{titlesec}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+
+\title{\textbf{Mapping \& Analyzing Participation}\\
+\large Suggestions and Guidance for Future Research Teams}
+\author{E483/E583 Information Visualization --- Spring 2026\\
+Indiana University Luddy School of Informatics, Computing, and Engineering}
+\date{April 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+% -------------------------------------------------------------------------
+\section{Project Overview}
+
+This document is written for researchers and development teams who continue
+work on the \textbf{Mapping and Analyzing Participation} project after the
+Spring 2026 semester. The project was commissioned by Daniel F.~Bassill of the
+\textbf{Tutor/Mentor Connection} (T/MC, 1993--2011) and its successor
+\textbf{Tutor/Mentor Institute LLC} (TMI, 2011--present) to analyze and
+visualize attendance records from 42 Tutor/Mentor Leadership and Networking
+Conferences held in Chicago between May 1994 and November 2015.
+When referencing the client organization, use T/MC for events prior to 2011
+and Tutor/Mentor Institute LLC for anything after; Bassill uses both names
+throughout his published materials.
+
+The primary dataset is:
+\begin{center}
+\texttt{ProjectFiles/All\_Conferences\_Data\_Cleaned-2026 - Sheet1.csv}
+\end{center}
+It contains 6,410 participation records across 18 columns, covering roughly
+2,161 unique organizations and 21 years of network-building activity in
+Chicago's high-poverty neighborhoods.
+
+The codebase is a \textbf{Django} web application with a \texttt{Pandas}/
+\texttt{Plotly}/\texttt{NetworkX} analytics layer. All source code lives
+in the \texttt{conferences/} app. Docker support is included via
+\texttt{Dockerfile} and \texttt{docker-compose.yml}.
+
+% -------------------------------------------------------------------------
+\section{Understanding the Data Before You Touch It}
+
+\subsection{The SNA Category System}
+
+Every attendance record carries an \texttt{sna\_category} field drawn from a
+controlled vocabulary of eleven canonical types:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Category & What it represents \\
+\midrule
+Program      & Tutoring/mentoring program providers \\
+Business     & Corporate sponsors and private-sector partners \\
+College      & Universities and community colleges \\
+K-12 School  & Public and private K-12 institutions \\
+Government   & Municipal, county, state, and federal agencies \\
+Faith        & Faith-based organizations \\
+Foundation   & Grant-making foundations and philanthropies \\
+Intermediary & Capacity-building and coalition organizations \\
+T/MC         & Tutor/Mentor Connection itself \\
+Resource     & Consultants and support services \\
+Media        & Journalists, reporters, and media organizations \\
+Other        & Records that could not be classified \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The original column (\texttt{sna\_category\_original}) contained hundreds of
+inconsistent spellings. The normalization mapping lives in
+\texttt{conferences/sna\_normalize.py}. \textbf{Consult Daniel Bassill
+before adding or reclassifying categories}---the vocabulary is intentional
+and affects downstream network analysis.
+
+Bassill has explicitly requested a \textbf{12th category: Media}
+(journalists and media organizations). This category is intentionally thin
+in the current dataset, and that sparsity is itself meaningful---building
+media coverage is a core conference goal, and its absence in the data
+reflects a real gap in outreach.
+
+\subsection{Organization Name Cleaning}
+
+The \texttt{organization} field (cleaned) is the authoritative identifier for
+network analysis. The \texttt{organization\_original} field preserves the raw
+value as entered at each conference. Never use the original field as a join
+key---variant spellings of the same organization appear across years.
+
+The cleaning was performed manually by the client in the 2026 CSV revision.
+If the dataset is extended with new records, the same cleaning step must be
+applied before loading data into Django.
+
+\subsection{Known Data Quality Issues}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item A small number of records have a blank \texttt{organization} field.
+        These are excluded from all network exports and most analytics.
+  \item Records classified as \texttt{Other} may be reclassifiable with
+        additional domain knowledge from the client.
+  \item The \texttt{active\_inactive} column is populated inconsistently and
+        was not used in the Spring 2026 analysis. It may carry useful
+        longitudinal signal for organizations that later closed.
+  \item Address and ZIP code fields are sparsely populated for earlier years
+        (pre-2000). Geographic analysis is more reliable for 2000 onward.
+  \item \textbf{Organization names change over time.} An organization that
+        attended in the 1990s may appear under a different name in later
+        years---sometimes a third name by the 2010s. The cleaned
+        \texttt{organization} field represents the name as used at that
+        conference; cross-decade queries may miss the same entity under a
+        variant name.
+  \item \textbf{Individuals moved between organizations.} A person who
+        attended four conferences through three different employers will appear
+        as three separate organizations each with one attendee, not as one
+        person with four appearances. The first/last name fields can be used
+        to surface this pattern without exposing names publicly.
+\end{itemize}
+
+% -------------------------------------------------------------------------
+\section{Technical Infrastructure}
+
+\subsection{Running the Application}
+
+\textbf{With Docker (recommended):}
+\begin{verbatim}
+docker-compose up --build
+\end{verbatim}
+The app will be available at \texttt{http://localhost:8000}.
+
+\textbf{Without Docker:}
+\begin{verbatim}
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py load_data   # loads the CSV into SQLite
+python manage.py runserver
+\end{verbatim}
+
+\subsection{Loading Data}
+
+The management command \texttt{conferences/management/commands/load\_data.py}
+reads the CSV, applies SNA normalization (via \texttt{sna\_normalize.py}),
+and populates the \texttt{Attendance} table. Re-running it with a revised CSV
+will not duplicate records because it clears and reloads the table. If you
+extend the dataset, verify the column headers match those expected by the
+loader before running.
+
+\subsection{Database}
+
+The application ships with SQLite (\texttt{db.sqlite3}). For a production
+deployment with concurrent users, migrate to PostgreSQL. The Django ORM
+abstracts this entirely---update \texttt{DATABASES} in
+\texttt{MappingAndAnalyzingParticipation/settings.py} and add
+\texttt{psycopg2-binary} to \texttt{requirements.txt}.
+
+\subsection{Environment Variables}
+
+Sensitive settings are stored in \texttt{.env} (not committed to git).
+A \texttt{SECRET\_KEY} must be set before deployment. See \texttt{.env}
+for the variable names expected.
+
+% -------------------------------------------------------------------------
+\section{Network Analysis Guidance}
+
+\subsection{Available Exports}
+
+The application exposes four CSV export endpoints under \texttt{/export/}:
+
+\begin{center}
+\begin{tabular}{lp{8cm}}
+\toprule
+Endpoint & Contents \\
+\midrule
+\texttt{/export/nodes/} & One row per organization with sector, event count, and record count \\
+\texttt{/export/edges/org-event/} & Bipartite edges: organization $\leftrightarrow$ conference event \\
+\texttt{/export/edges/org-org/} & Co-attendance edges with shared-conference weights \\
+\texttt{/export/edges/event-sector-org/} & Three-layer (event $\to$ sector $\to$ org) edge list \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All endpoints accept \texttt{?year=}, \texttt{?sector=}, and
+\texttt{?state=} query parameters for filtered exports.
+
+\subsection{Importing into Kumu.io}
+
+The application exposes JSON endpoints (e.g.\ \texttt{/export/edges/org-event/})
+that Kumu can link to directly. This is the preferred approach because the
+map updates automatically when the underlying data changes:
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item Copy the JSON export URL from the Network Maps page on the running app.
+  \item In Kumu, choose \textbf{Import} $\to$ \textbf{Link map to remote JSON}
+        and paste the URL.
+  \item Use \textbf{Import} $\to$ \textbf{Re-import} to force a refresh without
+        recreating the map from scratch.
+\end{enumerate}
+
+Alternatively, for a fully static import via CSV:
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item Download \texttt{nodes.csv} and \texttt{edges\_org\_org.csv}.
+  \item In Kumu, create a new map and use \textbf{Import} $\to$ \textbf{CSV}.
+  \item Map \texttt{Id}/\texttt{Label} to Kumu's element fields and
+        \texttt{SNA\_Category} as the element type for color coding.
+  \item Use \texttt{Event\_Count} as the size field to weight nodes by
+        participation history.
+\end{enumerate}
+
+When embedding network maps in the Django app, \textbf{link to the live Kumu
+map URL} rather than rendering a static PNG. A linked map lets visitors open
+a full interactive view, which is significantly easier to explore than a small
+embedded image.
+
+\subsection{Importing into Gephi}
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item Download \texttt{nodes.csv} and \texttt{edges\_org\_org.csv}.
+  \item In Gephi, use \textbf{File} $\to$ \textbf{Import Spreadsheet}.
+        Import nodes first, then edges.
+  \item Set \texttt{Source}/\texttt{Target} as edge columns and
+        \texttt{Weight} as the edge weight.
+  \item Run \textbf{ForceAtlas 2} layout. Set node size to
+        \texttt{Event\_Count} and color by \texttt{SNA\_Category}.
+  \item Recommended analysis modules: modularity (community detection),
+        betweenness centrality, and eigenvector centrality to identify
+        bridge organizations.
+\end{enumerate}
+
+\subsection{Suggested Network Research Questions}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item Which organizations served as consistent \emph{bridges} between
+        sectors (high betweenness centrality) across the full 21-year span?
+  \item Did the network become more or less cross-sector connected over time?
+        Run year-sliced graphs and compare modularity scores.
+  \item Are there organizations that attended many early conferences but
+        disappeared from later ones? Do they correlate with the
+        \texttt{active\_inactive} field?
+  \item Which sector pairs co-attended most frequently? This can inform
+        partnership recommendations for T/MC's current outreach.
+\end{itemize}
+
+% -------------------------------------------------------------------------
+\section{Recommended Next Steps}
+
+\subsection{High Priority}
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Geographic mapping.}
+        ZIP codes are present for a substantial portion of records. Joining
+        to a Chicago neighborhood shapefile (available from the Chicago
+        Data Portal) would allow choropleth maps showing which neighborhoods
+        were most represented and which were underserved---directly relevant
+        to Bassill's outreach mission.
+
+  \item \textbf{Organization URL enrichment completion.}
+        The script \texttt{find\_org\_websites.py} located URLs for most
+        organizations and saved results to \texttt{org\_websites.csv}. These
+        URLs have not yet been joined to the Django database. Adding a
+        \texttt{website} field to the \texttt{Attendance} model and linking
+        via \texttt{organization} name would enable clickable org profiles
+        in the dashboard.
+
+  \item \textbf{Manual review of \texttt{unverified} and
+        \texttt{not found} URL results.}
+        Roughly a quarter of organizations in \texttt{org\_websites.csv}
+        have status \texttt{unverified} or \texttt{not found}. Cross-referencing
+        with the Tutor/Mentor Exchange directory at
+        \href{https://tutormentorexchange.net}{tutormentorexchange.net}
+        would improve coverage. Note: always use the \texttt{.net} domain---
+        \texttt{.com} does not resolve.
+
+  \item \textbf{OHATS data integration.}
+        The OHATS (Organization Health Assessment Tool \& Survey) dataset is
+        partially cleaned and ready for a future team to pick up. It is a
+        strong candidate for the next semester project because it is
+        data-visualization-heavy and connects directly to Bassill's four
+        strategic pillars (see the ``Strategy'' concept map on
+        \href{https://tutormentorexchange.net}{tutormentorexchange.net} under
+        Tutor/Mentor Connection $\to$ Strategy). Future teams should read the
+        OHATS section of the project handbook before beginning.
+
+  \item \textbf{Add a ``Media'' SNA category.}
+        Update \texttt{conferences/sna\_normalize.py} to map media-related
+        original values to a new \texttt{Media} category and remove
+        \texttt{Resource} entries that properly belong there. Confirm
+        the mapping with Bassill before committing.
+\end{enumerate}
+
+\subsection{Medium Priority}
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Longitudinal trend analysis.}
+        The participation frequency chart currently shows absolute attendance
+        counts. Normalizing by the number of organizations \emph{known to
+        exist} in each year (using external directories) would convert raw
+        counts to participation rates---a more meaningful metric for
+        researchers.
+
+  \item \textbf{Individual-level analysis.}
+        The dataset includes first and last names, enabling tracking of
+        individual attendees across conferences. Identifying individuals who
+        attended the most events, changed organizations over time, or bridged
+        sectors as individuals (not just organizationally) would add a
+        person-centered perspective to the network view. Be mindful of
+        privacy: individual-level data should not be published without
+        Bassill's explicit approval.
+
+  \item \textbf{Interactive network visualization in-browser.}
+        The three current network maps are static PNGs rendered server-side
+        by Matplotlib. Replacing them with a D3.js or Sigma.js force-directed
+        graph would allow users to hover, filter, and explore nodes
+        interactively without downloading Gephi or Kumu.
+
+  \item \textbf{Dashboard usage guide.}
+        The category/year/conference filter controls are not self-explanatory
+        to a first-time visitor. Adding a brief on-page explanation or tooltip
+        layer describing what each filter does---and how the top-10 view can
+        surface duplicate or miscategorized organizations---would significantly
+        improve usability.
+
+  \item \textbf{Link to fall 2025 second group's work.}
+        A second team also analyzed the conference data in fall 2025 (in
+        addition to Team K). Both teams' work should be linked under the
+        ``More'' dropdown in the Network Maps section of the app so the full
+        lineage of this project is visible to future researchers.
+
+  \item \textbf{Cross-reference the printed conference directories.}
+        Bassill produced printed directories of invited organizations from
+        1994 to 2003 (available as PDFs). Comparing those invitation lists
+        to the actual attendance records would reveal who was invited but
+        never attended---a meaningful gap for outreach analysis.
+
+  \item \textbf{Public deployment.}
+        The Docker configuration is ready. Deploying to a cloud provider
+        (Render, Railway, or a university-hosted server) with a persistent
+        PostgreSQL database would make the tool accessible to Bassill and the
+        broader research community without requiring a local Python environment.
+\end{enumerate}
+
+\subsection{Low Priority / Long-Term}
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Comparative analysis.}
+        The network structure of this Chicago conference series could be
+        compared to similar civic networking efforts in other cities using
+        published SNA datasets, positioning this work within the broader
+        nonprofit network literature.
+
+  \item \textbf{IU School of Philanthropy collaboration.}
+        Brad Fulton (IU Lilly Family School of Philanthropy) leads Project 990,
+        which maps nonprofit organizations using IRS data. Connecting that
+        geographic nonprofit database to the conference participation data
+        could reveal which types of organizations are most underrepresented
+        at conferences relative to their presence in a given community.
+        Fulton has connected with Bassill on LinkedIn and has expressed
+        interest; reaching out through the IU Data Science Club or an
+        independent study arrangement is a natural entry point.
+
+  \item \textbf{Donor pipeline layer.}
+        Bassill described a concept for aggregating donor-flow data on top of
+        the geographic nonprofit map: tracking how many visitors arrived at
+        a nonprofit's donation portal through a shared platform, broken down
+        by ZIP code and time period. This is a longer-term product idea that
+        would require partnerships with nonprofit payment processors and is
+        well suited to a capstone or MBA-level project team.
+
+  \item \textbf{Visualization competition outreach.}
+        The IU Luddy hackathon and Tableau's annual Iron Viz competition are
+        both viable venues for surfacing this dataset to a wider student
+        audience. Bassill has also pointed to existing websites that aggregate
+        student visualization work as models for a permanent archive of
+        conference-data visualizations done by successive teams.
+\end{enumerate}
+
+% -------------------------------------------------------------------------
+\section{Working With the Client}
+
+Daniel F.~Bassill (\texttt{tutormentor1@gmail.com}) is the domain expert
+for all questions about the data's meaning, the SNA category definitions,
+and organizational context. He has deep knowledge of Chicago's tutoring
+and mentoring ecosystem that no documentation can fully substitute.
+
+When writing about the client organization, note that \textbf{Tutor/Mentor
+Connection} (T/MC) is the historically correct name for the 1993--2011 era;
+\textbf{Tutor/Mentor Institute LLC} (TMI) is the current legal entity
+(2011--present). Bassill uses both names in his published materials and PDF
+essays. Do not refer to T/MC as the current organization---doing so
+understates the institutional transition. Blog resources are at
+\href{https://tutormentor.blogspot.com}{tutormentor.blogspot.com}; tags for
+``network analysis,'' ``Kumu,'' and ``tipping point'' are particularly
+useful starting points for new team members.
+
+Key things to confirm with him before major analytical decisions:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item Any reclassification of \texttt{Other} records into named categories.
+  \item Any changes to organization name normalization.
+  \item Whether individual-level data (names) can appear in public-facing views.
+  \item The intended audience for any new visualizations---his four
+        stakeholder groups (T/MC, nonprofits, researchers, general public)
+        have different technical literacy levels.
+\end{itemize}
+
+% -------------------------------------------------------------------------
+\section{Repository and File Reference}
+
+\begin{center}
+\begin{tabular}{lp{8.5cm}}
+\toprule
+Path & Purpose \\
+\midrule
+\texttt{conferences/models.py} & Django ORM model for attendance records \\
+\texttt{conferences/views.py} & All dashboard, chart, export, and map views \\
+\texttt{conferences/sna\_normalize.py} & SNA category normalization mapping \\
+\texttt{conferences/management/commands/load\_data.py} & CSV ingestion command \\
+\texttt{ProjectFiles/*.csv} & Source data and org URL output \\
+\texttt{find\_org\_websites.py} & Web crawler for organization URLs \\
+\texttt{generate\_network\_maps.py} & Standalone script for batch PNG export \\
+\texttt{templates/conferences/} & HTML templates for all views \\
+\texttt{docker-compose.yml} & Container orchestration for local/prod use \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% -------------------------------------------------------------------------
+\section{Use of AI-Assisted Development}
+
+The Spring 2026 team developed the entire codebase using
+\textbf{Claude Code} (Anthropic, \texttt{claude-sonnet-4-6}) as a
+development tool. This includes some views and exports, the organization
+URL crawler, and this document.
+
+Future teams should feel free to continue this approach. Claude Code can
+read the existing codebase and extend it, provided the developer can articulate
+the goal clearly. The \texttt{.tex} writeups in \texttt{ProjectFiles/}
+document methodology and prompts used, and can serve as a model for
+documenting AI-assisted work in future research outputs.
+
+\end{document}

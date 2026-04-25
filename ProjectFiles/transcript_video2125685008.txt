@@ -1,0 +1,197 @@
+TRANSCRIPT
+Video: video2125685008.mp4
+Meeting: Zoom@IU – Brian Hanley & Daniel Bassill
+Date: April 22, 2026
+
+Note: Speaker labels are inferred from context; no automatic diarization was used.
+"Tutor/Mentor" names (TutorMentor Connection, TutorMentor Institute, TutorMentor Exchange)
+may appear in Whisper output as "TutorMitter" — the intended names are preserved below.
+
+────────────────────────────────────────────────────────────────────────────────
+
+BRIAN: Alright, perfect. So, obviously, you know, what I sent you — we've got the handbook for any future classes that are kind of taking a look at the pipeline, what we're doing. We're still finishing up going through OHATS and kind of doing some cleaning of that data to just make sure that that's another project that can be worked on moving forward. And yeah, I mean, hopefully we've done some justice and gotten some things squared away for what you were looking for.
+
+DANIEL: Yeah, you've done it really. I looked through all the files that you gave me. So there's a lot of stuff in there. And the worksheets showing what you did, what you didn't do, what needs to be done — that really aligned with some of the questions I had as I was looking at the files. And so we could go through that while we're talking tonight. But I'm really looking forward to be able to take what you did and go back and start sharing it like I did with the group from last fall. So let's go through some of the things that I've noted from looking at all of this. First, in your email, you said you're going to be adding links back to TutorMentor Exchange.com. It's really TutorMentor Exchange.net. So make sure that you don't use the .com because it won't open up.
+
+BRIAN: Right. Yeah, I'll get that fixed.
+
+DANIEL: And we'll come back to talking about the Your Conference Network and YourConferenceNetwork.com websites. They look great, but I want to explore how you see those potentially being used. But let's talk about that toward the end. The one thing that concerns me is that you've referred to me as the client as the Tutor/Mentor Connection, which is technically correct because that's what it was when we started it in 1993. But since 2011, the official name — what would be documented — would be Tutor/Mentor Institute LLC. There's no official Tutor/Mentor Connection structure anymore because the original was part of the nonprofit Community Connection, Tutor/Mentor Connection. So in a lot of different places, you talk about Tutor/Mentor Connection, but you don't show the joining of the two. And for the last 15 years, I've struggled with that actually because when I left in 2011, I was sort of forced out by my board of directors thinking I was too old and they needed a younger person and they didn't understand what the Tutor/Mentor Connection was all about and how it affected our kids program. And that was because over time, I had a mix of different people become part of our board of directors. In the early years, there were enough of them that understood Tutor/Mentor Connection and supported it that I didn't have to fight for its existence. But in the late 2000s, when we were hitting the financial meltdown and money was a problem, the board mixture changed enough that they said, we don't want to do this anymore. And they just dropped it. And in order to keep it going, I — as part of a separation — said, you give me full ownership. I intended initially to start a nonprofit under that name, but I couldn't really find people who wanted to take the responsibility for a 25-year-old organization led by a 65-year-old man who could drop dead any day and all of a sudden it would be their responsibility. So I created Tutor/Mentor Institute LLC to give me some structure. And that's what I've been using. But I end up using both names. On all of my PDF essays it announces Tutor/Mentor Connections — with brackets, 1993 to present — and Tutor/Mentor Institute LLC, 2011 to present. I use "present" there because once I put this stuff out there, years later... So that's the clarification that I think is sort of important, because you may understate a distinction, but other people may not. So I wanted to point that out. I also — Tutor/Mentor Connections had a website. It was created by one of our volunteers in the late 90s, and then it was rebuilt in 2006 by the tech team at IUPUI. They hosted it there formally on the IUPUI network until about 2013. And then Dave Breyer, who was the head there, he personally hosted it on his server until about 2018. That was built on .NET NUC. Unfortunately, it was getting so much spam that he had to take it down. And I then transferred all of the files for the library to the Tutor/Mentor Exchange site. And I've got the URL pointing to Tutor/Mentor Connections exchange, so if someone enters Tutor/Mentor Connections it'll go there. But the domain's available if someone from a future variation of this wanted to use that web address for a new version of the Tutor/Mentor Connections — I would love to see that happen.
+
+BRIAN: Yeah, absolutely. So we'll definitely kind of grab some screenshots from the archive on that, so that way we can put that into where it came from as well.
+
+DANIEL: Yeah, there in my blog there's archives that I have some screenshots of that. But you could also go to the Internet Archive. And if you search pre-2018, you could find versions of that all the way back to about 2001, which had many different versions. So then, in looking at the network maps document, you have at the far right, "More" with a drop-down menu. And you have a link there to Team K's work, but there was a second group that also looked at the data last fall. I don't know if your team was aware of that or looked at that, but it's probably at a minimum something that could be a link under the "More" section.
+
+BRIAN: Okay. Yeah, absolutely.
+
+DANIEL: So those were some overall things that I saw in your to-do list — the continued awareness of the inconsistencies of program names, and that that was work to be done in the future. Your dashboard is really useful in terms of looking at the year and at the category and the top 10, because it quickly identifies multiple listings of the same organization in the database, and occasionally a listing of an organization that's not in the right SNA. Right. Now, with that, I know you guys worked hard to get that down to — what, 11 categories?
+
+BRIAN: 11. Yes.
+
+DANIEL: I really would like to see a 12th category under Media.
+
+BRIAN: Yeah, that's right.
+
+DANIEL: Yeah, that's right. We talked about that. And the reason that's important is that drawing attention to this work is a critically important part of the purposes of the conferences — to help build overall awareness and media coverage to write stories about tutor/mentor programs in Chicago. So even though there's not a lot of people and a lot of different organizations that came from media, that in itself represents a problem. So then, I wrote this all down in a Google Doc that I'll share with you after we're done talking.
+
+BRIAN: Perfect.
+
+DANIEL: Let's see. I really like that dashboard by categories. It probably needs an explanation — like an overview of how to use it — because someone might not recognize that you can look at it by year, by conference, by category, and see organizations that attended. That's pretty valuable.
+
+BRIAN: Yeah. And well, I've got a little demo for you of that other website that we want to leave till the end. So whenever you want to take a look at that, I'll walk through that just to kind of show what work does exist with that. But yeah, let's keep going over what you did see, so that way we've got that one together.
+
+DANIEL: The SNA categories — TMC, Community Connections, TMI — same organization, but in a different timeline. They're connected differently. And so I'm not sure how that leads up, but they all overlap. When I went through the database, I left some listings of Community Connections as a program because staff and volunteers from the kids program did all the work of organizing the conferences and staffing them from 1994 up to 2003–2004. After that, I had people on staff that did some of the conference work. And I obviously was associated with the TMC part of the conference. And then after 2011, as I talked about earlier, Tutor/Mentor Institute needs to be connected with those domains. That's actually part of the problem with some of the other inconsistencies — an organization might have had one name in the 90s, but over time it had a second name, maybe even a third name, up to the present. And the other thing that this process would reveal, particularly if we were looking at names associated with organizations, is that people changed. People died. People moved to different organizations. Some people might have been in three or four different organizations over 20 years. And they may have come to the conference over time through those different organizations, but it wouldn't show up as one person, four conferences. It would show up as four organizations, one person. I know you've got the names and you could potentially sort for that without putting the name publicly in the database. And then the only other thing that stood out to me was that in the network maps — there are three in there — the first two look like the live Kumu maps, but they don't render very easily to look at. My suggestion was that if you put a link to the map like Team K did to their map, you can open a full view and maybe explore it a little bit easier.
+
+BRIAN: Yeah, absolutely. And that was something because Timothy was the one who went in and was messing around with Kumu. We were going through the advanced views, reaching out about looking at ways to manipulate the data. And so we've been working on both sides — with the Kumu rendering as well as the information being served from the server — so we can manipulate some outliers and have a much nicer graph. So that one's still being played around with and we'll continue that into the summer.
+
+DANIEL: I'm going to be working with him to look more into Kumu. I haven't seen any examples of the data used with Gephi, so that might be something to consider. And I think you had a third tool that I wasn't really familiar with.
+
+BRIAN: Plotly would be that third one. It was because — the two live examples, and then there's Plotly, which is that final one. And we were trying to recreate that same three-column look in Kumu, but with the way that the settings were working it just wasn't going well, and so for it to look vastly different we just kept that Plotly visualization there for right now. We're still trying to figure out what a better visualization through Kumu is going to look like on that one.
+
+DANIEL: So is Plotly a network analysis tool like Kumu?
+
+BRIAN: Plotly is actually just a Python library. So we're kind of going from the ground up and giving Plotly the instructions on how we want the data to be structured. So while it does put the network out there, it doesn't do the analysis itself. We're kind of pulling that information in and saying we want these associated in this way and get that flow going.
+
+DANIEL: Good. I'm pleased that there's been some consistency from fall to spring, and hopefully fall again, because that means a growing number of people are becoming familiar not just with the data but with the purpose and with the process. And as they go out into their careers they potentially become disciples who spread this and use this in more places — which is my goal.
+
+BRIAN: Yeah, absolutely. We actually had — I think it was the State of the Future Index team — that used Kumu for a couple of their visualizations as well, so that's definitely catching on.
+
+DANIEL: Beautiful, beautiful. Okay, so let me turn it back to you. What things do you want to point out to me, and then we can talk about the Your Conference Network site?
+
+BRIAN: Yeah, so absolutely. One of the big things is when we were working on basically how this pipeline goes forward — and how setting up the template the same way that we have it now so that organizations could collect data in the same manner and it could be visualized in a very similar fashion — it was a question of how do we make that a little more flexible for them. Everything has its purpose in your collection pipeline, and so it was really about those SNA categories. Is everybody going to fit into those same categories, or are we going to let them basically define their own? So that was one of the kind of challenges that we came up against on how we were going to manage that pipeline. As of right now, people could have their own categories in the tool that we do have up, but ideally we would have a list of categories to try and get people on board so that everything comes out more visually equivalent.
+
+DANIEL: That brings up another question. Let me pull this up a bit. Hold on.
+
+[pause]
+
+DANIEL: Team K did a lot of really good work, and the open-source network mapping tool that they created — does what you're doing make it obsolete? Or is what you're doing building on that and working complementary to that?
+
+BRIAN: Yeah, I understand what you're saying. It's not that it makes it obsolete — we are enhancing the network mapping tool that they created, and that's what we're going to be doing in the next week or so. I'm going to share my screen right now so that way we can kind of take a look. So — obviously, your conference network site. The difference here, when it comes to what can be done, is that we're hosting the data as well, instead of just Team K's process of upload it and then download the file. We have the actual hosting of the information. So this was the clean data set that we brought in. When you upload it, it goes through — brings everything in — well, I have it labeled here as "sectors" but that'll be "categories." You can do the search for an organization, kind of like you saw on our previous tutor mentor.network. And then on the network maps — this is the reason that we're hosting the data — these links here actually allow you to import that into Kumu and then continue either re-uploading or making changes to your data on this website. So like this first one on "org event" — if you take that and just come over to Kumu and then import, they have "link the map to remote JSON," and that's what that provides. So that gets you a starting point in Kumu so that way you can start manipulating it visually there while keeping the data process here. In addition to that, we also have the options so that, you know, if you don't want it so busy — well, I mean this one I think is very well pared down — but if we actually update it to having every org at the minimum amount of one and then we re-import that data, which normally with Kumu they do update it — it just takes a while — but re-importing makes it faster, we get a lot more smaller nodes that come through. So that's the difference in where it's going. It's not that Team K's tool is obsolete — it's great for kind of a local connection. This just makes the pipeline a little easier to manage because it takes it off-site for people who need to look at the conference data.
+
+DANIEL: One of the things that I invite you and Team K to do is look at the page on my website where I point to this stuff and give me rewritten suggestions that encourage people to... the TutorMentor Exchange.net — yeah, my keyboard sometimes double-types e's and a's and I don't know why, but my fingers do that.
+
+BRIAN: So it's all the way down to the bottom of the first — okay, this one right on the left side, first section, right above hotlinks. That's it right there.
+
+DANIEL: So I want to somehow be able to show the growth of what's happening without creating another page on the website to do that, because both of these — and in future work — represent a growing body of experience and knowledge focused on the same goal. Once I see the live rendering of the Kumu map that you've worked with, I'll start digging into that like I've dug into this one — and create an image that I would add to this, showing "here's the fall work, here's the spring work," in some way that I pointed people to both in a way that they learned from both. Does that make sense?
+
+BRIAN: Yeah, no, absolutely it makes sense, and it may be a better way to do that.
+
+DANIEL: In this page I've showed a history of mapping — trying to map participation and conference planning — and then I showed the open-source network mapping tool and linked the blog articles where I've shown pages for that in more detail. So I've heavily featured that here, and yet your work updates that, and I need to figure out how I'm going to revise this. So you guys might have some suggestions.
+
+BRIAN: Yeah, absolutely. And that's where — you know, this extension is just the ability to take the processing — or not just the processing but to host that information off-site. And that's where it's not a replacement. It's just that extension where you can keep editing your data. It's more of a tool to edit your data instead of just sending it in, getting it processed, and then getting it back — I think that's the difference there.
+
+DANIEL: Okay. And that might be something to emphasize.
+
+BRIAN: And because one of the other things is, I went through and I grabbed data from another conference I'm familiar with — obviously not as much backend information as was available — just to make sure that we had some sort of flexibility in the tool. And we ended up in kind of the same situation here; only there were only two areas, whether the companies that they worked with were basically in exhibit hall or artist alley for that conference.
+
+DANIEL: Well, you know, a part of the thinking — I won't say logic — behind my network analysis is that I've been using concept maps. If you go back to the website on your screen, scroll up, and then above the "mapping event participation" section, you'll see a concept map library. If you click into that—
+
+BRIAN: It is loading. Yeah.
+
+DANIEL: There we go. Okay. And then on the left-hand side — "Talent Needed to Achieve Goals" — if you open up that map... okay, yes, right, yeah, the second one. So to a certain extent, these are some of the SNA categories that you're bringing out of conference attendance. I've been trying in my outreach for many years — you know, I don't find very many people who organize events with a sense of who needs to be there if the event is going to actually lead to achieving the goal we want. And then following up would be — obviously — how do we know who was there, and how do we know who wasn't there? But during the first part of thinking about the categories, that's what this is intended to help do. Now, if you see the blue box at the upper right corner — it says "Skills and Talents"—
+
+BRIAN: Oh yes.
+
+DANIEL: Click on that little box, and then the network—
+
+BRIAN: Okay.
+
+DANIEL: So this becomes part of the SNA as well. The yellow categories represent who needs to be there. As we roll this out more and as you guys become more familiar with it, the front end is: if you're trying to bring people together in your community to solve a problem, who are the categories of people that need to be involved if the problem is actually going to get solved? You know, in Chicago — it's such a racist city — that funding from people who've got it doesn't consistently go to all of the poor neighborhoods where people don't got it. And there's never been any consistent public leadership — the mayor's office, the sports teams, whatever. How do we bring people who don't live in this experience into this experience in a way that they build empathy and understanding and a commitment to use generous amounts of their high talent and dollars to help solve the problem? Because no one's ever done that successfully — we still got the problem — and that's probably true in every city.
+
+BRIAN: Yeah. We actually — where I work, at Student Central on campus — we just had a summit and civic engagement was one of the areas that we covered. So I got real close with the office that looks into that outreach that comes through IU. And that may be something I look into — obviously this is not class-related, but something I look into — to try and see if we can't leverage what we've learned and designed here into how we move some of those projects along here in Bloomington.
+
+DANIEL: Well, and help of that kind is taught — is critically important. I'm going to go two directions here. In the departments there is the School of Philanthropy where they've been looking at 990 data. There's a guy named Brad Fulton and they've created something called Project 990 where they're looking at that data, assorted it and mapping it. One of the maps that they shared on their website shows nonprofit organizations in the Bloomington area, and it's — it's like a horse race, you've gone three-quarters of the way and you've stopped. They could add something like the Program Locator to be sorting more granularly on what type of service do these different organizations do, so we can better understand the availability of what's needed in different parts of the region. And as we understand who the organizations are, can we add on to that a tool that draws donors through the portal to the organization's website — or to a given tool on the platform where they make their contribution — the contribution goes to the organization, but the platform is able to aggregate information about how many people came through the platform to this zip code and gave dollars to these agencies, and how many dollars total during a given period of time did they give? If someone could build that tool and add it as a layer over the data and the mapping, then the tool and the process are moving toward what hampers any progress toward goals — and that is that the people doing the work can't find the money consistently.
+
+BRIAN: Yeah. Okay, yeah — I mean, I love that idea. Definitely something I'll bring into forward motion on that.
+
+DANIEL: Yeah. If you might — in your notes — in my blog, if you could go to tutormentor.blogspot.com —
+
+BRIAN: Oh, there's an extra "e" again.
+
+DANIEL: There we go. And actually, I did notice something pretty interesting today — my Google searches, my websites have consistently come up in the first two pages. I did a search, I asked Gemini to look for that and then my websites came up pretty consistently. But if you scroll down on the blog and look at the tags — I've got tags for network analysis, I've got tags for network building, I've got tags for Ivy Mook, I've got tags for Kumu — and each of those tags opens articles that have some information related to that tag. And so they're just a wealth of information available to learners who are motivated to spend time learning. And while the general public doesn't make that commitment, students going through a university program could. Right? If you scroll down on these tags, there's one called "Tipping Point"—
+
+BRIAN: "Tipping Point" — there it is.
+
+DANIEL: So these articles — it's a pipeline — elementary school, middle school, high school, college and beyond — created people who better understood what it takes to operate and lead one of these programs. And sent them out, seeding organizations all over the city, all over the country, with people who had a common thinking and a connection to each other. But more importantly, it also sent people out who are doing the work of giving the money and the talent for these organizations to succeed. If a university took that role — going back to IU where you are — the departments at the university could be beginning to say, well, how do we — at 20 years from now — could we look at a map of any city for any category of nonprofit and see flags showing Indiana University alumni? And could we look at another version of that showing Indiana University alumni providing money to support those organizations?
+
+BRIAN: Yeah, no, that's perfect.
+
+DANIEL: So these are something that — if a university — there's, you know, most universities have a department of philanthropy, they have a marketing school, they have an information technology school. They're sort of operating in silos. How can we, through what we're doing, create a breakthrough where they say — how do we make sure that the pipeline of people from here to the rest of their lives has people doing good work to make this a better world? And that has to involve the direct service people and the resource provider people. Right? And that's why those categories are so important — because business should have been consistently coming to our conferences because of workforce development issues and all kinds of things, but they were not. And philanthropy should have been consistently coming. So should public policy people. But I never had the visibility, if you will, to make that happen.
+
+BRIAN: Well, yeah, that's definitely something that we will highlight. I'm going to reach out to our head of philanthropy for the university and see what ideas we can develop, or you know, which classes he runs that information through, so that we can get projects and eyes on something like that. Because our head of philanthropy also happens to teach data science as well, so I think it'll be a perfect area for him.
+
+DANIEL: Yeah, well, I think I may have connected with him. Is that — was it Brad Fulton?
+
+BRIAN: Yep, that's him. Yep, sure.
+
+DANIEL: Well, we connected on LinkedIn recently.
+
+BRIAN: Oh, perfect! Yeah, like I said, he presented at our summit, so definitely reach out to him — or I'll reach out to him — and see what we can get done because I think that's a great project, and I think in his classes specifically he has room for a project like that.
+
+DANIEL: That'd be wonderful. So let's go back and look at YourConferenceNetwork.com. So this is April 2026 — how do you see this being used? For instance, if I were my eager-beaver self, I would be doing a screenshot of this, put it in my blog — "take a look at this" — but people who come in to take a look at this would go into the Services and go into the Cost page and say, "does this really work now?" So are you prepared to make this work, or others — how do you see this shared and used?
+
+BRIAN: So Matt — one of our other teammates — is a professor over at the Kelley School of Business, and he expressed some interest in possibly making this work as something for him. I said I'm willing to build things if he wants to do that. So — obviously because we used a template that had some pricing models, this is not fully fleshed out — but we removed it from most areas. Obviously I missed it here. But yes, it's something that since there was interest from one of our teammates in looking into it, it may be something that we'd be ready to develop. It's a discussion for pretty much the end of the semester, just to see how serious he is about it.
+
+DANIEL: Let me show you something else. If you go back to the Tutor/Mentor Exchange website and go to the home page — you can just back out of where you are—
+
+BRIAN: Oh yeah, that was — yeah, okay.
+
+DANIEL: On the right-hand side, as you scroll down, in the middle of the Tutor/Mentor Connection section, there is "Strategic Planning" — click into that. Now that's where that page that I sent you today about OHATS. Right. Click into the "Work Pays" pages and then scroll down onto "Communication and Marketing Projects" and you'll see a "Business School Connection." Okay. So as you're reaching out to your business school people, show them this. This was developed 20 years ago. All the high-profile universities say "we've got great business schools," but the public knows their school by the football team, not the business school. But what if the business schools were competing with each other to see who could do the best job of raising visibility and dollars to support youth-serving programs in their community — and make that a competition that each year grew with more teams joining in, and what the teams learned was saved and used to help each team get better each year? Okay, so if you get a nibble, maybe you get a big fish. I've never found a sponsor who would do this. But there are a couple of projects — if you backtrack one link here, and go down to "Youth Visualization Strategy" — so this graphic shows projects that interns have done for me between 2005 and 2015. And if you look at the bottom, there's — since this is a public awareness-building strategy, a page has been created. Click there.
+
+DANIEL: So this outlines an idea of creating a website that collects visualization projects done by youth anywhere in the world for a specific purpose. And those projects are aggregated, they're voted on, and somebody gets an award at the end of each period. But the work done becomes an archive so that each successive time frame, more and more work done inspires work done in the future. Right?
+
+DANIEL: So this again is something that could come out of any of the people that might begin looking at what you guys are doing.
+
+BRIAN: Yeah, I mean, we can definitely look into that. I know we do have our hackathon at Luddy. And then Tableau does their Iron Viz competition every year. So we can try to get some eyes on information like that.
+
+DANIEL: Yeah. I showed some links — I don't know if they're all still working — that are two examples of websites collecting student work. But all of the things I'm showing you are part of a network of ideas intended to recognize a problem and try to solve it by making more and better programs available for a longer period of time in the places where they're needed. And these are — when I talk about the four parts of the strategy, collecting information, getting people to look at the information — these are all part of that. Right?
+
+BRIAN: Okay. Well — so you have a bevy of information, and I love that there's so much, though unfortunately our 16 weeks here — well, not even 16 weeks, we were given our eight weeks — wasn't enough to kind of go through all of it. So that's why I want to continue to kind of go through and take a look at everything you've got. I know that there's so much that we didn't even get around to looking at.
+
+DANIEL: Yeah. And I shared a link with you to the printed directories from 1994 to 2003. So if you look in them — they're PDFs — it has all of the organizations that were invited to the conferences. You could probably make some pretty good comparisons from those lists to the conference list. But it also has a list of other people who were part of the ecosystem that I was reaching out to. So a team in the future might find that to be interesting to look at.
+
+BRIAN: Yeah, absolutely. And actually that brings me to one of the questions I was interested in when it comes to maybe data that's not present. Because we just kind of have lists of things, but when it comes to the known links — other than maybe a person that has moved companies four times — do you think that would be in those directories? To see which companies brought other companies in?
+
+DANIEL: No, the directories — I didn't do a printed directory after 2003. And by then a lot of programs didn't even have websites. And actually, you know, the database we used for the Program Locator did include contact information and website addresses. Oh — just a second here. So if you go back to the blog, and up at the top at the left, where it says "Find a Volunteer-Based Tutor/Mentor Program" — if you click that — so when the Program Locator had to be shut down in 2018, I started using Map-a-List to put programs up. And under the map, you can see a link to the life map. And if you click on one of those greened-out nodes it's going to tell you the organization and the organization's website. Right now that's fairly up to date. Okay.
+
+BRIAN: Okay. This is good, because we went through — we spent it was a seven-hour run in order for us to get these organizational websites, because what we did is we wrote a script that searched — you know, did a search if there was a website that it linked to. So I know not all of them are correct, because especially when we have like a couple of these services, they end up with — like Adoptions Unlimited for whatever reason picked up as Michigan — so you know, it was just a seven-hour runtime of automatically going through doing searches. And if it didn't find anything it also searched archive.org to see if maybe they were defunct. And this was just to get us to some point, which is what I have in that handbook — what the future team could do is they can go through and verify and refine that run.
+
+DANIEL: Yeah, that's impressive. And a lot of those are going to be current.
+
+BRIAN: Yeah, yeah. And I think your map is probably going to be more current than ours, just because we did a quick-and-dirty web crawler to try and search through everything.
+
+DANIEL: Well, my map is actually limited to just organizations that say they offer some form of volunteer-based tutoring and mentoring. This is not everyone in the ecosystem. It doesn't represent everyone who came to the conferences, nor does it represent everyone who was included in those printed directories. Those are all larger databases than what this focuses on.
+
+BRIAN: Yeah, I mean there is plenty of work to be done, and that's great. At least it's great for the class. And like I said, I'm always willing to help with getting these refinements together, keep moving whatever needs to move forward, and be a support for anyone who needs to reach out and ask. Like I said, Matt was looking more into possible consulting and actually putting this pipeline together, but either way there is going to be more work on this done. And obviously I'll provide whatever information I have, especially if Dr. Börner is bringing you in for fall semester for the next part of this.
+
+DANIEL: Do you have a fairly focused recommendation of what I should be asking for the next project?
+
+BRIAN: I honestly think bringing the OHATS information in — I know it's not — don't feel like the visualization aspect is going to be too deep — but I think that the undergraduates or even the graduates that end up working on the program will have a lot better visualization tactics to implement for that data to be relevant again. So I think that's a good place to put it forward, and that's why I'm putting so much emphasis in this last week with the team — getting that to a point that they can start using it right away for next semester. Because I think that would be much more data-visualization-heavy for the project, and be more recommended for the class.
+
+DANIEL: You know, if you go back into the website — the Tutor/Mentor Exchange — right, yeah. Oh my gosh, when did I even close it? Actually you can just click backwards from the wiki and it would take you there — so that would work too. I just keep it up because I know I'll forget about it. Okay, what was I going to — on the right-hand side, down under "Tutor/Mentor Connection," go down further — it shows "Vision" and "Strategy." If you click into "Strategy" — so this concept map shows the four strategies that we've piloted since 1993. And they're listed below. OHATS asked people to document what they did related to one or more of the four strategies. So as people are looking at the OHATS data, if it ties together — do our organizations have a sense of: as I bring all these people together, what do I want them to do? And how do I know if they did it once, twice, ongoing? And who's in there talking but not doing anything? So the data collected — something like this, focused toward an organizational purpose — it can be really valuable if the team can show people how to do that.
+
+BRIAN: And I see the Prezis here as well. Yeah. Okay, yeah, absolutely. And so this is what I'm — because I'm doing a lot of documentation — I will put this together with the OHATS data information. So that way you can present that if going forward with Börner's class. Or if not — if for whatever reason she's not bringing you in again for the next semester — we've got the Data Science Club that I'm sure would be more than interested to kind of put this together and push that out there, because it's something for all of their resumes as well.
+
+DANIEL: Good. Good. And your team members — a couple of the Team K members followed me on LinkedIn and I looked back to them. So if you and they want to connect with me there, please do.
+
+BRIAN: Perfect. Good. Good. And yeah, I mean, it's been a really stressful position doing full-time undergrad and working full-time. So I know this hasn't met my normal level of care I can give, but I am trying to continue that forward into helping get this into the hands of those that are going to be able to run with it.
+
+DANIEL: Good. What if you and a few others can come together to create a consulting business and generate income from this? Go for it.
+
+BRIAN: Yeah. And like I said, I will have those discussions with Matt. I'm actually going to be meeting with him on Friday since he's full-time too. So we'll kind of take a look, and obviously I'll keep in touch. I'll probably get together with you in another few weeks after I've had some time to recollect myself after this semester. And give me a go-ahead — at what point can I begin to share what you guys have done? I'll hold off until then.
+
+DANIEL: Super.
+
+BRIAN: Alright, well, thank you so much, Daniel, for everything, and for being a part of this class.
+
+DANIEL: Well, thank you. Nothing happens without you guys.
+
+BRIAN: Well, thank you. It really was an honor, and I look forward to just continuing to work and gain more information.
+
+DANIEL: Okay, let me know when you want to talk again.
+
+BRIAN: Yeah, we'll do. I'll reach out again. You've got my email as well, and yeah, we'll get together. Okay, have a good day.
+
+DANIEL: You too.
+
+────────────────────────────────────────────────────────────────────────────────
+[END OF TRANSCRIPT]

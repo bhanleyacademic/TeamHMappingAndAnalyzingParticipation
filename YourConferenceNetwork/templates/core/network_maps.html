@@ -1,0 +1,59 @@
+{% extends "base_app.html" %}
+{% block title %}Network Maps – YourConference.Network{% endblock %}
+{% block content %}
+<h1>Network Maps</h1>
+<p style="color:#555; margin-bottom:1.25rem; font-size:0.92rem;">
+  Three views of your conference participation network, generated live from the database.
+  Images may take a few seconds to load on large datasets.
+</p>
+
+<div class="card">
+  <h2 style="margin-top:0;">Map 1 — Organization–Event Bipartite Network</h2>
+  <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">
+    Each organization (colored by sector) is connected to every conference event it attended (orange).
+    Node size encodes years of participation (org) or total attendees (event).
+    Only orgs attending ≥3 events and events with ≥10 orgs are shown.
+  </p>
+  <img src="{% url 'core:map_org_event' %}"
+       alt="Organization–Event Bipartite Network"
+       style="width:100%; border-radius:6px; display:block;">
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0;">Map 2 — Organization–Organization Co-attendance Network</h2>
+  <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">
+    Organizations connected by shared conference attendance. Edge weight = number of
+    shared conferences (minimum 3 shown). Node size = events attended. Top 20 nodes by
+    degree are labeled — these are the network's most-connected organizations.
+    Color encodes SNA sector.
+  </p>
+  <img src="{% url 'core:map_org_org' %}"
+       alt="Organization–Organization Co-attendance Network"
+       style="width:100%; border-radius:6px; display:block;">
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0;">Map 3 — Event → Sector → Organization (Three-Layer, 2004–2010)</h2>
+  <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">
+    A three-layer structural view focused on the peak attendance years (2004–2010).
+    Left layer: conference events. Center: SNA sectors. Right: organizations attending
+    ≥4 events in the window. Shows how sectors bridge events and organizations.
+  </p>
+  <img src="{% url 'core:map_three_layer' %}"
+       alt="Three-Layer Event–Sector–Organization Network"
+       style="width:100%; border-radius:6px; display:block;">
+</div>
+
+<div class="card" style="background:#f0f4f8;">
+  <h2 style="margin-top:0;">Export for Kumu.io / Gephi</h2>
+  <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">
+    Download the underlying data as CSVs to build interactive versions of these maps.
+  </p>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a class="btn btn-green btn-sm" href="{% url 'core:export_nodes' %}">nodes.csv</a>
+    <a class="btn btn-green btn-sm" href="{% url 'core:export_edges_org_event' %}">edges: org↔event</a>
+    <a class="btn btn-green btn-sm" href="{% url 'core:export_edges_org_org' %}">edges: org↔org</a>
+    <a class="btn btn-green btn-sm" href="{% url 'core:export_edges_event_sector_org' %}">edges: 3-layer</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "base_app.html" %}
+{% block title %}Analytics Dashboard – YourConference.Network{% endblock %}
+{% block content %}
+<h1>Analytics Dashboard</h1>
+
+<!-- Filters -->
+<form method="get" class="filters card">
+  <div>
+    <label for="year">Year</label>
+    <select name="year" id="year">
+      <option value="">All years</option>
+      {% for y in years %}
+        <option value="{{ y }}" {% if selected_year == y|stringformat:"s" %}selected{% endif %}>{{ y }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div>
+    <label for="sector">Sector</label>
+    <select name="sector" id="sector">
+      <option value="">All sectors</option>
+      {% for s in sectors %}
+        <option value="{{ s }}" {% if selected_sector == s %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div>
+    <label for="state">State</label>
+    <select name="state" id="state">
+      <option value="">All states</option>
+      {% for st in states %}
+        <option value="{{ st }}" {% if selected_state == st %}selected{% endif %}>{{ st }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div>
+    <button type="submit" class="btn">Apply Filters</button>
+    <a class="btn" href="{% url 'core:dashboard' %}" style="background:#555; margin-left:0.5rem;">Clear</a>
+  </div>
+</form>
+
+<!-- Network overview metrics -->
+<div class="metrics">
+  <div class="metric">
+    <div class="value">{{ total_records }}</div>
+    <div class="label">Total Records</div>
+  </div>
+  <div class="metric">
+    <div class="value">{{ unique_orgs }}</div>
+    <div class="label">Unique Organizations</div>
+  </div>
+  <div class="metric">
+    <div class="value">{{ unique_events }}</div>
+    <div class="label">Conference Events</div>
+  </div>
+  <div class="metric">
+    <div class="value">{{ avg_connections }}</div>
+    <div class="label">Avg Events / Org</div>
+  </div>
+</div>
+
+<!-- Data quality indicators -->
+<div class="card" style="border-left: 4px solid {% if missing_org > 0 %}#b71c1c{% else %}#2e7d32{% endif %};">
+  <h2 style="margin-top:0;">Data Quality</h2>
+  <p>Missing organization name: <strong {% if missing_org > 0 %}class="warning"{% endif %}>{{ missing_org }}</strong> records</p>
+  <p>Missing/blank SNA category: <strong {% if missing_sna > 0 %}class="warning"{% endif %}>{{ missing_sna }}</strong> records</p>
+</div>
+
+<!-- Frequency chart -->
+<div class="card">
+  {{ chart_html|safe }}
+</div>
+
+<!-- Two-column tables -->
+<div class="grid-2">
+  <div class="card">
+    <h2>Top Organizations by Attendance</h2>
+    <table>
+      <thead><tr><th>Organization</th><th>Sector</th><th>Records</th></tr></thead>
+      <tbody>
+        {% for org in top_orgs %}
+        <tr>
+          <td>{{ org.organization }}</td>
+          <td>{{ org.sna_category }}</td>
+          <td>{{ org.count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Sector Distribution</h2>
+    <table>
+      <thead><tr><th>Sector</th><th>Records</th></tr></thead>
+      <tbody>
+        {% for s in sector_counts %}
+        <tr>
+          <td>{{ s.sna_category|default:"(blank)" }}</td>
+          <td>{{ s.count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Top events -->
+<div class="card">
+  <h2>Top Conference Events by Attendance</h2>
+  <table>
+    <thead><tr><th>Conference</th><th>Year</th><th>Month</th><th>Attendees</th></tr></thead>
+    <tbody>
+      {% for ev in top_events %}
+      <tr>
+        <td>{{ ev.conference }}</td>
+        <td>{{ ev.year }}</td>
+        <td>{{ ev.month }}</td>
+        <td>{{ ev.count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Export links -->
+<div class="card">
+  <h2>Export Filtered Data</h2>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a class="btn btn-green btn-sm" href="{% url 'core:export_nodes' %}?year={{ selected_year }}&sector={{ selected_sector }}&state={{ selected_state }}">nodes.csv</a>
+    <a class="btn btn-green btn-sm" href="{% url 'core:export_edges_org_event' %}?year={{ selected_year }}&sector={{ selected_sector }}&state={{ selected_state }}">edges: org↔event</a>
+    <a class="btn btn-green btn-sm" href="{% url 'core:export_edges_org_org' %}?year={{ selected_year }}&sector={{ selected_sector }}&state={{ selected_state }}">edges: org↔org</a>
+    <a class="btn btn-green btn-sm" href="{% url 'core:export_edges_event_sector_org' %}?year={{ selected_year }}&sector={{ selected_sector }}&state={{ selected_state }}">edges: 3-layer</a>
+  </div>
+</div>
+{% endblock %}

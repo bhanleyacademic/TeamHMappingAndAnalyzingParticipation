@@ -1,0 +1,59 @@
+{% extends "base_app.html" %}
+{% block title %}Data Quality – YourConference.Network{% endblock %}
+{% block content %}
+<h1>Data Quality Report</h1>
+
+<div class="metrics">
+  <div class="metric">
+    <div class="value">{{ total }}</div>
+    <div class="label">Total Records</div>
+  </div>
+  <div class="metric" style="border-top: 4px solid {% if missing_org > 0 %}#b71c1c{% else %}#2e7d32{% endif %};">
+    <div class="value {% if missing_org > 0 %}warning{% endif %}">{{ missing_org }}</div>
+    <div class="label">Missing Organization</div>
+  </div>
+  <div class="metric" style="border-top: 4px solid {% if missing_sna > 0 %}#b71c1c{% else %}#2e7d32{% endif %};">
+    <div class="value {% if missing_sna > 0 %}warning{% endif %}">{{ missing_sna }}</div>
+    <div class="label">Missing SNA Category</div>
+  </div>
+  <div class="metric">
+    <div class="value">{{ unmapped }}</div>
+    <div class="label">Mapped to "Other"</div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>Normalized SNA Category Counts</h2>
+    <table>
+      <thead><tr><th>Canonical Category</th><th>Records</th></tr></thead>
+      <tbody>
+        {% for row in normalized_dist %}
+        <tr>
+          <td>{{ row.sna_category|default:"(blank)" }}</td>
+          <td>{{ row.count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Top Raw SNA Values (before normalization)</h2>
+    <p style="font-size:0.82rem; color:#777; margin-bottom:0.5rem;">
+      Top 30 original values from your dataset — used to build the normalization map.
+    </p>
+    <table>
+      <thead><tr><th>Original Value</th><th>Records</th></tr></thead>
+      <tbody>
+        {% for row in original_dist %}
+        <tr>
+          <td>{{ row.sna_category_original|default:"(blank)" }}</td>
+          <td>{{ row.count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

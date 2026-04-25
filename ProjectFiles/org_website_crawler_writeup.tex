@@ -1,0 +1,248 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{parskip}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!10},
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red!70!black},
+}
+
+\usepackage{enumitem}
+\usepackage{mdframed}
+
+\title{Organization Website Crawler\\
+\large Methodology, Implementation Notes, and AI-Assisted Development}
+\author{Mapping and Analyzing Participation Project}
+\date{April 2026}
+
+\begin{document}
+\maketitle
+
+\section{Overview}
+
+The script \texttt{find\_org\_websites.py} locates a current or archived website
+for each of the 2,161 unique organizations found in
+\texttt{All\_Conferences\_Data\_Cleaned-2026 - Sheet1.csv}.
+Results are written to \texttt{org\_websites.csv} with three columns:
+\textbf{Organization}, \textbf{Website}, and \textbf{Status}.
+
+\section{Search Queries Used}
+
+Two distinct query patterns are issued per organization.
+
+\subsection{Primary DuckDuckGo Query}
+
+\begin{lstlisting}
+"<Organization Name>" official website
+\end{lstlisting}
+
+Quoting the organization name forces exact-phrase matching, which reduces
+false positives from partial-name collisions common in nonprofit datasets
+(e.g., ``Big Brothers'' matching unrelated results). The phrase
+\texttt{official website} biases results toward homepages rather than
+news articles, directory listings, or social media profiles.
+
+\subsection{Archive.org Fallback Query}
+
+\begin{lstlisting}
+site:web.archive.org "<Organization Name>"
+\end{lstlisting}
+
+This is issued only when no live site is found. It targets Wayback Machine
+pages that mention the organization by name. If this also fails, the script
+queries the archive.org CDX API directly:
+
+\begin{lstlisting}
+https://web.archive.org/cdx/search/cdx
+  ?url=<guessed-domain>&output=json&limit=1&fl=original,timestamp
+\end{lstlisting}
+
+The guessed domain is constructed by stripping non-alphanumeric characters
+from the organization name and appending \texttt{.org}, \texttt{.com},
+and \texttt{.net} in order.
+
+\section{Methodology and Code Decisions}
+
+\subsection{Unique Organization Extraction}
+
+Organizations are extracted from the \textbf{Organization -- CLEANED} column
+rather than the original column. The cleaned column resolves variant spellings
+and duplicates introduced by transcription across conference years, reducing
+the search space from 6,428 rows to 2,161 unique names.
+
+\subsection{Result Filtering}
+
+The top five DuckDuckGo results are checked, but results from the following
+domains are skipped before any HTTP verification:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Domain & Reason skipped \\
+\midrule
+facebook.com, instagram.com, twitter.com & Social media, not homepages \\
+linkedin.com & Professional directory \\
+wikipedia.org & Encyclopedia, not official site \\
+yelp.com, bbb.org, guidestar.org & Third-party directories \\
+indeed.com, glassdoor.com & Employment sites \\
+web.archive.org & Handled separately in fallback \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Liveness Check}
+
+Each candidate URL is verified with a \texttt{GET} request (10-second timeout,
+redirects followed). A response with HTTP status $< 400$ is considered live.
+This catches sites that redirect from \texttt{http://} to \texttt{https://}
+or from a non-\texttt{www} to a \texttt{www} subdomain.
+
+\subsection{Status Values}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Status & Meaning \\
+\midrule
+\texttt{live} & URL responded with HTTP $< 400$ \\
+\texttt{archived} & URL is a Wayback Machine snapshot \\
+\texttt{unverified} & DDG returned a result but HTTP check failed \\
+\texttt{not found} & No result from DDG or archive.org \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Checkpointing}
+
+Each result is written to \texttt{org\_websites\_checkpoint.json} immediately
+after processing. This allows the script to resume from interruption without
+re-querying organizations already processed. The output CSV is opened in
+append mode for the same reason.
+
+\subsection{Rate Limiting}
+
+A random sleep of 1.5--3.5 seconds is inserted between each search request.
+Randomization avoids fixed-interval patterns that automated rate limiters
+are tuned to detect. At this pace, 2,161 organizations take approximately
+1.5--2 hours to process.
+
+\subsection{Why DuckDuckGo?}
+
+DuckDuckGo's \texttt{ddgs} Python library provides programmatic search
+without requiring an API key or incurring per-query costs, which is appropriate
+for a research project of this scale. Google's Custom Search API caps free
+usage at 100 queries per day, making it impractical for 2,161 searches.
+
+\section{Use of Claude as a Development Tool}
+
+This script was developed entirely through a conversational session with
+\textbf{Claude Code} (Anthropic, model \texttt{claude-sonnet-4-6}), a
+command-line AI assistant integrated into the development environment.
+No code was written manually by the researcher. The following documents
+the exact prompts issued and the iterative nature of the session.
+
+\subsection{Prompt Sequence}
+
+The three prompts below were issued in sequence within a single session.
+No additional clarification, correction of logic, or manual code editing
+was required between prompts.
+
+\begin{mdframed}[backgroundcolor=gray!8, linecolor=gray!40]
+\textbf{Prompt 1}
+
+\textit{``I need you to help me write a script or a crawler that will find
+the websites for every organization listed in
+\texttt{All\_Conferences\_Data\_Cleaned-2026 - Sheet1.csv}.
+Even if those websites are only available through archive.org and make a
+note of if they are live or archived.''}
+\end{mdframed}
+
+\vspace{0.5em}
+
+This single prompt produced the full script, including CSV parsing,
+DuckDuckGo search integration, HTTP liveness checking, archive.org fallback
+logic, checkpointing, rate limiting, and the output CSV structure.
+Claude also identified and installed missing dependencies (\texttt{ddgs},
+\texttt{requests}, \texttt{tqdm}), ran a smoke test against a known
+organization (Big Brothers Big Sisters of America), and diagnosed and
+corrected two runtime errors (a \texttt{global} declaration scope error
+and a renamed package) without researcher intervention.
+
+\begin{mdframed}[backgroundcolor=gray!8, linecolor=gray!40]
+\textbf{Prompt 2}
+
+\textit{``Can you give me a quick .tex of what you made for this part,
+the prompts used, and the methodology behind your code decisions?''}
+\end{mdframed}
+
+\vspace{0.5em}
+
+This prompt produced the first version of the present document, covering
+the script overview, search query design, and methodology sections.
+
+\begin{mdframed}[backgroundcolor=gray!8, linecolor=gray!40]
+\textbf{Prompt 3}
+
+\textit{``Please include the prompts used to achieve this as we are looking
+at Claude as a tool for this section.''}
+\end{mdframed}
+
+\vspace{0.5em}
+
+This prompt produced the current section, extending the document to include
+the full prompt transcript and a reflection on Claude's role in the workflow.
+
+\subsection{Observations on Claude as a Research Tool}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Task interpretation}: The first prompt contained no technical
+        specification (no mention of libraries, search APIs, output format,
+        or fallback strategy). Claude inferred a reasonable implementation
+        from the research goal alone.
+  \item \textbf{Error recovery}: Two bugs surfaced during testing
+        (a Python scoping error and a renamed third-party package). Claude
+        diagnosed and fixed both without being asked to, within the same
+        response turn.
+  \item \textbf{Transparency}: Claude explained each design decision
+        (e.g., why DuckDuckGo over Google, why the cleaned column over the
+        original) without being prompted, producing documentation as a
+        byproduct of the session.
+  \item \textbf{Limitations}: Claude cannot verify whether the URL it
+        returns is the \emph{correct} site for an organization, only that
+        it is live. Manual spot-checking of results is still necessary,
+        particularly for organizations with common short names.
+\end{itemize}
+
+\subsection{Reproducibility}
+
+The session was conducted on April 19, 2026 using Claude Code CLI with
+model \texttt{claude-sonnet-4-6} in the project directory
+\texttt{/home/brian/PycharmProjects/MappingAndAnalyzingParticipation}.
+The complete script is archived at
+\texttt{ProjectFiles/find\_org\_websites.py} in the project repository.
+
+\section{Limitations}
+
+\begin{itemize}
+  \item DuckDuckGo may return no results for very obscure local organizations,
+        particularly those that predate widespread web presence (data begins in 2000).
+  \item Domain guessing for the CDX API fallback uses only the first 20
+        characters of the name slug, which may miss organizations whose domain
+        differs significantly from their name.
+  \item \texttt{unverified} results include the URL as returned by DuckDuckGo
+        but should be manually reviewed before use.
+  \item The script does not attempt to disambiguate organizations that share
+        a common short name (e.g., multiple entries cleaned to
+        ``Big Brothers Big Sisters'' refer to different regional chapters).
+\end{itemize}
+
+\end{document}

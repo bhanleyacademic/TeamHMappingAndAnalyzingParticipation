@@ -1,0 +1,479 @@
+>From - Fri Mar 20 2026 23:36:15
+Received: from IA6PR08MB10875.namprd08.prod.outlook.com (2603:10b6:208:5db::8)
+ by SJ0PR08MB6752.namprd08.prod.outlook.com with HTTPS; Mon, 2 Mar 2026
+ 20:05:11 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=r0YrZVXpfrcKtph/1GuwEIH1qnYkimOl163iMaGU/BFqwoQKAOnyfbk/BYB18B7Bt5GQRoIp34X6yCpuCb47a001lrJMbAJcLvnkWXmlf9PvARrtIgH9A78MClix/9Tp2faAPrL3S+CTuPpWQ/hks2knuC0MkjmokccdyMJ5R64b2wThBJazeLOLMxCSXZT9A8jsT2KpKlsb1USHBJuzo04Ac/e9stcO67xwWzJgdjB/ILx1955F3MQ9fHnwisdtbkFdFSR/dnN9epMaNKBR6+HDP/f42KDP2EMSrrMbg9E/YicIJaI802lbQf2OlpldLZjvY2TDTxMy6XtzfdDyRA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=14G73pFRbaQMcLeupnqm8RLtK1sM4wCbBVrjBW44A3Q=;
+ b=dP3DkeHdd2gurKg0kuCfGhgMdWFRumO69wXflIEeZZyj6/8xkMMQbmQpi4tvYoNlyPjSuu23R1QvB3lTXz6ZbUhOByLRAo6BZ2UvB4X/LoUuVPzPJiPqqKxTG/rBKonQzAMcyq3nHoSSa/6f6PSawyDwWiFWsEP+h8VZvVK6U0iB4mWD2hQhf1YgMfI1ZNZHfF639YNXwtLj0nMlS6lc5p9hXEWgJ8Y2RwQZyNmzsqhypN5Imw9TccRZ6NCj+BKMDxgqd8Qv87vUZpZpMYkpTJDHQCXW9cBuwaG5lllumufmDcvP3NzLIO4QKRsvfW/kFRmlu22sOeGpTHNgo8pH4g==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 2a00:1450:4864:20::22c) smtp.rcpttodomain=iu.edu smtp.mailfrom=gmail.com;
+ dmarc=pass (p=none sp=quarantine pct=100) action=none header.from=gmail.com;
+ dkim=pass (signature was verified) header.d=gmail.com; arc=pass (0 oda=0
+ ltdi=1)
+Received: from CH2PR14CA0005.namprd14.prod.outlook.com (2603:10b6:610:60::15)
+ by IA6PR08MB10875.namprd08.prod.outlook.com (2603:10b6:208:5db::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.16; Mon, 2 Mar
+ 2026 19:57:23 +0000
+Received: from CH3PEPF0000000D.namprd04.prod.outlook.com
+ (2603:10b6:610:60:cafe::f) by CH2PR14CA0005.outlook.office365.com
+ (2603:10b6:610:60::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20 via Frontend
+ Transport; Mon, 2 Mar 2026 19:57:23 +0000
+Authentication-Results: spf=pass (sender IP is 2a00:1450:4864:20::22c)
+ smtp.mailfrom=gmail.com; dkim=pass (signature was verified)
+ header.d=gmail.com;dmarc=pass action=none header.from=gmail.com;compauth=pass
+ reason=100
+Received-SPF: Pass (protection.outlook.com: domain of gmail.com designates
+ 2a00:1450:4864:20::22c as permitted sender) receiver=protection.outlook.com;
+ client-ip=2a00:1450:4864:20::22c; helo=mail-lj1-x22c.google.com; pr=C
+Received: from mail-lj1-x22c.google.com (2a00:1450:4864:20::22c) by
+ CH3PEPF0000000D.mail.protection.outlook.com (2603:10b6:61f:fc00::32b) with
+ Microsoft SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 19:57:23 +0000
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-389fac627c9so71444001fa.0
+        for <hanleyb@iu.edu>; Mon, 02 Mar 2026 11:57:22 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772481441; cv=none;
+        d=google.com; s=arc-20240605;
+        b=RnF/4bDyzB73L91cT+xd9hdSaqdU4St/r9zDMhN3lTwl8ou878iEG8mTsUfxA4zek0
+         9QKZKfEGQr+/1RNEGnTTQmaUw6hJuP+tT7O6nUDbf5wasW6xFm5O9f+hrLzvrMzx5VED
+         JN0U787GO+PnW4bre78Axop8qzu1I6sogYW3N2qr7oWDmrSl4MOOUJvgVWBS1ACWEvvx
+         f5VWEEJvxnTum8XTbnz/7ar1ylZ3ArEX7/LUOP+rTVpjNV6eS2W39mt44yYtyxzC+nA+
+         nnbISTSY1Aue9OwPUpRvdYBQdP8PNqkZwJSc7pfpSkAFwzOqFV6NXz/x9TY/aCKjnRLJ
+         waOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=14G73pFRbaQMcLeupnqm8RLtK1sM4wCbBVrjBW44A3Q=;
+        fh=gGq3pOHKKlOQnDHxEQEBC8u5DV6zwAesLQMrrlQv52c=;
+        b=EeLqcTHB12nPOBdpDXwH869fSmxZ56x443tz82RnPcOnOMeKeLT0JntRKamFl5jodJ
+         xHFl1L6xFmv0MtvZ2S0ba+6sHYnx7RqfR9s7tPZ4i814XL6/P5NkH0Dt9rer547MYTk7
+         DvneMyun5ClignDLl45iBpGdT7Sy81NL40+v7pQ/qTOG61kvuab1GfI2Z0jnwMUpYx5q
+         W7AsSB6NCWRvK+v9boC5bA8kd5Dd5dmkhSyngdcOKhWU4ORKJeopBjTbTBaznPhozGgF
+         iskIcAm9algNXYvhO07JQMmER4wE9l3dCdWIuPI/g2zMN0IPANO+d5wiK7Xy/TnJ9xhN
+         58Vw==;
+        darn=iu.edu
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772481441; x=1773086241; darn=iu.edu;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=14G73pFRbaQMcLeupnqm8RLtK1sM4wCbBVrjBW44A3Q=;
+        b=JXXNsb/irvDtLwR6MiWxqT+6lLvki4cn+baVVogN14yM8BnYQKXWPGmJuRJUDYwWYF
+         afO1+71NrAFoOJEUbZmd/I5/5CS+lTZ1CEpvfWBKZ8T7lKQV7tA07Lh1bb1MgOb9EMeF
+         kvFi4pzYp+A1T4nLVZO8TDkyzhSZ7GrKF8fsC+DfXO22D3sOG6WFHyUE3TYb0WqDupwX
+         +P1W5AdzyxyAn4reOMdvtb7V3BTgxFgh5G4Kft7Si1IFTkAI5nGqc3SRDiykgNv6AE/V
+         k/4Se0+WO/pq4niDLeAVAaSAp76HYADUSNZ131LK5F3dWTNzdlgdwikw423yQZhMdcIG
+         U4Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772481441; x=1773086241;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=14G73pFRbaQMcLeupnqm8RLtK1sM4wCbBVrjBW44A3Q=;
+        b=Jl+peMn3GH8KjLXI7mIAF3EpdbI9/rwqiDm3t0urMMBz8TuWiJlg6TFKgGxa4AU5p3
+         2dvnS6EHj+ch57cufJVK16PrTd1kQcFE6p3FebqJIrWov+Jy1ge1Fz7zZC21qIyoM97y
+         827tJbebyemTkKEZWjvFCyYOlogZc1rw4BIGo/VlUEIw2wf/CCW5s1u+QMdF84Pwz5Gy
+         XNIwmAJNG3La49s7GU5exWJ47V42VcW/EfbHNBC9UyyGAloYQrIDqg42U/ZdATf1SNSb
+         slXKX/0kKjH1TC4MVmfO0cHZLPzLBNPxK8WGbCw9+mH/deJRlLwqieqiTEz/MJZRr6kb
+         fjHQ==
+X-Gm-Message-State: AOJu0YxPAiqw2TIzRLAsr0YLNyfpx3gA2qDp8FllNj41V3e8BBsr4NgP
+	aP0xABwhfK+gM0XwSCT+rdJkk3XckoEATD0noF7v5w82KRpchcA89BozCHb9MxCyybsFmHsX298
+	TurXSD0XvKQtdtCTsUAowSpMmisvfOaIH1Fwu
+X-Gm-Gg: ATEYQzw+4/N/GfDrb5PqQ6TFxqYeFLh5MLHUpSlU6zhH01QVwzmuEs+d+RveaVPKC+q
+	rixLXtL9IRJXUVuINVNRmvRnayQVk9RokiHeZ5KmgnSBmVbnbsPqTrW/Ov8Ec2XCmV4IllcCLbH
+	mjE9AQAChL6vECcTfYtBUghG6LAs3bMlngfpiU/77/+eZZ898jAfV1TJq0IP51juICbxZrQkLfN
+	MQsAI6/mtNt4xUKEYmGyAXhVMmXTzLc66mZrD+Ql3wGcumD6DCW+TpvKwndY2r71zQ0l9wQi4uG
+	dRHmwDa6gg==
+X-Received: by 2002:a05:651c:3044:b0:387:1337:8be7 with SMTP id
+ 38308e7fff4ca-389ff36cbd2mr86772331fa.36.1772481440968; Mon, 02 Mar 2026
+ 11:57:20 -0800 (PST)
+References: <e6793225-e60d-48aa-a572-0655896bd381@iu.edu>
+In-Reply-To: <e6793225-e60d-48aa-a572-0655896bd381@iu.edu>
+From: Daniel Bassill <tutormentor1@gmail.com>
+Date: Mon, 2 Mar 2026 13:57:06 -0600
+X-Gm-Features: AaiRm52PGUCdg_vMCdDD03Aio0W-UCcqnjMTtJ4UHmPnPX2U-dV6z2N_pr_tiQw
+Message-ID: <CAHKjx_-moF-mQVWLOoSTfnzs2Nbpuefy4OrPAZqgaXvT2O8EsQ@mail.gmail.com>
+Subject: [External] Re: Mapping & Analyzing Participation project at IU
+To: "Hanley, Brian Andrew" <hanleyb@iu.edu>
+Cc: "Green, Patrick J" <greenpat@iu.edu>, "Guschwan, Matt Christopher" <mguschwa@iu.edu>, "Kelley, Timothy" <tikell@iu.edu>
+Content-Type: multipart/alternative; boundary="000000000000a8f3ab064c0ffe73"
+Return-Path: tutormentor1@gmail.com
+X-MS-Exchange-Organization-ExpirationStartTime: 02 Mar 2026 19:57:23.1637
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: ba6b8e0b-c583-4808-d13f-08de7895eb9d
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 1113be34-aed1-4d00-ab4b-cdd02510be91:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF0000000D:EE_|IA6PR08MB10875:EE_|SJ0PR08MB6752:EE_
+X-MS-Exchange-Organization-AuthSource: CH3PEPF0000000D.namprd04.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: ba6b8e0b-c583-4808-d13f-08de7895eb9d
+X-MS-Exchange-AtpMessageProperties: SA|SL
+X-MS-Exchange-Organization-SCL: 1
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7093399015|1032899013|69100299015|7049299003|7149299003|3109299003|13003099007|2066899003|8096899003|4076899003|54012099003;
+X-Forefront-Antispam-Report: CIP:2a00:1450:4864:20::22c;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail-lj1-x22c.google.com;PTR:mail-lj1-x22c.google.com;CAT:NONE;SFS:(13230040)(7093399015)(1032899013)(69100299015)(7049299003)(7149299003)(3109299003)(13003099007)(2066899003)(8096899003)(4076899003)(54012099003);DIR:INB;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 19:57:23.0613
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ba6b8e0b-c583-4808-d13f-08de7895eb9d
+X-MS-Exchange-CrossTenant-Id: 1113be34-aed1-4d00-ab4b-cdd02510be91
+X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF0000000D.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA6PR08MB10875
+X-MS-Exchange-Transport-EndToEndLatency: 00:07:48.5494168
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.9654.014
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:1;jmr:0;auth:0;dest:C;OFR:CustomRules;ENG:(910005)(944506478)(944626604)(920097)(930201)(20251009189)(140003)(1420198);
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SnNuWk5JbkkwZm0wd2dDR1ZyanJTZXlENHFkdnFqUG9aSk9KeGo0K0tzNlZk?=
+ =?utf-8?B?cnpxTkZRaS81WFpSSE5DS0hmbVBxUFA4ZXgrd1d5NzVLUmIwWXVBQ0tjNWo0?=
+ =?utf-8?B?RFA3eUdSTG1Kb2IxRnNPclBXVFg2S014aGduZ3h2UzRzM01xVUFSREd4MlpR?=
+ =?utf-8?B?cjh0d2d5cTVxTTBxd2k4S05takw4bFdxVFppbUhtUmJlUndmbkxyMzNEdXVj?=
+ =?utf-8?B?WWJHc1JvMGY4S20xRCtGLzRCT0ZTaEtyLytWeEtYSVFlcGp3Y0syNFh0ekVk?=
+ =?utf-8?B?OTdHWHpiMFQzSXVqVEN0bXVvZ2JabmZIZm1KRjQwRk1va1MrU3FBOHdYcFFO?=
+ =?utf-8?B?aUcwNFEweGErMXVIa1JlYWhKbW5OdExRbWl2dU50YUhKMms4QXNkU29obTNB?=
+ =?utf-8?B?RDlCb2M2QjgwMWVod3BaODNJaG11TlRDUjZpZm8xMVdCalhxUERjRXRsSUdJ?=
+ =?utf-8?B?UzVILzZPL3grQVd6YTkzRzRXbkozd3RqbldVU1BRR3U3Z09Ya2JqWE5sZVdU?=
+ =?utf-8?B?cmFQZTZyUG9tS2hMWmxVVXZMVUxJcFdBTFFKZ2ZQUTdzU2FEYWllVHhEKzNE?=
+ =?utf-8?B?bGcrWXFmeW9makluYjIzMWNiNjVrVzhQcmdMS3ZqUW1na2lOdGlVcFVsWmZL?=
+ =?utf-8?B?U01WUVAydlR2d2xIRGthS2IyUi83WEowYjZGTCttdWhYdElsakVYU0JNTlRK?=
+ =?utf-8?B?bGpBcW1MVjBqNmVxOHdlRDQ0VWJvQS9DamUyZnZmdlYxTVZkTlhXdUt0ZkVJ?=
+ =?utf-8?B?OGV5Z0tFeU00T3pnSGJqZ2dtV1NvL1NpbVlmV2RMNzAxL3VtdkdTTlAyYU1V?=
+ =?utf-8?B?cGJ1N3BTTDIvdGw4TnZFQWYwUXR4WVQ5NXRqZTVMWWo0eFJrMEJqcUNSQXk1?=
+ =?utf-8?B?bU9YRmk0WmdjT1hOczZLZ3QxbjJ0YldhelNXamo0WXNGV2k5aWxOQmRiUDdD?=
+ =?utf-8?B?VG5Ia3VqQ3VMWE5DREg1WkF5cnNwVkxWZGs3cGZXbXYrUEJIUmhKa2tYZUN0?=
+ =?utf-8?B?YTFFT0RReFJ3VVlHUXBpK1REOE0waTV4RjFOdWxCL3UyZjdLc3h2TXRoanAx?=
+ =?utf-8?B?N3B3TVhxQlBacmppYUFGS3lSdG95Y3VqcHl6WFJubVVYeXdmQ1pXYkdFbGN3?=
+ =?utf-8?B?a0dxU2tMSnY0aTIxU3VBa1p6MEhIUTJSV0ZUUDJnMFpIejh4K3pSbDRvMjlN?=
+ =?utf-8?B?enZQZWl6ZHBOc2tKYXM5QnVtVm5rRXFDa3JmaDd6SjliQVUyOVUvcDRkclND?=
+ =?utf-8?B?UUh4cHExVzIvRE5DS3YvbzNxOGJ2citkMklMdjZpaFloTU1tcVJiNm9OZWEz?=
+ =?utf-8?B?TGc4QzRzWVZhODZyOWJqeUNlbnBsNUZtTzVVVEF4eGJCRzB3Ymd2WHkzTXM2?=
+ =?utf-8?B?OEpxVWlYcGlFN1gyWE9VbStML3QzUDFiODFLZitYUWFDYitKZjV5RGJ3eUYz?=
+ =?utf-8?B?Z0xTS1lSMkl3V1prRmFKY1RsVkZRdFl2ZW4zRzZ2bFJzeWQ0N0pyRmM4ZDhk?=
+ =?utf-8?B?a0ZvK0YyMU1WSHpndU1WdGtTWStXVW9ORERxNUlFZlB1VXNYQVpPMUZwRUs4?=
+ =?utf-8?B?Tzk0MitUdHhGWUgwY3RTRDZPWWF6TkJjLzNML01wN0duMGZOMW9sVU50dFVL?=
+ =?utf-8?B?eGlHYW5reUg5M2liVEk1YzcyTTVTNFlzL0NxT0JySkp5R1VvK29zRWFsKzdP?=
+ =?utf-8?B?NEl3N0FWMUF5K2o1ZUxlQkJDbHdXZmNaaFpobHM5azZFZ1M2MXBFeGw5TzRM?=
+ =?utf-8?B?ZE9pVVVpbzdhcXh2VmUzdXRzMm9GZktoVGFHdWUxa3kreFRRQnNaUWFVZitG?=
+ =?utf-8?B?emhVOS9BbnBveEVQd2UzV01aSFhFYnRHUExtK1NpMW5qYVpHcC8xL2N0eWFj?=
+ =?utf-8?B?Q3VGSHdLVGlvQis4MU0wQkw0ZlVUemE4SVhDV0FSdll1UlQyMVJQTVF2WU1o?=
+ =?utf-8?B?aXo5eE5WQnQzNFlEb3dXSFovREhQdHMxaWlxSENIN0k5UEI5MlNDOXBPRFBJ?=
+ =?utf-8?B?VDczNnR5VzRQNDNBNTBDQ2djcWlSREFWdENPVGZzQ2JiSVhIZ1F5cE1OM3FI?=
+ =?utf-8?B?ditQbG4zUUo4OStnaXFOTnprQTNOQkdzVDFRa3hqa00xWHd6aXVJblVaTEtx?=
+ =?utf-8?B?cGtoakFUYUM0Q29QMkhCM08yb1dxNUR5bWZrZFpZSmtWbjZiTDVlb1g5NC94?=
+ =?utf-8?B?cXFXRTdYN1ZyTVJ1L25YZmFkdDZ6cjhkR0hkaXdya05scWN5cHpZV01ZN0lh?=
+ =?utf-8?B?aTFHTk56OUwzZ0J5SmZad28wUENMaGYxSUhobmpNbXBtamtvWjBheUpJY1A5?=
+ =?utf-8?B?WVRGL1htbk9VbUZpV1YrbUw5QVVzcEx5UEFFeTBmUFdsTE0wbHhPVEwwcTFx?=
+ =?utf-8?B?UStrdEhWbjVQc2NDaDE3THhocy9aeHAvZHF2VjlZKzFGbnJ5amprYnR0TGo2?=
+ =?utf-8?B?UWg5cGM0VXNsZWk5aTFJaE5NYW5IUnhreUxFRTFrQ1E1UVBNejhvTmxTTDh2?=
+ =?utf-8?B?V0VJejI1UTI4WkJrV0RXd3JxYzFlVWRJSzR1a3ljeU4wc1k1UlVrdTRSUHdE?=
+ =?utf-8?B?amtqMzM1M0lpeWtDWXMwNVpWekxVWEduT1NFZVdwalk3a2tnNUFadmpDQUJu?=
+ =?utf-8?B?NkJZdnBtaTRRVlhSNUVORjNzQ1UrMW5pR1A5OW43R0RkN1RnSnFvWHNNQk96?=
+ =?utf-8?B?NG13eUpIazZPT1A0VDAxQTBwQ3REVGNkdGtDcWxiZkV5bEdPckpCajBoOEpQ?=
+ =?utf-8?B?OTN3RDI2YytvQ3BWWi8yaFR2enZ2REVsQmM5Q2VYdjJ2RGZIQkJKa1RBTjNN?=
+ =?utf-8?B?MjRrR1NlODB0eUxONytUOFYxSm5IRWhtQU1hYUpvNDBHbGdEQVZWWDhZV2VZ?=
+ =?utf-8?B?MzlmNEgzVUxXYjVlZVA4N2ZJejF2cTE0dEdrL2MyRDBqU0ttVXR5WEZ1UExq?=
+ =?utf-8?B?bGZsbzl3T2p0dDRVSDJnbURseUkzbStIcVBQQXhlT3NOTmtrcHRQeTErVnpl?=
+ =?utf-8?B?WXBaUk01M2hkOWFRekoraEl1dXZvUGE4aEFYYUsySGxOM3doRng2WTVXSjhr?=
+ =?utf-8?B?dGpEWWlnM2thUm9ISlc2RHRMOFAwVnJQSGU0S09TdHF6WERZZlZrRTkwY1di?=
+ =?utf-8?B?cXgyQ3JMQ3VLNFp3TnpFSGluVHZyVDBTUTdBcGVUQWVtaWlBYVJ3T3VLdVRH?=
+ =?utf-8?B?VzU0SktUZ3UydDA3RW1EZHpFR2RKSzNQTXpTbHJnbzFTUTB3dWhQa0xEZmRa?=
+ =?utf-8?B?WVlTRTZMREVNRW4xK3ljU3VQRW44eXRwTE5xbkRseTgvcnMwSjgyZmZZWVJi?=
+ =?utf-8?B?VzU5aUgxdzRJUFBLWmhvK0RGYUN0YVlRWFh0aVlJaVdQSFNqeDkxK0luUG5u?=
+ =?utf-8?B?b1NGS294RWNLTlVXc29PdjJPaFpDcG1GNWl4Ymp4bEpvS29KaXhJVzd0UU95?=
+ =?utf-8?B?SGZKWlF1RVlWdm9YMzJLbndDQWhuVWVNd01EelpBcTFqNi9UQ1MwMFBzK1V0?=
+ =?utf-8?B?L0l6Q3FPVGRzNWhDcHgrK3FvUjl0TTVBZUx1L25TQWp4ZDc2VjBQZUhjcEM1?=
+ =?utf-8?B?dS95QmxHQXg2cndnaEFuMlJJRFFrcUNZanZ0Y2pldXM4NUx6U3NmcWJkQ2t2?=
+ =?utf-8?B?L3pZVXVNcFdaL3czNVRjbGJnSklwZnZEZDFkazhQWlVNdnJNMTNydkI0akFS?=
+ =?utf-8?B?V2RoWGdWUHV5MmN4MTQya2xvekJUOU56U0RBMndZUHR5UGFGNTJCcmZpVUpE?=
+ =?utf-8?B?QmhYK1o1UmI4V3lmZGpMVE5ENVd4SUlsaW0wbXVDSHQxT3VhNkRBcmZxYnd6?=
+ =?utf-8?B?L3VRMmpXMjBJUVZ0OWk5YmQ0Q0E1azltVk90RVoyenYyWnRnZ2ZRVGYyZUJa?=
+ =?utf-8?B?VEVkRWtEOUc2MjJTZCthd1ljenpCT1RUMzF2NS8vdVh5ZFlGQk9oSzREVWhP?=
+ =?utf-8?B?YStSSm10OVdsZ09aeVZ2L2xCZzhvVTZPOW5LQjZUbENlRlo4MjZyWUJKb0t1?=
+ =?utf-8?Q?1htTQg55i6z7Ne7d15S?=
+MIME-Version: 1.0
+
+--000000000000a8f3ab064c0ffe73
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+This message was sent from a non-IU address. Please exercise caution when c=
+licking links or opening attachments from external sources.
+
+
+Hi Brian, Matt, Patrick and Timothy.  Thanks for taking on my project.  I'm=
+ pretty flexible on being able to meet via ZOOM.  If meetings are scheduled=
+ for 4:30 pm Chicago time, I'm pretty confident that any date you suggest i=
+s good for me.
+
+I urge one of you (or all) to join my group at http://tutormentorconnection=
+.ning.com. That's where I've been posting ideas about mapping networks for =
+more than 10 years.  On the home page you can see what I've posted about th=
+e IVMOOC project.
+
+You also should dig into the many links I  post on this page of my website.=
+ https://tutormentorexchange.net/sna
+
+As to hosting a stable website for academic and research purposes it would =
+be great if you could come up with a solution that does not have me hosting=
+ the site and/or that has some university ownership.  I think I could host =
+the site with the same hosting service as I use for www.tutormentorexchange=
+.net<http://www.tutormentorexchange.net> but I'm looking for something that=
+ can exist beyond my own timeline.  I'm 79 now, so that is a concern.
+
+Furthermore, the fact that the Fall 2025 IVMOOC team built on the 2015 team=
+'s work and you're building on their work, offers a roadmap for an on-going=
+ project that not only collects information, but shares it, and uses it to =
+bring groups together to solve problems that they can't solve by themselves=
+, or in a short timeframe.
+
+On this page you'll find four PDF visual essays showing my vision of univer=
+sity involvement.  Maybe your team can bring that a bit closer to a reality=
+.
+
+Feel free to reach out by email with questions, or to schedule a ZOOM meeti=
+ng.
+
+Thank you, and good luck!
+
+Daniel F. Bassill
+Tutor/Mentor Connection (1993-present)
+Tutor/Mentor Institute, LLC (2011-present)
+
+[https://s-install.avcdn.net/ipm/preview/icons/icon-envelope-tick-round-ora=
+nge-animated-no-repeat-v1.gif]<https://www.avast.com/sig-email?utm_medium=
+=3Demail&utm_source=3Dlink&utm_campaign=3Dsig-email&utm_content=3Dwebmail> =
+ Virus-free.www.avast.com<https://www.avast.com/sig-email?utm_medium=3Demai=
+l&utm_source=3Dlink&utm_campaign=3Dsig-email&utm_content=3Dwebmail>
+
+On Mon, Mar 2, 2026 at 11:46=E2=80=AFAM Hanley, Brian Andrew <hanleyb@iu.ed=
+u<mailto:hanleyb@iu.edu>> wrote:
+
+Hello Daniel,
+
+I just wanted to reach out and introduce ourselves since we will be working=
+ on your project. Our team consists of Matt, Patrick, Timothy, and myself (=
+Brian). While we are still sorting out who will be best suited for each tas=
+k, I figured touching base to see if there was anything else that may have =
+come up that we can start looking into for you. What does your schedule loo=
+k like? In case a zoom meeting might be more appropriate to get together an=
+d discuss any progress we are working towards.
+
+When it comes to hosting a stable website for academic and research purpose=
+s, did you have hosting in mind? Or is this something that you would like u=
+s to looking into providing? Thank you for all of the insight you can provi=
+de and for all the work you have done over the years to provide us such a r=
+obust dataset. We look forward to working with you over the next few months=
+.
+
+Best,
+
+Brian
+
+--
+Brian Hanley
+Student Records Representative, Student Central
+hanleyb@iu.edu<mailto:hanleyb@iu.edu>
+408 N Union St | 812-855-6500
+[Undergraduate Education] <https://ovpue.indiana.edu?utm_source=3Demail-sig=
+nature-logo&utm_medium=3Dhanleyb&utm_campaign=3Demail-signatures>
+
+--000000000000a8f3ab064c0ffe73
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"></=
+head>
+<body>
+<p></p>
+<div style=3D"background-color:#FFEB9C; width:100%; border-style: solid; bo=
+rder-color:#9C6500; border-width:1pt; padding:2pt; font-size:10pt; line-hei=
+ght:12pt; font-family:Calibri; color:Black; text-align: left;">
+This message was sent from a non-IU address. Please exercise caution when c=
+licking links or opening attachments from external sources.</div>
+<br>
+<p></p>
+<div>
+<div dir=3D"ltr">
+<div class=3D"gmail_default" style=3D"font-size:large">Hi Brian, Matt, Patr=
+ick and Timothy.&nbsp; Thanks for taking on my project.&nbsp; I'm pretty fl=
+exible on being able to meet via ZOOM.&nbsp; If meetings are scheduled for =
+4:30 pm Chicago time, I'm pretty confident that any
+ date you suggest is good for me.<br>
+<br>
+I urge one of you (or all) to join my group at <a href=3D"https://nam12.saf=
+elinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Ftutormentorconnection.nin=
+g.com%2F&amp;data=3D05%7C02%7Chanleyb%40iu.edu%7Cba6b8e0bc5834808d13f08de78=
+95eb9d%7C1113be34aed14d00ab4bcdd02510be91%7C1%7C0%7C639080787117304868%7CUn=
+known%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4=
+zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C60000%7C%7C%7C&amp;sdata=3DtyUIsCx6=
+q0BQe1xRjD0mLacAHmTm33LtIi2%2FhQws6Y8%3D&amp;reserved=3D0" originalsrc=3D"h=
+ttp://tutormentorconnection.ning.com/">
+http://tutormentorconnection.ning.com</a>. That's where I've been posting i=
+deas about mapping networks for more than 10 years.&nbsp; On the home page =
+you can see what I've posted about the IVMOOC project.&nbsp;&nbsp;<br>
+<br>
+You also should dig into the many links I&nbsp; post on this page of my web=
+site.&nbsp;<a href=3D"https://nam12.safelinks.protection.outlook.com/?url=
+=3Dhttps%3A%2F%2Ftutormentorexchange.net%2Fsna&amp;data=3D05%7C02%7Chanleyb=
+%40iu.edu%7Cba6b8e0bc5834808d13f08de7895eb9d%7C1113be34aed14d00ab4bcdd02510=
+be91%7C1%7C0%7C639080787117329752%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiO=
+nRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D=
+%7C60000%7C%7C%7C&amp;sdata=3DnDG1LwPim1ZoHIecKlmMZGuV6tePbTgrKL1G5Zr4LEs%3=
+D&amp;reserved=3D0" originalsrc=3D"https://tutormentorexchange.net/sna">htt=
+ps://tutormentorexchange.net/sna</a></div>
+<div class=3D"gmail_default" style=3D"font-size:large"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-size:large">As to hosting a stab=
+le website for&nbsp;academic and&nbsp;research purposes it would be great i=
+f you could come up with a solution that does not have me hosting the site =
+and/or that has some university ownership.&nbsp; I
+ think I could host the site with the same hosting service as I use for <a =
+href=3D"https://nam12.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2F=
+www.tutormentorexchange.net%2F&amp;data=3D05%7C02%7Chanleyb%40iu.edu%7Cba6b=
+8e0bc5834808d13f08de7895eb9d%7C1113be34aed14d00ab4bcdd02510be91%7C1%7C0%7C6=
+39080787117348464%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwL=
+jAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C60000%7C%7C%7=
+C&amp;sdata=3DeUxK97BugkzLf54SWR8aCHzUUz%2FV1ylQLvxU3UYeKac%3D&amp;reserved=
+=3D0" originalsrc=3D"http://www.tutormentorexchange.net/">
+www.tutormentorexchange.net</a> but I'm looking for something that can exis=
+t beyond my own timeline.&nbsp; I'm 79 now, so that is a concern.&nbsp;</di=
+v>
+<div class=3D"gmail_default" style=3D"font-size:large"><br>
+Furthermore, the fact that the Fall 2025 IVMOOC team built on the 2015 team=
+'s work and you're building on their work, offers a roadmap for an on-going=
+ project that not only collects information, but shares it, and uses it to =
+bring groups together&nbsp;to solve problems
+ that they can't solve by themselves, or in a short timeframe.&nbsp; <br>
+<br>
+On this page you'll find four PDF visual essays showing my vision of univer=
+sity involvement.&nbsp; Maybe your team can bring that a bit closer to a re=
+ality.</div>
+<div class=3D"gmail_default" style=3D"font-size:large"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-size:large">Feel free to reach o=
+ut by email with questions, or to schedule a ZOOM meeting.<br>
+<br>
+Thank you, and good luck!</div>
+<div class=3D"gmail_default" style=3D"font-size:large"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-size:large">Daniel F. Bassill<br=
+>
+Tutor/Mentor Connection (1993-present)<br>
+Tutor/Mentor Institute, LLC (2011-present)&nbsp;</div>
+</div>
+<div id=3D"DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2"><br>
+<table style=3D"border-top:1px solid #d3d4de">
+<tbody>
+<tr>
+<td style=3D"width:55px;padding-top:13px"><a href=3D"https://nam12.safelink=
+s.protection.outlook.com/?url=3Dhttps%3A%2F%2Fwww.avast.com%2Fsig-email%3Fu=
+tm_medium%3Demail%26utm_source%3Dlink%26utm_campaign%3Dsig-email%26utm_cont=
+ent%3Dwebmail&amp;data=3D05%7C02%7Chanleyb%40iu.edu%7Cba6b8e0bc5834808d13f0=
+8de7895eb9d%7C1113be34aed14d00ab4bcdd02510be91%7C1%7C0%7C639080787117366448=
+%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOi=
+JXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C60000%7C%7C%7C&amp;sdata=3DRYO=
+lFcMYshOP%2FzRPgtYjX4i6T4FthvBwsQB3ZuRmLus%3D&amp;reserved=3D0" originalsrc=
+=3D"https://www.avast.com/sig-email?utm_medium=3Demail&amp;utm_source=3Dlin=
+k&amp;utm_campaign=3Dsig-email&amp;utm_content=3Dwebmail" target=3D"_blank"=
+><img src=3D"https://s-install.avcdn.net/ipm/preview/icons/icon-envelope-ti=
+ck-round-orange-animated-no-repeat-v1.gif" alt=3D"" width=3D"46" height=3D"=
+29" style=3D"width: 46px; height: 29px;"></a></td>
+<td style=3D"width:470px;padding-top:12px;color:#41424e;font-size:13px;font=
+-family:Arial,Helvetica,sans-serif;line-height:18px">
+Virus-free.<a href=3D"https://nam12.safelinks.protection.outlook.com/?url=
+=3Dhttps%3A%2F%2Fwww.avast.com%2Fsig-email%3Futm_medium%3Demail%26utm_sourc=
+e%3Dlink%26utm_campaign%3Dsig-email%26utm_content%3Dwebmail&amp;data=3D05%7=
+C02%7Chanleyb%40iu.edu%7Cba6b8e0bc5834808d13f08de7895eb9d%7C1113be34aed14d0=
+0ab4bcdd02510be91%7C1%7C0%7C639080787117383739%7CUnknown%7CTWFpbGZsb3d8eyJF=
+bXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIld=
+UIjoyfQ%3D%3D%7C60000%7C%7C%7C&amp;sdata=3DZqmiTYE9nP2fWSHyShS9skQrga3wV1ga=
+lU70Rxuu%2BK4%3D&amp;reserved=3D0" originalsrc=3D"https://www.avast.com/sig=
+-email?utm_medium=3Demail&amp;utm_source=3Dlink&amp;utm_campaign=3Dsig-emai=
+l&amp;utm_content=3Dwebmail" target=3D"_blank" style=3D"color:#4453ea">www.=
+avast.com</a></td>
+</tr>
+</tbody>
+</table>
+<a href=3D"#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width=3D"1" height=3D"1">=
+</a></div>
+<br>
+<div class=3D"gmail_quote gmail_quote_container">
+<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Mar 2, 2026 at 11:46=E2=80=AF=
+AM Hanley, Brian Andrew &lt;<a href=3D"mailto:hanleyb@iu.edu">hanleyb@iu.ed=
+u</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
+<u></u>
+<div>
+<p>Hello Daniel,</p>
+<p>I just wanted to reach out and introduce ourselves since we will be work=
+ing on your project. Our team consists of Matt, Patrick, Timothy, and mysel=
+f (Brian). While we are still sorting out who will be best suited for each =
+task, I figured touching base to
+ see if there was anything else that may have come up that we can start loo=
+king into for you. What does your schedule look like? In case a zoom meetin=
+g might be more appropriate to get together and discuss any progress we are=
+ working towards.</p>
+<p>When it comes to hosting a stable website for academic and research purp=
+oses, did you have hosting in mind? Or is this something that you would lik=
+e us to looking into providing? Thank you for all of the insight you can pr=
+ovide and for all the work you have
+ done over the years to provide us such a robust dataset. We look forward t=
+o working with you over the next few months.</p>
+<p>Best,</p>
+<p>Brian</p>
+<div>-- <br>
+<div>
+<div id=3D"m_1035544700008946438signature">
+<table>
+<tbody>
+<tr style=3D"border:none;padding:0px;color:rgb(0,0,0);line-height:130%;font=
+-size:14px;margin:0px 0px 4px;font-family:Arial,Helvetica,sans-serif">
+<td><span style=3D"font-weight:bold;color:rgb(0,0,0);line-height:130%;font-=
+size:14px;margin:0px 0px 4px;font-family:Arial,Helvetica,sans-serif">Brian =
+Hanley</span><br>
+<span style=3D"color:rgb(0,0,0);line-height:130%;font-size:14px;margin:0px =
+0px 4px;font-family:Arial,Helvetica,sans-serif">Student Records Representat=
+ive, Student Central</span><br>
+<span style=3D"line-height:130%;font-size:14px;margin:0px 0px 4px;font-fami=
+ly:Arial,Helvetica,sans-serif"><a href=3D"mailto:hanleyb@iu.edu" target=3D"=
+_blank">hanleyb@iu.edu</a></span><br>
+<span style=3D"color:rgb(0,0,0);line-height:140%;font-size:14px;margin:0px =
+0px 4px;font-family:Arial,Helvetica,sans-serif">408 N Union St | 812-855-65=
+00</span></td>
+</tr>
+<tr height=3D"8" style=3D"border:none;margin:0px;padding:0px">
+</tr>
+<tr style=3D"border:none;padding:0px;margin:0px">
+<td style=3D"padding-top:0px"><a href=3D"https://ovpue.indiana.edu?utm_sour=
+ce=3Demail-signature-logo&amp;utm_medium=3Dhanleyb&amp;utm_campaign=3Demail=
+-signatures" target=3D"_blank"><img alt=3D"Undergraduate Education" width=
+=3D"400" src=3D"https://apps.ovpue.indiana.edu/staff-tools/lockups/undergra=
+duateeducation_lockup_WEB_h5_mini.png">
+</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</body>
+</html>
+
+--000000000000a8f3ab064c0ffe73--

@@ -1,0 +1,332 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+
+\title{\textbf{OHATS Path Forward}\\
+\large Organization Health Assessment Tool \& Survey\\
+Archive Overview and Recommendations for Future Research Teams}
+\author{Brian Hanley — E483/E583 Information Visualization, Spring 2026\\
+Indiana University Luddy School of Informatics, Computing, and Engineering}
+\date{April 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+% -------------------------------------------------------------------------
+\section{What Is OHATS}
+
+\textbf{OHATS} (Organization Health Assessment Tool \& Survey) was a web-based
+system designed for the \textbf{Tutor/Mentor Connection} (T/MC) by researcher
+Steve Roussos between 1998 and 2002. Its purpose was to help youth-serving
+nonprofit organizations self-assess their performance against the four
+strategic pillars that Daniel F.\ Bassill used to guide the T/MC mission:
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Collect information} — document what organizations do and who they reach.
+  \item \textbf{Spread information} — share knowledge across the nonprofit network.
+  \item \textbf{Build capacity} — develop organizational skills and leadership.
+  \item \textbf{Evaluate impact} — measure outcomes and adapt strategy.
+\end{enumerate}
+
+OHATS asked organizations to document what they did in relation to one or
+more of these pillars. The vision was to aggregate those self-assessments
+across the network so that T/MC could see which organizations were active
+in which pillars, track change over time, and identify where capacity-building
+support was most needed.
+
+The system was active in some form from approximately 2000 to 2002. Rebuild
+attempts occurred in 2007 (internal notes) and 2008 (Ganesh Mahalingam,
+external developer; SVHATS~2.0 specification by V.~Helde). None of
+the rebuilds resulted in a publicly deployed, sustained system.
+
+\begin{mdframed}[backgroundcolor=yellow!10, linecolor=orange!60]
+\textbf{Why OHATS matters now (April 2026):} In the April~22,~2026
+client meeting, Daniel F.\ Bassill confirmed that OHATS is a priority
+for the next semester project. He described the data as directly connected
+to his four strategic pillars and said that visualizing OHATS assessment
+data would be ``data-visualization-heavy'' in a way that is ideal for the
+E483/E583 course. The Spring~2026 team did preliminary cleanup of the
+archive; a future team should begin with this document and the folder
+inventory below.
+\end{mdframed}
+
+% -------------------------------------------------------------------------
+\section{Archive Location and Inventory}
+
+All OHATS materials are stored at:
+\begin{center}
+\texttt{ProjectFiles/OHATS-TMC-SteveRoussos 1998-2002-20260422T193300Z-3-001/\\
+OHATS-TMC-SteveRoussos 1998-2002/}
+\end{center}
+
+\subsection{Planning Correspondence (1998--2001)}
+
+These documents trace the origin and design of OHATS from Roussos's
+initial letter to T/MC through the first operational period.
+
+\begin{center}
+\begin{tabular}{lp{9cm}}
+\toprule
+File & Description \\
+\midrule
+\texttt{RossosLetter-toTMC-12-6-1998.pdf} & Roussos's initial letter proposing evaluation system to T/MC \\
+\texttt{S.Roussos-letter~12-6-1998.pdf} & Companion letter \\
+\texttt{S.Roussos-letter-collaboration.ideas-1-22-1999.pdf} & Early collaboration ideas \\
+\texttt{S.Roussos-letter-grants.ideas-1999.pdf} & Grant-funding concepts for the system \\
+\texttt{S.Roussos-email-.communication-1999.pdf} & 1999 email communications \\
+\texttt{S.Roussos-email-.idea-sharing-1999.pdf} & Idea-sharing exchange \\
+\texttt{S.Roussos-email-ICQ-net.communication-1999.pdf} & ICQ-based communication \\
+\texttt{ConfPresentation-IYP-funding-Roussos-draft-1999.pdf} & Conference presentation, IYP funding \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{System Design and Workplans (2000--2002)}
+
+These documents define what OHATS was supposed to do and how it was built.
+\textbf{Start here when trying to understand the system schema.}
+
+\begin{center}
+\begin{tabular}{lp{9cm}}
+\toprule
+File & Description \\
+\midrule
+\texttt{Workplan-to-establish-TMC-OHATS-4-24-2000-Roussos.pdf} & Primary workplan for establishing OHATS \\
+\texttt{WorkPlan-TMC-EvalSystem-6-9-2000.pdf} & Evaluation system workplan \\
+\texttt{OHATS for TMC-S.Roussos-6-2000.pdf} & Core OHATS description document \\
+\texttt{OHATS - what is it.doc} & Plain-language explanation of OHATS \\
+\texttt{OHATS development - notes - 2000-01.pdf} & Developer notes during active build \\
+\texttt{OHATS-draft-comments-1-7-2001.pdf} & Draft review comments \\
+\texttt{OHATS improvement specs - 2-21-2001-Roussos.pdf} & Improvement specifications \\
+\texttt{OHATS planning - Roussos email 6-21-2001.pdf} & Planning email \\
+\texttt{OHATS - Procedures for Dev \& Application - 3-2002.pdf} & Procedures document \\
+\texttt{Mgt-Info-Learning-System-MILS-forCC-7-27-2000-Roussos.pdf} & Broader information system context \\
+\texttt{CC-MtInfo-LearningSystem-S.Roussos-7-27-2000.pdf} & Companion MILS document \\
+\texttt{MILS for KidsConnection-Draft-8-3-2000-Roussos.pdf} & Application to kids programs \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Reports and Outcomes (2000--2005)}
+
+\begin{center}
+\begin{tabular}{lp{9cm}}
+\toprule
+File & Description \\
+\midrule
+\texttt{TMC-OHATS Report-March2002.pdf} & Primary operational report \\
+\texttt{OHATS-files/TMC\_OHATS\_Report\_Sep-00\_thru\_Mar-02.pdf} & \textbf{Key data source}: full 18-month report Sep 2000--Mar 2002 \\
+\texttt{OHATS items reported by G.~Schoen for TMC 2000-2001.pdf} & Items logged by staff \\
+\texttt{TMC OHATS development 3-17-2003.pdf} & 2003 development status \\
+\texttt{Long-term-impact-CC-TMC-slides-for-discussion~2005.pdf} & 2005 retrospective slides \\
+\texttt{TQM chart-circa2000-showing people involved.pdf} & TQM organizational chart \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Funding Documents}
+
+\begin{center}
+\begin{tabular}{lp{9cm}}
+\toprule
+File & Description \\
+\midrule
+\texttt{Request-for-2ndYr-Funding-OHATS-2001.pdf} & Request for second-year funding \\
+\texttt{SRoussos-contract-building-evaluation-OHATS-2000-01.pdf} & Roussos contract \\
+\texttt{Research and Information System Associate (RISA)...pdf} & RISA role description for OHATS \\
+\texttt{Mentoring Network Grant-abstract-draft~3-1999.pdf} & Grant abstract \\
+\texttt{Mentoring Network Grant-problem description-draft~3-1999.pdf} & Grant problem statement \\
+\texttt{Workplan for TMCTech-Intern-Summer2001.pdf} & Intern workplan \\
+\texttt{Endorsement of S.~Roussos - 2011.pdf} & 2011 endorsement letter \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Rebuild Attempts (2007--2008)}
+
+\begin{center}
+\begin{tabular}{lp{9cm}}
+\toprule
+File & Description \\
+\midrule
+\texttt{OHATS rebuild - 2-16-2007.pdf} & 2007 rebuild plan \\
+\texttt{OHATS rebuild - screen shots - 2007.pdf} & Screen shots of rebuilt version \\
+\texttt{OHATS rebuild - screen shots w notes - 2007.pdf} & Annotated screen shots \\
+\texttt{OHATS 2007 developer - Ganesh Mahalingam-12-24-2007.pdf} & Developer communication \\
+\texttt{SVHATS\_2.0.doc} & \textbf{Most complete requirements document}: SVHATS~2.0 spec \\
+\texttt{SVHATS-JourneyMapping-V.Helde-12-4-2008.pdf} & Journey-mapping for 2008 redesign \\
+\texttt{OHATS-files/OHATS08report.doc} & 2008 status report \\
+\texttt{OHATS-files/OHATS10\_26.doc}, \texttt{OHATS10\_29.doc} & 2008 working documents \\
+\texttt{OHATS-files/OHATS~3\_19\_08.doc}, \texttt{OHATS~8\_16\_08.doc} & 2008 meeting notes \\
+\texttt{OHATS-files/OHATS\_-\_Advanced\_Features\_-\_Price\_Info[1].pdf} & Pricing for advanced features \\
+\texttt{OHATS-files/TMC~Flowchart1.doc} & System flowchart \\
+\texttt{OHATS-files/TMC~goals-GISrev.doc} & Goals document with GIS revision \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{OHATS Source Code (ASP.NET, circa 2002)}
+
+The \texttt{OHATS/} subfolder contains the original ASP.NET web
+application. \textbf{Do not attempt to run this code}---it is legacy
+technology (Microsoft FrontPage / .NET 1.x, circa 2002) and serves
+only as a documentation artifact showing the system's data schema and
+page structure.
+
+Key pages that reveal the data model:
+\begin{itemize}[leftmargin=1.5em]
+  \item \texttt{Default.aspx} — Home/login
+  \item \texttt{EventInfo.aspx}, \texttt{Eventsearchcontent.aspx} — Event tracking
+  \item \texttt{Contactinfo.aspx}, \texttt{ContactInfoListcontent.aspx} — Organization contacts
+  \item \texttt{Metrics.aspx}, \texttt{AdvancedMetrics.aspx} — Metric reporting
+  \item \texttt{CredentialMetrics.aspx}, \texttt{CredentialsAdvancedMetrics.aspx} — Credential tracking
+  \item \texttt{Update.aspx}, \texttt{MyContacts.aspx} — Self-service update
+\end{itemize}
+
+The page names map directly to the data categories OHATS tracked:
+\textbf{events, contacts, metrics, and credentials}---each corresponding
+to one or more of Bassill's four strategic pillars.
+
+% -------------------------------------------------------------------------
+\section{Data Extraction Opportunities}
+
+\subsection{Where Data Actually Lives}
+
+OHATS was a live web application; the database it wrote to is not included
+in this archive. What survives are:
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Narrative reports} describing aggregate results
+        (\texttt{TMC\_OHATS\_Report\_Sep-00\_thru\_Mar-02.pdf},
+        \texttt{TMC-OHATS Report-March2002.pdf}).
+  \item \textbf{Working documents} with structured lists of items, people,
+        and organizations (\texttt{OHATS items reported by G.~Schoen...pdf},
+        \texttt{OHATS development - notes - 2000-01.pdf}).
+  \item \textbf{The source code schema} (visible from \texttt{.aspx} page names
+        and the \texttt{SVHATS\_2.0.doc} requirements).
+  \item \textbf{The 2007--2008 rebuild screen shots}, which show actual data
+        populated in the system's UI during those rebuild periods.
+\end{enumerate}
+
+\subsection{Recommended Extraction Steps for a Future Team}
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Read the 18-month report first.}
+        \texttt{OHATS-files/TMC\_OHATS\_Report\_Sep-00\_thru\_Mar-02.pdf}
+        is the primary record of what the system actually captured. Extract
+        any tabular data (organization names, pillars addressed, assessment
+        scores) into a CSV for analysis.
+
+  \item \textbf{Read SVHATS\_2.0.doc.}
+        This is the most complete requirements specification. It defines
+        the data model that the 2008 rebuild was targeting. Use it to design
+        a modern schema that could receive OHATS-style data.
+
+  \item \textbf{Review the 2007 screen shots with notes.}
+        \texttt{OHATS rebuild - screen shots w notes - 2007.pdf} shows the
+        UI with annotated data. This may contain organization names and
+        assessment values that can be extracted manually.
+
+  \item \textbf{Cross-reference with conference attendance data.}
+        The conference attendance dataset (6,410 records, 2,163 unique
+        organizations) covers the same 1994--2014 period. Joining
+        OHATS-assessed organizations to the conference attendance data
+        would reveal which organizations both attended conferences
+        \emph{and} participated in self-assessment---a proxy for
+        ``most engaged'' network members.
+
+  \item \textbf{Design the data entry tool.}
+        The long-term goal is a modern replacement for OHATS: a Django
+        (or similar) form that lets organizations self-report against
+        Bassill's four pillars. The \texttt{MappingAndAnalyzingParticipation}
+        and \texttt{YourConferenceNetwork} codebases provide a technical
+        starting point.
+\end{enumerate}
+
+% -------------------------------------------------------------------------
+\section{Recommended Visualization Directions}
+
+Once structured OHATS data is extracted or collected, the following
+visualizations would be high-impact for Bassill's stakeholders:
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Pillar coverage heatmap.}
+        Rows = organizations; columns = the four strategic pillars.
+        Color encodes self-reported engagement level (e.g., never, partially,
+        consistently). This directly answers ``who is doing what?''
+
+  \item \textbf{Pillar distribution by SNA sector.}
+        Do Program-sector organizations prioritize different pillars than
+        Foundation or Business orgs? A stacked bar or grouped chart
+        answers this and connects OHATS findings to the existing conference
+        attendance SNA categories.
+
+  \item \textbf{Timeline of OHATS use.}
+        A simple time-series showing which organizations reported in which
+        years (2000--2002, and if data exists from 2007--2008) would
+        show engagement patterns over the system's lifetime.
+
+  \item \textbf{OHATS $\times$ conference co-attendance network.}
+        Overlay OHATS participation onto the org-org co-attendance network
+        already built in Kumu.io. Organizations that both attended conferences
+        \emph{and} self-assessed become a highlighted subset of the full
+        network---visualizing the most engaged segment.
+
+  \item \textbf{Radar/spider chart per organization.}
+        For individual organizations that completed OHATS, a radar chart
+        showing scores across the four pillars gives Bassill a one-page
+        org profile.
+\end{enumerate}
+
+% -------------------------------------------------------------------------
+\section{Technical Handoff Notes}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item The ASP.NET source code in \texttt{OHATS/} is informational only.
+        Do not attempt to run, compile, or modernize it.
+  \item The \texttt{SVHATS\_2.0.doc} and \texttt{OHATS-files/TMC~Flowchart1.doc}
+        are the best references for system design intent.
+  \item Any new OHATS data entry should be confirmed with Bassill
+        before development. He has strong views on category definitions
+        and pillar assignments (see April~22,~2026 transcript in
+        \texttt{ProjectFiles/transcript\_video2125685008.txt}).
+  \item The existing Django codebase (\texttt{MappingAndAnalyzingParticipation/})
+        can be extended with a new Django app for OHATS data---the ORM,
+        \texttt{load\_data} pattern, and export endpoints are all reusable.
+  \item Connect with Bassill via \texttt{tutormentor1@gmail.com} and review
+        the ``Strategy'' concept map on
+        \href{https://tutormentorexchange.net}{tutormentorexchange.net}
+        (under Tutor/Mentor Connection $\to$ Strategy) before beginning
+        any OHATS visualization work.
+  \item Review the full entry in \texttt{ProjectFiles/future\_team\_suggestions.tex}
+        (Section~4.1, ``OHATS data integration'') for additional context.
+\end{itemize}
+
+% -------------------------------------------------------------------------
+\section{Connection to the Broader Project}
+
+OHATS is not a standalone project---it is the next layer of the same
+ecosystem the Spring~2026 team built. The four-pillar strategy that OHATS
+tracked is visible in the Kumu concept maps Bassill showed in the April~22
+meeting. The conference attendance data already documents \emph{who} was
+involved; OHATS would document \emph{what they did} and \emph{how well}.
+Together, they answer the question Bassill has been asking for three decades:
+who needs to be in the network, and are they doing the work that makes the
+network effective?
+
+A future team that connects these two datasets---attendance + assessment---will
+have produced something qualitatively more powerful than either alone.
+
+\end{document}

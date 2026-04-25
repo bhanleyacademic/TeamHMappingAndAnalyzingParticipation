@@ -1,0 +1,314 @@
+{% extends "base_marketing.html" %}
+{% load static %}
+
+{% block title %}YourConference.Network — See Who Builds Your Network{% endblock %}
+{% block meta_description %}Upload your conference attendance data and instantly visualize sector connections, organizational relationships, and participation patterns across events.{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section style="background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 60%, #0d3b26 100%); padding: 7rem 0 5rem; position: relative; overflow: hidden;">
+    <div style="position:absolute;top:0;right:0;width:50%;height:100%;opacity:0.04;background-image:url('{% static "runok/img/shapes/service-shape-2.png" %}');background-size:cover;"></div>
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6">
+                <span class="ycn-badge mb-3" style="background:rgba(46,125,50,0.2);color:#4CAF50;">Open Source & Free to Self-Host</span>
+                <h1 style="font-size:clamp(2.2rem,4vw,3.2rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:1.25rem;">
+                    See Who Builds<br>
+                    <span style="color:#4CAF50;">Your Network</span>
+                </h1>
+                <p style="color:#adc8e0;font-size:1.05rem;line-height:1.75;margin-bottom:2rem;max-width:480px;">
+                    Upload your conference attendance data and instantly visualize sector connections,
+                    organizational relationships, and participation patterns across events.
+                    Built for nonprofits and associations.
+                </p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+                    <a href="https://github.com" class="btn-github" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i> Self-Host for Free
+                    </a>
+                    <a href="{% url 'core:index' %}" style="display:inline-flex;align-items:center;gap:0.4rem;background:transparent;color:#fff;padding:0.6rem 1.4rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9rem;border:1px solid rgba(255,255,255,0.3);">
+                        View Live Demo <i class="fa fa-arrow-right" style="font-size:0.8rem;"></i>
+                    </a>
+                </div>
+                <!-- Waitlist inline -->
+                <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1.25rem;">
+                    <p style="color:#adc8e0;font-size:0.85rem;margin-bottom:0.75rem;">
+                        <i class="fa fa-bell" style="margin-right:0.4rem;color:#4CAF50;"></i>
+                        <strong style="color:#fff;">Cloud hosting coming soon</strong> — get notified at launch
+                    </p>
+                    <form method="post" action="{% url 'marketing:waitlist' %}" class="waitlist-inline" style="margin-top:0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="/">
+                        <input type="email" name="email" placeholder="your@email.com" required
+                               style="flex:1;min-width:180px;padding:0.6rem 1rem;border:1px solid rgba(255,255,255,0.2);border-radius:6px;background:rgba(255,255,255,0.1);color:#fff;font-size:0.88rem;">
+                        <button type="submit" class="btn-waitlist">Join Waitlist</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <!-- Network map preview placeholder -->
+                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.5rem;text-align:center;">
+                    <p style="color:#4CAF50;font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">Live Network Map</p>
+                    <a href="{% url 'core:network_maps' %}">
+                        <img src="{% url 'core:map_org_org' %}"
+                             alt="Organization Co-attendance Network Map"
+                             style="width:100%;border-radius:8px;display:block;"
+                             onerror="this.style.display='none'">
+                    </a>
+                    <p style="color:#666;font-size:0.78rem;margin-top:0.75rem;">
+                        Real network map generated from sample data →
+                        <a href="{% url 'core:network_maps' %}" style="color:#4CAF50;">View all maps</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Social proof / stats bar -->
+<section style="background:#f8fafe;border-bottom:1px solid #e8ecf0;padding:1.5rem 0;">
+    <div class="container">
+        <div class="row text-center gy-3">
+            <div class="col-md-3 col-6">
+                <div style="font-size:1.6rem;font-weight:800;color:#1a3a5c;">22,000+</div>
+                <div style="font-size:0.82rem;color:#666;">Attendance records analyzed</div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div style="font-size:1.6rem;font-weight:800;color:#1a3a5c;">42</div>
+                <div style="font-size:0.82rem;color:#666;">Conference events mapped</div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div style="font-size:1.6rem;font-weight:800;color:#1a3a5c;">11</div>
+                <div style="font-size:0.82rem;color:#666;">Sector categories tracked</div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div style="font-size:1.6rem;font-weight:800;color:#2e7d32;">MIT</div>
+                <div style="font-size:0.82rem;color:#666;">Open source license</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="pt-100 pb-100">
+    <div class="container">
+        <div class="section-heading text-center mb-60">
+            <h4 class="sub-heading after-none">What You Get</h4>
+            <h2 class="section-title">Everything You Need to Understand<br>Your Conference Network</h2>
+        </div>
+        <div class="row gy-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card" style="height:100%;">
+                    <div class="icon" style="background:#e3f2fd;border-radius:12px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+                        <i class="fa fa-project-diagram" style="font-size:1.5rem;color:#1a3a5c;"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">Network Maps</h3>
+                        <p>Three views of your participation network: org–event bipartite, org–org co-attendance, and a three-layer event → sector → org hierarchy. Generated live from your data.</p>
+                        <a href="{% url 'core:network_maps' %}" class="read-more">See example maps <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card" style="height:100%;">
+                    <div class="icon" style="background:#e8f5e9;border-radius:12px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+                        <i class="fa fa-chart-bar" style="font-size:1.5rem;color:#2e7d32;"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">Sector Analytics</h3>
+                        <p>Interactive stacked bar charts showing attendance per event by sector type. Filter by year, sector, or state. Instantly see which organization types anchor each conference.</p>
+                        <a href="{% url 'core:chart' %}" class="read-more">View chart <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card" style="height:100%;">
+                    <div class="icon" style="background:#f3e5f5;border-radius:12px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+                        <i class="fa fa-file-csv" style="font-size:1.5rem;color:#7b1fa2;"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">Network Data Export</h3>
+                        <p>Download nodes and edges CSVs ready for Kumu.io and Gephi. Four export modes: nodes, org–event edges, org–org co-attendance (weighted), and 3-layer event–sector–org edges.</p>
+                        <a href="{% url 'core:index' %}" class="read-more">Try exports <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card" style="height:100%;">
+                    <div class="icon" style="background:#fff3e0;border-radius:12px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+                        <i class="fa fa-shield-alt" style="font-size:1.5rem;color:#e65100;"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">Data Quality Tools</h3>
+                        <p>Built-in normalization maps raw sector labels to canonical categories (Program, Business, Government, etc.). Quality report shows missing data, raw vs. normalized distributions.</p>
+                        <a href="{% url 'core:data_quality' %}" class="read-more">View quality report <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card" style="height:100%;">
+                    <div class="icon" style="background:#e8f5e9;border-radius:12px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+                        <i class="fab fa-docker" style="font-size:1.5rem;color:#2e7d32;"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">5-Minute Self-Hosting</h3>
+                        <p>Run on your own server with a single <code>docker compose up</code>. MIT licensed, no vendor lock-in. Your data stays on your infrastructure. Full docs included.</p>
+                        <a href="{% url 'marketing:how_it_works' %}" class="read-more">See setup guide <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card" style="height:100%;">
+                    <div class="icon" style="background:#e3f2fd;border-radius:12px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+                        <i class="fa fa-sliders-h" style="font-size:1.5rem;color:#1a3a5c;"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">Flexible Filtering</h3>
+                        <p>Filter every view by year, sector, and state. All dashboards, charts, and exports respect active filters — analyze a single year or a specific sector in seconds.</p>
+                        <a href="{% url 'core:dashboard' %}" class="read-more">Open dashboard <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works teaser -->
+<section style="background:#f0f4f8;padding:5rem 0;">
+    <div class="container">
+        <div class="section-heading text-center mb-60">
+            <h4 class="sub-heading after-none">Simple Process</h4>
+            <h2 class="section-title">From CSV to Network Map in Minutes</h2>
+        </div>
+        <div class="row gy-4 text-center">
+            <div class="col-md-4">
+                <div style="background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+                    <div style="width:56px;height:56px;background:#1a3a5c;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.4rem;font-weight:800;color:#fff;">1</div>
+                    <h4 style="color:#1a3a5c;margin-bottom:0.75rem;">Upload Your CSV</h4>
+                    <p style="color:#666;font-size:0.9rem;line-height:1.6;">Export your attendance records as a CSV from your existing system. Our standard column format matches common registration exports.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+                    <div style="width:56px;height:56px;background:#2e7d32;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.4rem;font-weight:800;color:#fff;">2</div>
+                    <h4 style="color:#1a3a5c;margin-bottom:0.75rem;">Analyze & Visualize</h4>
+                    <p style="color:#666;font-size:0.9rem;line-height:1.6;">Instantly explore network maps, sector charts, and organization rankings. Filter by year, sector, or geography. No manual data prep required.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+                    <div style="width:56px;height:56px;background:#7b1fa2;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.4rem;font-weight:800;color:#fff;">3</div>
+                    <h4 style="color:#1a3a5c;margin-bottom:0.75rem;">Export & Share</h4>
+                    <p style="color:#666;font-size:0.9rem;line-height:1.6;">Download nodes and edges CSVs for Kumu.io or Gephi. Build interactive maps for funders, board members, or public stakeholders.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'marketing:how_it_works' %}" class="theme-btn">See Full Guide <i class="fa fa-arrow-right" style="margin-left:0.4rem;"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- Who It's For -->
+<section style="padding:5rem 0;">
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6">
+                <div class="section-heading mb-30">
+                    <h4 class="sub-heading after-none">Built For You</h4>
+                    <h2 class="section-title">Designed for Nonprofits<br>and Associations</h2>
+                    <p style="color:#555;margin-top:1rem;line-height:1.75;">
+                        If your organization runs recurring conferences, convenings, or networking events,
+                        you're sitting on a goldmine of relationship data. YourConference.Network helps
+                        you understand it — without data science expertise.
+                    </p>
+                </div>
+                <ul style="list-style:none;padding:0;">
+                    <li style="display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:1rem;">
+                        <i class="fa-regular fa-circle-check" style="color:#2e7d32;margin-top:0.2rem;flex-shrink:0;"></i>
+                        <span style="color:#444;"><strong>Which organizations attend consistently</strong> — and which dropped off</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:1rem;">
+                        <i class="fa-regular fa-circle-check" style="color:#2e7d32;margin-top:0.2rem;flex-shrink:0;"></i>
+                        <span style="color:#444;"><strong>How sectors connect</strong> — business, government, nonprofits co-attending</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:1rem;">
+                        <i class="fa-regular fa-circle-check" style="color:#2e7d32;margin-top:0.2rem;flex-shrink:0;"></i>
+                        <span style="color:#444;"><strong>Which organizations are network bridges</strong> — most-connected, most central</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.75rem;">
+                        <i class="fa-regular fa-circle-check" style="color:#2e7d32;margin-top:0.2rem;flex-shrink:0;"></i>
+                        <span style="color:#444;"><strong>How participation has changed over time</strong> — growth, gaps, trends</span>
+                    </li>
+                </ul>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
+                    <a href="{% url 'core:dashboard' %}" class="theme-btn">Explore the Demo</a>
+                    <a href="{% url 'marketing:contact' %}" style="display:inline-flex;align-items:center;color:#1a3a5c;font-weight:600;text-decoration:none;gap:0.4rem;">
+                        Talk to us <i class="fa fa-arrow-right" style="font-size:0.8rem;"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div style="background:#f8fafe;border-radius:16px;padding:2rem;">
+                    <p style="color:#1a3a5c;font-weight:700;font-size:0.88rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1.25rem;">Example Use Cases</p>
+                    <div style="display:flex;flex-direction:column;gap:1rem;">
+                        <div style="background:#fff;border-radius:8px;padding:1.1rem 1.25rem;box-shadow:0 1px 6px rgba(0,0,0,0.06);">
+                            <strong style="color:#1a3a5c;">Tutor/Mentor coalitions</strong>
+                            <p style="color:#666;font-size:0.87rem;margin:0.3rem 0 0;">Track which youth-serving programs attend convenings and which sectors — government, business, foundations — engage over time.</p>
+                        </div>
+                        <div style="background:#fff;border-radius:8px;padding:1.1rem 1.25rem;box-shadow:0 1px 6px rgba(0,0,0,0.06);">
+                            <strong style="color:#1a3a5c;">Community foundations</strong>
+                            <p style="color:#666;font-size:0.87rem;margin:0.3rem 0 0;">Visualize grantee and partner attendance at convenings. Show funders which organizations are most engaged in the ecosystem.</p>
+                        </div>
+                        <div style="background:#fff;border-radius:8px;padding:1.1rem 1.25rem;box-shadow:0 1px 6px rgba(0,0,0,0.06);">
+                            <strong style="color:#1a3a5c;">Professional associations</strong>
+                            <p style="color:#666;font-size:0.87rem;margin:0.3rem 0 0;">Map member attendance across annual conferences and regional events. Identify cross-sector engagement and geographic participation gaps.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing teaser -->
+<section style="background:#0d1b2a;padding:5rem 0;">
+    <div class="container text-center">
+        <h4 style="color:#4CAF50;font-size:0.88rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">Simple Pricing</h4>
+        <h2 style="color:#fff;font-size:2rem;font-weight:700;margin-bottom:1.5rem;">Free Forever to Self-Host</h2>
+        <p style="color:#adc8e0;font-size:1rem;max-width:560px;margin:0 auto 2.5rem;line-height:1.75;">
+            Run the full platform on your own server at no cost. Cloud hosting is coming soon
+            for organizations that want a managed service.
+        </p>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;">
+            <a href="{% url 'marketing:pricing' %}" class="theme-btn">View Pricing</a>
+            <a href="https://github.com" class="btn-github" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> Get the Code
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA — waitlist -->
+<section style="padding:5rem 0;">
+    <div class="container">
+        <div style="background:#f0f8ff;border:1px solid #c8dff5;border-radius:16px;padding:3rem;text-align:center;max-width:640px;margin:0 auto;">
+            <h2 style="color:#1a3a5c;font-size:1.7rem;font-weight:700;margin-bottom:1rem;">Want Cloud Hosting?</h2>
+            <p style="color:#555;margin-bottom:1.75rem;line-height:1.7;">
+                We're building a managed cloud version. Join the waitlist and we'll notify you
+                the moment it's ready — plus you'll get early access and founding member pricing.
+            </p>
+            <form method="post" action="{% url 'marketing:waitlist' %}" style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="/">
+                <input type="email" name="email" placeholder="your@email.com" required
+                       style="flex:1;min-width:220px;max-width:320px;padding:0.7rem 1rem;border:1px solid #c0d8f0;border-radius:6px;font-size:0.9rem;">
+                <input type="text" name="org_name" placeholder="Organization (optional)"
+                       style="flex:1;min-width:200px;max-width:260px;padding:0.7rem 1rem;border:1px solid #c0d8f0;border-radius:6px;font-size:0.9rem;">
+                <button type="submit" class="btn-waitlist">Join the Waitlist</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

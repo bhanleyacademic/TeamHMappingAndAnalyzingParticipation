@@ -1,0 +1,60 @@
+﻿.button1
+{
+    cursor: hand;
+    background: transparent url('Images/button.PNG') no-repeat 0% 0%;
+    padding: 0;
+    width: 123px;
+    height: 40px;
+    border: none;
+    overflow: hidden;
+    font: corbel;
+    font-size: 16px;
+    color: White; /*color: #454545;*/
+    padding-bottom: 5px;
+}
+.button1:hover
+{
+    background: transparent url('Images/button.PNG') no-repeat 0% -40px;
+    color: Black;
+}
+
+.button2
+{
+    cursor: hand;
+    background: transparent url('Images/button1.jpg') no-repeat 0% 0%;
+    padding: 0;
+    width: 123px;
+    height: 27px;
+  toborder: none;
+    overflow: hidden;
+    font: corbel;
+    font-size: 13px;
+    color: White; /*color: #454545;*/
+}
+.button2:hover
+{
+    background: transparent url('Images/button1.jpg') no-repeat 0% -27px;
+    color: Black;
+}
+
+.button3
+{
+    cursor: hand;
+    background: transparent url('Images/button3.png') no-repeat 0% 0%;
+    padding: 0;
+    width: 143px;
+    height: 35px;
+    border: none;
+    overflow: hidden;
+    font: corbel;
+    font-size: 12px;
+    color: White; /*color: #4to545;*/
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+.button3:hover
+{
+    background: transparent url('Images/button3.PNG') no-repeat 0% -35px;
+    color: Black;
+}

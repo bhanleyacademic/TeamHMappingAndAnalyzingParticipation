@@ -1,0 +1,122 @@
+﻿body {
+}
+body
+{
+	font-family: Verdana, Arial, Sans-Serif;
+	font-size: 11px;
+}
+.MultiLineTextbox
+{
+	font-size: 8pt;
+	color: black;
+	font-family: Verdana;
+	text-align: justify;
+	outline:none;
+}
+.Label
+{
+	
+	color: #005fa9;
+	font-size: 10px;
+	font-family: Tahoma;
+	
+}
+.dropdown
+{
+	
+	float:left;
+	font:10px tahoma;
+}
+.Heading
+{
+	font-weight: bold;
+	font-size: 12px;
+	color: #005fa9;
+	font-family: 'Times New Roman';
+	outline:none;
+}
+.CheckBox
+{
+	font-size: 9pt;
+	color: black;
+	font-family: Verdana;
+}
+.RadioButton
+{
+	color  :Black ;
+	font-size :11px;
+	font-family :Tahoma  ;
+}
+.wizardleft
+{
+	background-image: url(../Image/white.jpg);
+	background-repeat: repeat-x;
+	padding:100px 0px 0px 10px;
+	line-height:25px;
+	border-right:1px solid #3B8DEB;
+	
+	
+	
+}
+.wizardright
+{
+	background-image: url(../Image/blue.jpg);
+	background-repeat: repeat-x;
+	
+}
+.finishbutton
+{
+	background-image: url(../Image/bb.jpg);
+	background-repeat: no-repeat;
+	border:0px;
+	width:72px;
+	height:26px;
+	
+	float:left;
+	margin-right:30px;
+
+}
+.finishbutton11ft
+{
+	background-image: url(../Image/bb.jpg);
+	background-repeat: no-repeat;
+	border:0px;
+	width:72px;
+	height:26px;
+	
+	float:left;
+	margin-right:0px;
+
+}
+.search
+{
+	padding:5px;
+}
+.cntcreat
+{
+	padding:5px;
+}
+.evntdrop
+{
+    font: 12px arial;
+    background-color: #FFFFE0;
+    color: #000000;
+     outline:none;
+ 
+ 
+}
+.cntlabel
+{
+	font:bold 12px tahoma;
+}	
+.td1
+{
+    padding-left:570px;
+}
+.credentialmetricsdrop
+{
+     outline:none;
+    width:170px;
+    height:30px;
+11  font-family:Arial;
+}

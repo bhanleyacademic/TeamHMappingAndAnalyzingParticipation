@@ -1,0 +1,384 @@
+>From - Fri Mar 20 2026 23:35:04
+Received: from CO1PR08MB7142.namprd08.prod.outlook.com (2603:10b6:303:f3::22)
+ by SJ0PR08MB6752.namprd08.prod.outlook.com with HTTPS; Fri, 20 Mar 2026
+ 21:58:15 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=A8zJ0KOq8qTaPQ/FgTTNYqFu+vPorRbeIeW4oGWgatWDISY/rvayRVWzPjiPlDa5JAKnkqpxsp9NFJgt89nW5nk8lR5TLhHhepo+ioEGULqgcSpnLrVnOdtcxDdyoxFInK1TPTvYq4jBFHfA7MXHQnMlY7PwzuBjVLj5e8Jeg8I/IoMwLPpfUyCxn1W+Sr9t0hLE8UDtwm0T5qG5Og14d1ylwlY2ZeQLN6ikrcOCM9d5IZNEXrF/oULFvceUo6KpG+0aMQUn/C5JOtVicnu8lkpmnWyyXowfPlz60iev8XPb+rdYnbwcyPJ3Xrd7R+8WY8X/3WM+jwQo3q6GWZ1aGA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5XmES8fieaBrztf8OzT8Y656FWfASAPoByItx2zC0eU=;
+ b=zKQ40S+pItBpmhuigECDuhwMsQ+gBZvZ19o8xtZjUe/t2hKjU2DFYAcsE4TmPExIEcBldGVX1PrL8QhUK9tOBkbRV2imQVrc2oVL++6NB3rBOsT/PfXo9oaNbqyY+33UE0o2pyoegz5ByFe5RS+ZfWoGldaK4VQZcO7kxQd0DPUkzPJdePRq9cWDZGK61m2q2p+qUPsRORR5klgfDZ0dkNQmCq3SNJoZ+QvyNywtnio1MUeQ4aZz/3YDl2tJt7wwn64Yox34FWLfr+9X6mwznPRfh3RZrLQPSXxPKGOTs7Qw+sW+zS9AQeVWaTNc6VCzO5qPJ+TrwAstanvvAcrOvA==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 2a00:1450:4864:20::22f) smtp.rcpttodomain=iu.edu smtp.mailfrom=gmail.com;
+ dmarc=pass (p=none sp=quarantine pct=100) action=none header.from=gmail.com;
+ dkim=pass (signature was verified) header.d=gmail.com; arc=pass (0 oda=0
+ ltdi=1)
+Received: from BLAPR03CA0014.namprd03.prod.outlook.com (2603:10b6:208:32b::19)
+ by CO1PR08MB7142.namprd08.prod.outlook.com (2603:10b6:303:f3::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.25; Fri, 20 Mar
+ 2026 21:57:33 +0000
+Received: from BL02EPF0002992D.namprd02.prod.outlook.com
+ (2603:10b6:208:32b:cafe::b3) by BLAPR03CA0014.outlook.office365.com
+ (2603:10b6:208:32b::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.23 via Frontend Transport; Fri,
+ 20 Mar 2026 21:57:32 +0000
+Authentication-Results: spf=pass (sender IP is 2a00:1450:4864:20::22f)
+ smtp.mailfrom=gmail.com; dkim=pass (signature was verified)
+ header.d=gmail.com;dmarc=pass action=none header.from=gmail.com;compauth=pass
+ reason=100
+Received-SPF: Pass (protection.outlook.com: domain of gmail.com designates
+ 2a00:1450:4864:20::22f as permitted sender) receiver=protection.outlook.com;
+ client-ip=2a00:1450:4864:20::22f; helo=mail-lj1-x22f.google.com; pr=C
+Received: from mail-lj1-x22f.google.com (2a00:1450:4864:20::22f) by
+ BL02EPF0002992D.mail.protection.outlook.com (2603:10b6:20f:fc04::13a) with
+ Microsoft SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Fri, 20 Mar 2026 21:57:32 +0000
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-38bf47a6f02so13614741fa.3
+        for <hanleyb@iu.edu>; Fri, 20 Mar 2026 14:57:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774043851; cv=none;
+        d=google.com; s=arc-20240605;
+        b=k6WiRgAOV0XRQEmVHU9H+JA8Jo+imT/9FgWhCm5fpTgAlhkCD/pgQ0547xQVZ1oTdA
+         7drWCftuhY1D39ETNtYWABFcuEJO8hZgW6YsKPRLiM50jCClDqlxJ821XhaW4rzhFUCq
+         vfL7kH7hKJTBrOs2RgkmtTR/RbUdSF1gGAFhaTpaqaI/Ms3gO0AoDIIXIGOwNZMXt/Vl
+         BPAYs0PownfWgNKeSq1d/x4TVFK7cjsTprI99dqyn3a6j7h8du9YSUxQqocluIfeOs0n
+         DgKdQSs8W4//hEv852XWbdXdgQJpNxeBDgBFRUq2Bpsf+0am/2/IsIo2cgJE4JnXxDQQ
+         OOAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=5XmES8fieaBrztf8OzT8Y656FWfASAPoByItx2zC0eU=;
+        fh=JwJZnvnHX+6QXnsLPJ1fLDwUvRgJmbn11MDijduq44I=;
+        b=B8ZxMRjrLYYh5FCgUzHJfcC7jYX34gVsYIkPTCBg4wPbjq7uoCVaeJNNiFh53hWVRs
+         +mpn8wY798izgOodex5pYoZVJzuaWwPagHneskT3egqFlZACaSPOfwn7PG8gBoDPtFNF
+         OW3kiNhrXDEMem2O8rxlXC3V8Jy2/aXFrutDoWOYaSS/HZHA7Zx6G91J2ZKAng5V0doi
+         BxT9iL8hS0K6ZxvdirEmvkOrwFI1IJRG/cCWuh03f6L+VC06izAz98/GNLcSvBH0AVwV
+         TIVGt0JooaP9xI6r9aN1XeBNbFOxLDJAvKkeoAzriwR6SNIr6QbAoDP4qMXKKfBAhDjZ
+         LJcg==;
+        darn=iu.edu
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1774043851; x=1774648651; darn=iu.edu;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5XmES8fieaBrztf8OzT8Y656FWfASAPoByItx2zC0eU=;
+        b=Pz6VjpMUhGw2P2knqEzvtl/mN1AAg8PtvX/SLh1AYuZ2yJlrWn+meQnh1pJkLhmwvU
+         Nc/+xQry6XUvmqRwIZh6kimOucRxRGfiWo4GO/lZdWX1vYlkQUL1zjlmlkV0BdQ9joaH
+         X9EcKBS28MB/HbPfKaoJBK6N0UD+IKhee+w0FXBXNDc+JKnVs+fdi5ocK9MIInrFObJC
+         xpAUT7R/TzmTkL2s0cLFyp7TyUeezLR2DzGMOPc0t9PycKKrGeABtWeZYNNb0F/UpwQl
+         Q8E8D78q9EN65zl0QpcaOKnYygouT5+arnO7QYu0AofsAu23w3GiUkj35oC1iNyxwin0
+         LilA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774043851; x=1774648651;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5XmES8fieaBrztf8OzT8Y656FWfASAPoByItx2zC0eU=;
+        b=ptAbXmQ+F5ANCayZq1q5Pcx/mg69ccWTipie8xxIiB3edl4XHAdSDTY0QJR8AvKCDl
+         pVShbxFx4dGAsfAEHHppg9Asz60TJDXm4BUHHm883lIIPS0c7I9AAZWcgYq+9zbJkNlD
+         M30f4Vdv/epletRehGvNe5wcP+K+SlVn/NuiOnnDoggdHR8z+cOByBr2QeDrn0T9MgP3
+         nglrZiZrwhWt2/1hphutxLPY/a/vVVFRlWzUkwZ260mSIZQxKC4oYA6JbfFNyrZ1bn3f
+         OzHEC5xd8o1vlsi/ZE2dHafTNdda+iPSDXt17n+OU64UdPNkfDefVZgUpg44RQgR8ILt
+         DbfQ==
+X-Gm-Message-State: AOJu0YzBVI0BEDqoTFYiKHm8esh/KGa0yIB253RKWOBPAKL5Zoy9+v7j
+	9S2LmAR3s4CbtuIESFCEMgciJ/BpoRi1areOAaMUtv4Y4i8R0l3QJKVRVLi0jnd1msKy29K2eNn
+	ePO2j6QoT3JUR6O2PvTc1jXOMGqBCGQjUNQ==
+X-Gm-Gg: ATEYQzwT6ySnR7+gDQ1iqdqGUErZpeUP9Zfag0FRf9dWXtBg/Jz9yjgmDH7JmUL5uHV
+	EnJ9LbtZnzjVRIzEkE+p6ZZvIezbBBZPfWPb6+szCpCwWc0w8h+pB/MswsjwB2wT3jNqBt5RZF1
+	bGPrcvS49qIWDYVdR+8+V7f6af/Qw/PlxNgVrPchWI5bwyEtB3KL5zLiJQHM4aDZhYy1uuKEnOq
+	LFGTCo70HsYRvRkD3zYgLypqHwmwu9UVLYIeurZ0AyGIPfziFn1WboeBW+FRs3GQuX7bCL1wI+v
+	siU88tD6vPmJduNUUJMbDHh3dmG83kFziihJIrk3vg==
+X-Received: by 2002:a05:651c:1988:b0:38a:34e4:5bb3 with SMTP id
+ 38308e7fff4ca-38bf9609540mr15918981fa.2.1774043850608; Fri, 20 Mar 2026
+ 14:57:30 -0700 (PDT)
+References: <6eeab04f-f725-4b66-9a06-17de2157da17@iu.edu>
+In-Reply-To: <6eeab04f-f725-4b66-9a06-17de2157da17@iu.edu>
+From: Daniel Bassill <tutormentor1@gmail.com>
+Date: Fri, 20 Mar 2026 16:57:19 -0500
+X-Gm-Features: AaiRm51qpAWfeIga_sW_am2Xu_agNGLofmesGs04aOwr9gWsKh5BZ-uDmQQQrPk
+Message-ID: <CAHKjx_8nC+8U0EmbbSJp0srLS7hPBrDmiyZ_FOFRVXRYKkTwfQ@mail.gmail.com>
+Subject: [External] Re: Touching Base
+To: "Hanley, Brian Andrew" <hanleyb@iu.edu>
+Cc: "Agrawal, Abhigya" <abagra@iu.edu>
+Content-Type: multipart/alternative; boundary="0000000000008813ea064d7bc5b7"
+Return-Path: tutormentor1@gmail.com
+X-MS-Exchange-Organization-ExpirationStartTime: 20 Mar 2026 21:57:32.8815
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: 2f6d0913-97ee-4f06-f076-08de86cbb060
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 1113be34-aed1-4d00-ab4b-cdd02510be91:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0002992D:EE_|CO1PR08MB7142:EE_|SJ0PR08MB6752:EE_
+X-MS-Exchange-Organization-AuthSource: BL02EPF0002992D.namprd02.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: 2f6d0913-97ee-4f06-f076-08de86cbb060
+X-MS-Exchange-AtpMessageProperties: SA|SL
+X-MS-Exchange-Organization-SCL: 1
+X-Microsoft-Antispam: BCL:0;ARA:13230040|3109299003|7049299003|7093399015|1032899013|7149299003|69100299015|8096899003|2066899003|4076899003|13003099007|7053199007|16102099003|56012099003|22082099003|18002099003|19002099003|55112099003;
+X-Forefront-Antispam-Report: CIP:2a00:1450:4864:20::22f;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail-lj1-x22f.google.com;PTR:mail-lj1-x22f.google.com;CAT:NONE;SFS:(13230040)(3109299003)(7049299003)(7093399015)(1032899013)(7149299003)(69100299015)(8096899003)(2066899003)(4076899003)(13003099007)(7053199007)(16102099003)(56012099003)(22082099003)(18002099003)(19002099003)(55112099003);DIR:INB;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 21:57:32.8321
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f6d0913-97ee-4f06-f076-08de86cbb060
+X-MS-Exchange-CrossTenant-Id: 1113be34-aed1-4d00-ab4b-cdd02510be91
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0002992D.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR08MB7142
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:43.0210953
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.9723.008
+X-Message-Flag: Flag for follow up
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:1;jmr:0;auth:0;dest:C;OFR:CustomRules;ENG:(910005)(944506478)(944626604)(920097)(930201)(20251009189)(140003)(1420198);
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?V/+sYtgwTfARw4qQxYs2vYeTtpNMDm3am5jfvUvEzOXiBN0YXfj/Filelt54?=
+ =?us-ascii?Q?MMxbwtTuCphqAmQ9jUg+iW4NM55rtw5u+uuAHJC+e/ydIgydoqw1eR5Bszvv?=
+ =?us-ascii?Q?aMBrFxEshyDsBe94cNcCt0wfhEAPz6invq9xcei+wh2ZS8PgNchYVLsxFPuT?=
+ =?us-ascii?Q?jNz4OFaykjBQ4r0Rxkbk/LvSSF84euUgKcz0pg6MNUjoCNxmMrmeK5hmRN2R?=
+ =?us-ascii?Q?/hvl1xeMojmZm/ZCJadG9eN6hkLxBG3v8gpF1OoH1DvftHdMNfmlYJkSCL3v?=
+ =?us-ascii?Q?4ZWOjYtxX8ybILycLStR81e923f04JcH/JR3jyZkmEgk5z9nQK2vrzLhKs4I?=
+ =?us-ascii?Q?7wArm5mdEYRwgXzE8Wk1Aa0lzEuFFGC2vTxp5nVyhcdCo1YBPodRZrvQ9uZ/?=
+ =?us-ascii?Q?dSKNeGNVxeTR4doShDRyRXHJCXLZYOKHHb/A9o+kTLR2eDvUwcV+zy8ONcV9?=
+ =?us-ascii?Q?CZmBeARrn6Dfk+u3pNqDJlbcMOeFU/WGUBNpg+Ln+TFzYXvbSgKBAncxia8k?=
+ =?us-ascii?Q?Ek8d4/szXkhHFEpEUnmuddwCzDEsijx2p+DBPH6n7JtI9AXfBgAQaxfEUImT?=
+ =?us-ascii?Q?KIdjqmOVE1Ck3CXKVwQf3smoonLFjHq1ILrY/uXubwNOvICLcg2DHl6A48IF?=
+ =?us-ascii?Q?XXtdAdqLBHwraU8FOHs1FfDe+KJHM1JGkN1PPpH8Yww1jd/FHk1QB+oPzqU5?=
+ =?us-ascii?Q?xbuTWchdz1b3TQ/6KNoC1RqAo1R5ezp/x64CDH/dG83htQjy2vBe3jyE7rk8?=
+ =?us-ascii?Q?hbjy3R5v5ZW/uZiEqxLsRSy90rUeVw+Y90t9pAl4F3gU1nJAb/3a1ZGZ/idn?=
+ =?us-ascii?Q?CQ8guSBR5CRPOMcovOCSvfL1eVCl6F37h0+1ZgDh2wFeG1l9H0ihzTVp8DUu?=
+ =?us-ascii?Q?cU4zp0yezTCKq3x0pxK7sQc1aCVRoV1mrs6X/p0TicSCsHss3/FOQ86Fg2X1?=
+ =?us-ascii?Q?8kSRDjocwQQhbyBqILi9X54ttDvvSNZIPra/yeA4QjvqJzph47j3jcskRx7u?=
+ =?us-ascii?Q?49Ti9ntgWHJyPLuJfk6vywPsk7L5KUf3xb8aJLlrin9CxdqpWG6E8xIOXIjn?=
+ =?us-ascii?Q?4eA9zXP3AaDgd6ITUiiljF2LVdYegJ48IgkgLvhOrfcFeliHN+pbqdKFS94H?=
+ =?us-ascii?Q?2W1B2qPoBz9612WsjxobKFwC1b0N+eBFBKdtf3CXxEHnSg1GL0aNIXFxIvHU?=
+ =?us-ascii?Q?8ET3utdj+tCHGoNeltWzqfwlZjF+nBKjjg68B2MJ82mLpd43kJ3+zrCNryW4?=
+ =?us-ascii?Q?pLGeJT4y+CVGDoeQVuLsbMLr+aUx8p+5zvs59CJ+y5NHCkvczvLzmhXuqqP8?=
+ =?us-ascii?Q?e+BcF8+DpzSlaRK9mZZ4MlXuDZGKJl9C/z/zOJCxdSPpyji+iekymRyQfFZ9?=
+ =?us-ascii?Q?urQqCOacIelKg++pZ1RTh0hPuR9ig0NOqM2acNZLOvRXjVJQhWNgYgPM31nL?=
+ =?us-ascii?Q?XDSzMZrXai2ea5FftRcXz7mkEjZvJkeZ0glbytpxJegaEgsLcyFOOZuYTSU+?=
+ =?us-ascii?Q?+TeEb74z6IfD7MmyDMGp94WNwrntjaOdyAmNtu0piZbtVMsAo9MmjYVWZz7B?=
+ =?us-ascii?Q?ELOpmzUXq1WpiEVJxVmGaqH1vNtud3KDjCAfcVxDqoKwmthynaDfKFjsHzn1?=
+ =?us-ascii?Q?7d5SVZ3cZpU1OXFS6EdQS22LAlZku/yHGSud3QrIzRuwJnOrOW8zVlkp4nf3?=
+ =?us-ascii?Q?HjhkoZXzjmyL3NxQbbfX8qiJlACOrwk1fjtqdg7D5lTWNRq4ptlesnuOxmj5?=
+ =?us-ascii?Q?rbt3nyGard04845N+V/ZjmUoZnAjJFCL17X+yjZLKn2UOscU6U5gENOeX7cr?=
+ =?us-ascii?Q?X5oZqqRQAWTjFYDwx8zgyxDhAJFDtCYLwP4h9QJvJk1iqybm4qiibBmth0A+?=
+ =?us-ascii?Q?XTTPFPaL+7OGhhIZ55zNUm7uN/Ww8Yk3aYuSVea+1DKGJDTyLYRtgsPiNC+f?=
+ =?us-ascii?Q?m2TTQ3YYaWRaagIt8P8sajc3GLNHvkNuYIlyg6+rxA/O05iBkpWiM7aij41I?=
+ =?us-ascii?Q?dxPclSmt5eKma4aSa01eAiK00L5gRJwEylAY/dVmuXf6nivhrDXxNmrNPcuC?=
+ =?us-ascii?Q?G1SOoXrXShg2mzATjdk1l4kjg1mXirYdOm6erAIjA2f7l4u8U9ISMnBK5Dw6?=
+ =?us-ascii?Q?uebrK5E4SBXrX63pQiv8mewaxXSbo/bDDQ8qKpqIwY2TPhkyu6+e6bYo1CbE?=
+ =?us-ascii?Q?9wjPeSNKscGSLVCqF+kYQYfFRVJPj/XqmrMZhGK/chAubBy5aALhxXJkBqdL?=
+ =?us-ascii?Q?huv4R+4RqREz3D6lOzpb8BoNPuNepxNQ+h8DFw3HBBioWFTvWa/dMN0BJ9AP?=
+ =?us-ascii?Q?UCD8xq1JfkBsb1StnkWZFHFiU3Q9d+QZsgx4q0ia7Bf4P6LVHAEk/Ir1V4v0?=
+ =?us-ascii?Q?9sf4u6eGRNo0mze8pR07aXXlIq5M2u0CD14McfNpmaoMw4xZ0PjTjCq66AcL?=
+ =?us-ascii?Q?pWefEml0UQ4/BHpbeYy3xem/kGzth7+UnV9MGUthuVjz3Q0aocBZRSGOHvcO?=
+ =?us-ascii?Q?g8RAi8xCu3XlsoyTvTi6kdIg2Q2bSZ8QPETzG4jdecqQSJexUwtRoVfSDPM6?=
+ =?us-ascii?Q?3vU7rw+17LO4bA0oOmNetZ3I1Zo2JKXaKr5IFifqOw8jZj+MEYq1nYjQE50j?=
+ =?us-ascii?Q?xIaoOewalDa7dn/dueDbjZLq5w5KGV2P5RCuaIKukv+PewyspzzPyLKXULpC?=
+ =?us-ascii?Q?k4ucweIDYYzEHIyss0Atkj1jxcA+L1p6f7ILHsi2vtvwks2v5Go1ChReYGWq?=
+ =?us-ascii?Q?eTd2j7pzTtGMGwwt59iW1O530wDNn6Ef2/j1rq+QlV7tQwWKaYQ9Baly+hjT?=
+ =?us-ascii?Q?Odw++FV+GJbr2Ccj7NreWN4F9l5HlMqBLMpRUiqmlhNchIGeshZUbkdlcAfX?=
+ =?us-ascii?Q?v/8JaA8kKdjCvSDDI6F1bhk2o7WcoBfkef2IEw0nKJNxyxTJz5XNvnFWdkXV?=
+ =?us-ascii?Q?riYesHGF4uiT3yc6NZ2i9K9XitPBUUZmBbtJnjqrN8wAiCjLC8pu01YwxiWJ?=
+ =?us-ascii?Q?D6Y93ucsVubeq5DTav54agrZxs+3DCkvOJU9sWyqRz1luGKfCJGzbHJHu9qW?=
+ =?us-ascii?Q?NQU62swgaia6H3SeNA9iz5wwW3dbTxnNeNFIRFV7uE6sm/mZ65w/OdKGBJ6L?=
+ =?us-ascii?Q?RhKC9IkOizQLci1UPo6H5zUYbuXHBPOBLttTzYBPuS2XRxMFp68Wp0WddqjQ?=
+ =?us-ascii?Q?Yyqdav0aD1N1668mhBtl+sAvFwMKQbTNvHAMCs3r5rzn4+sM4ohcny8NEVQ/?=
+ =?us-ascii?Q?sIry4vQc1GK3CWkewujhfM7pgNTAzVhqyJGzZHuVo6l3M8TphgKFyVirAftl?=
+ =?us-ascii?Q?JcpRwjryfdsbH+6nxrH4iQEthvOZ2dakJMjcgExEJ17uE7/hn75w+WjggchQ?=
+ =?us-ascii?Q?OkmJUeJn2ciYL9R6Z1oOeMYFlrtylpjMYca0xG98ePoZwbMTaOWmwQqXPJtL?=
+ =?us-ascii?Q?ut2EDezP9Is4YHv501i5y6qPw9gknLt58tAMAc7m6JsGE0LO4NNMrUSiPGeD?=
+ =?us-ascii?Q?QhkTmS8xuDYgiNXipZrC8W7JdSCq7P6t7yrnDNdN3LRCdIsQb4JHZ8THPuy3?=
+ =?us-ascii?Q?J/ABtT0SLdZ07JYhCNMrYvWc9JQvVm4Tfl1hyXj5ilFvg9xgSQV/ZZMFH02v?=
+ =?us-ascii?Q?87jfWfImUJOpOJYRIEAsh6xHzBmazG0lMo5yt8f10KIcHDgquyNg9MGNm73v?=
+ =?us-ascii?Q?lnKKNAh3QD3qi5Hhbl1bGQ2yoWTted21jxgG5ABT0uTsbWXNZI3UubsCnkXV?=
+ =?us-ascii?Q?rW4KsUjAjVQiNxCRMCmdkKl1c9f5v1k=3D?=
+MIME-Version: 1.0
+
+--0000000000008813ea064d7bc5b7
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+This message was sent from a non-IU address. Please exercise caution when c=
+licking links or opening attachments from external sources.
+
+
+Hi Brian. Thanks for the update. I look forward to seeing the work you are =
+doing.
+
+The hosting solution sounds great. Will you be combining the site done by t=
+he 2025 teams?
+
+As to a name, can you ask your AI to offer suggestions that would be most l=
+ikely to attract users to the site?
+
+Do you have a day-time in mind for talking next week?
+
+Enjoy the weekend.
+
+
+
+On Fri, Mar 20, 2026, 3:48 PM Hanley, Brian Andrew <hanleyb@iu.edu<mailto:h=
+anleyb@iu.edu>> wrote:
+
+Hello Daniel,
+
+I just wanted to touch base with you before we headed into the weekend. Our=
+ team has been working on Team K's report over the Spring break and are hop=
+ing to have the base of what to show you ready early next week. From there =
+we can start moving forward on any new and updated information that you wou=
+ld like to add as well as what the goals are moving forward.
+
+As we move into the next phase I wanted to share with you the current plan =
+of keeping the project alive indefinitely. Just as Team K has done, we will=
+ have a github repository available for future teams and researchers to acc=
+ess. Also, I will be personally hosting a site to house our continuation on=
+ my server for the foreseeable future. Finally, we will be placing the proj=
+ect into a docker container that contributors can utilize to keep the most =
+up to date progress moving forward.
+
+In the meantime, do you have a preferred name for us to use as a URL? I wil=
+l be purchasing this to keep the project easily accessible, but would love =
+for you to choose the title for me to continue to maintain it. If you have =
+any other questions or insight before a meeting next week please let me kno=
+w.
+
+Best,
+
+Brian
+
+--
+Brian Hanley
+Student Records Representative, Student Central
+hanleyb@iu.edu<mailto:hanleyb@iu.edu>
+408 N Union St<https://www.google.com/maps/search/408+N+Union+St?entry=3Dgm=
+ail&source=3Dg> | 812-855-6500
+[Undergraduate Education] <https://ovpue.indiana.edu?utm_source=3Demail-sig=
+nature-logo&utm_medium=3Dhanleyb&utm_campaign=3Demail-signatures>
+
+--0000000000008813ea064d7bc5b7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"></=
+head>
+<body>
+<p></p>
+<div style=3D"background-color:#FFEB9C; width:100%; border-style: solid; bo=
+rder-color:#9C6500; border-width:1pt; padding:2pt; font-size:10pt; line-hei=
+ght:12pt; font-family:Calibri; color:Black; text-align: left;">
+This message was sent from a non-IU address. Please exercise caution when c=
+licking links or opening attachments from external sources.</div>
+<br>
+<p></p>
+<div>
+<div dir=3D"auto">Hi Brian. Thanks for the update. I look forward to seeing=
+ the work you are doing.
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">The hosting solution sounds great. Will you be combining =
+the site done by the 2025 teams?</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">As to a name, can you ask your AI to offer suggestions th=
+at would be most likely to attract users to the site?&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Do you have a day-time in mind for talking next week?</di=
+v>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Enjoy the weekend.&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto"><br>
+</div>
+</div>
+<br>
+<div class=3D"gmail_quote gmail_quote_container">
+<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Mar 20, 2026, 3:48 PM Hanley,=
+ Brian Andrew &lt;<a href=3D"mailto:hanleyb@iu.edu">hanleyb@iu.edu</a>&gt; =
+wrote:<br>
+</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<u></u>
+<div>
+<p>Hello Daniel,</p>
+<p>I just wanted to touch base with you before we headed into the weekend. =
+Our team has been working on Team K's report over the Spring break and are =
+hoping to have the base of what to show you ready early next week. From the=
+re we can start moving forward on
+ any new and updated information that you would like to add as well as what=
+ the goals are moving forward.</p>
+<p>As we move into the next phase I wanted to share with you the current pl=
+an of keeping the project alive indefinitely. Just as Team K has done, we w=
+ill have a github repository available for future teams and researchers to =
+access. Also, I will be personally
+ hosting a site to house our continuation on my server for the foreseeable =
+future. Finally, we will be placing the project into a docker container tha=
+t contributors can utilize to keep the most up to date progress moving forw=
+ard.</p>
+<p>In the meantime, do you have a preferred name for us to use as a URL? I =
+will be purchasing this to keep the project easily accessible, but would lo=
+ve for you to choose the title for me to continue to maintain it. If you ha=
+ve any other questions or insight
+ before a meeting next week please let me know.</p>
+<p>Best,</p>
+<p>Brian</p>
+<div>-- <br>
+<div>
+<div id=3D"m_6366141232885829051signature">
+<table>
+<tbody>
+<tr style=3D"border:none;padding:0;margin:0;color:#000000;line-height:130%;=
+font-size:14px;margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif">
+<td><span style=3D"font-weight:bold;color:#000000;line-height:130%;font-siz=
+e:14px;margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif">Brian Hanle=
+y</span><br>
+<span style=3D"color:#000000;line-height:130%;font-size:14px;margin:0 0 4px=
+ 0;font-family:Arial,Helvetica,sans-serif">Student Records Representative, =
+Student Central</span><br>
+<span style=3D"line-height:130%;font-size:14px;margin:0 0 4px 0;font-family=
+:Arial,Helvetica,sans-serif"><a href=3D"mailto:hanleyb@iu.edu" target=3D"_b=
+lank" rel=3D"noreferrer">hanleyb@iu.edu</a></span><br>
+<span style=3D"color:#000000;line-height:140%;font-size:14px;margin:0 0 4px=
+ 0;font-family:Arial,Helvetica,sans-serif"><a href=3D"https://nam12.safelin=
+ks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fwww.google.com%2Fmaps%2Fsear=
+ch%2F408%2BN%2BUnion%2BSt%3Fentry%3Dgmail%26source%3Dg&amp;data=3D05%7C02%7=
+Chanleyb%40iu.edu%7C2f6d091397ee4f06f07608de86cbb060%7C1113be34aed14d00ab4b=
+cdd02510be91%7C1%7C0%7C639096406960546618%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0e=
+U1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoy=
+fQ%3D%3D%7C0%7C%7C%7C&amp;sdata=3D9sbYH9BrmMEwoZu95hLQjH8PNADhTA%2BLF7aZq6a=
+MEFQ%3D&amp;reserved=3D0" originalsrc=3D"https://www.google.com/maps/search=
+/408+N+Union+St?entry=3Dgmail&amp;source=3Dg">408 N Union St</a> | 812-855-=
+6500</span></td>
+</tr>
+<tr height=3D"8" style=3D"border:none;margin:0;padding:0">
+</tr>
+<tr style=3D"border:none;padding:0;margin:0">
+<td style=3D"padding-top:0"><a href=3D"https://ovpue.indiana.edu?utm_source=
+=3Demail-signature-logo&amp;utm_medium=3Dhanleyb&amp;utm_campaign=3Demail-s=
+ignatures" target=3D"_blank" rel=3D"noreferrer"><img alt=3D"Undergraduate E=
+ducation" width=3D"400" src=3D"https://apps.ovpue.indiana.edu/staff-tools/l=
+ockups/undergraduateeducation_lockup_WEB_h5_mini.png">
+</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</body>
+</html>
+
+--0000000000008813ea064d7bc5b7--
