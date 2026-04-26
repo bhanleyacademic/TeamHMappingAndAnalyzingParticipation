@@ -1,9 +1,9 @@
 """
 SNA Category normalization.
 
-Canonical vocabulary (from project paper):
+Canonical vocabulary (12 categories, confirmed by Daniel F. Bassill, April 22 2026):
   Program, Resource, College, Intermediary, Business,
-  T/MC, Government, K-12 School, Faith, Foundation, Other
+  T/MC, Government, K-12 School, Faith, Foundation, Media, Other
 
 Verified against all 73 unique raw values present in
 All_Conferences_Data_Cleaned-2026.xlsx (6,410 records).
@@ -80,7 +80,7 @@ _RAW_MAP = {
     "international": "Other",
     "legal":        "Other",
     "library":      "Other",
-    "media":        "Other",
+    "media":        "Media",
     "museum":       "Other",
     "public health": "Other",
     "volunteer":    "Other",
@@ -98,6 +98,7 @@ CANONICAL_CATEGORIES = [
     "K-12 School",
     "Faith",
     "Foundation",
+    "Media",
     "Other",
 ]
 
