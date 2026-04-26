@@ -1,0 +1,330 @@
+﻿body
+{
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+img
+{
+    float: left;
+       
+}
+p
+{
+    margin: "0";
+    padding: "0";
+}
+
+.text
+{
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    color: #333333;
+    text-decoration: none;
+    text-align: justify;
+    padding: 10px;
+    width: 50%;
+}
+.text1
+{
+    font-family: Arial, Tahoma;
+    font-size: 11.5px;
+    color: #333333;
+    text-decoration: none;
+    text-align: justify;
+    line-height: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 50%;
+}
+
+.link
+{
+    font-family: Arial, Tahoma;
+    font-size: 11px;
+    color: #0000FF;
+    text-decoration: none;
+    cursor: hand;
+}
+
+.link:hover
+{
+    color: #FF0000;
+    text-decoration: underline;
+    width: 50%;
+    cursor: hand;
+}
+
+td
+{
+    padding: 0;
+    margin: 0;
+}
+
+.menu
+{
+    font-size: 12px;
+    font-weight: bold;
+    color: #339E35;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    padding-left: 20px;
+}
+.sidelink
+{
+    text-decoration: none;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    color: #136EAB;
+}
+.linkSpace
+{
+    padding-right: 30px;
+    padding-left: 10px;
+    font-weight:bold;
+      
+}
+ul
+{
+    text-decoration: none;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    color: #136EAB;
+    list-style-type: square;
+    display: list-item;
+}
+
+.back
+{
+    font-family: Arial Black;
+    font-size: 10px;
+    color: Green;
+    font-weight: bold;
+    padding-left: 15px;
+}
+.graphtext
+{
+    font-family: Arial, Tahoma;
+    font-size: 11px;
+    color: #333333;
+    text-decoration: none;
+    text-align: justify;
+    padding: 10px;
+}
+
+
+.logintext
+{
+    /*font-family:Verdana,Arial,Helvetica,sans-serif; font-size:12px; color:Black; text-decoration:none; font-weight:normal;*/
+    font-size: 8pt;
+    color: #000000;
+    font-family: verdana,tahoma,geneva,arial,helvetica,sans-serif;
+}
+
+.textfield
+{
+    background: #FFFFFF;
+    width: 100px;
+    height: 15px;
+    outline: none;
+    overflow: hidden;
+    outline-style: none;
+    outline-width: thin;
+}
+
+.textfield:hover
+{
+    background: #FFFFCC;
+    height: 15px;
+}
+
+.textfieldmid
+{
+    background: #FFFFFF;
+    width: 100px;
+    height: 15px;
+    padding: 0px;
+    outline: none;
+    overflow: hidden;
+    outline-style: none;
+    outline-width: thin;
+}
+
+.textfieldmid:hover
+{
+    background: #FFFFCC;
+    padding: 0px;
+    height: 15px;
+}
+
+.valid
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    color: #FF0000;
+}
+
+.num
+{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+}
+
+
+.submit
+{
+    background-image: url('Image/bb.jpg');
+    background-repeat: no-repeat;
+    width: 72px;
+    height: 28px; /* background-color:Aqua; 	padding: 0; 	 	border: none; background:url(Image/bb.jpg) no-repeat;	*/ /*overflow: hidden;*/
+}
+.rollover
+{
+    display: block;
+    width: 72px;
+    font: bold 13px sans-serif;
+    color: #333;
+    background: url("Image/bb.jpg") 0 0 no-repeat;
+    text-decoration: none;
+}
+
+.submit:hover
+{
+    background: url(Image/submit-button.jpg) no-repeat;
+    padding: 0;
+    width: 72px;
+    height: 28px;
+    border: none;
+    overflow: hidden;
+    cursor: hand;
+}
+
+.button1
+{
+    background: url(Image/bb.jpg) no-repeat;
+    padding: 0;
+    width: 74px;
+    height: 29px;
+    border: none;
+    overflow: hidden;
+}
+.button1:hover
+{
+    background: url(Image/submit-button.jpg) no-repeat;
+    padding: 0;
+    width: 74px;
+    height: 29px;
+    border: none;
+    overflow: hidden;
+}
+
+.button1
+{
+    cursor: hand;
+    background: transparent url('Images/button.PNG') no-repeat 0% 0%;
+    padding: 0;
+    width: 123px;
+    height: 40px;
+    border: none;
+    overflow: hidden;
+    font: corbel;
+    font-size: 16px;
+    color: White; /*color: #454545;*/
+    padding-bottom: 5px;
+}
+.button1:hover
+{
+    background: transparent url('Images/button.PNG') no-repeat 0% -40px;
+    color: Black;
+}
+
+.top1bg
+{
+    background-image: url(Image/top1bg.gif);
+    background-repeat: repeat-x;
+}
+
+.finishbutton
+{
+    background-image: url(../Image/bb.jpg);
+    background-repeat: no-repeat;
+    border: 0px;
+    width: 72px;
+    height: 26px;
+    cursor: pointer;
+}
+.advancemetdrop
+{
+    outline:none;
+    width:170px;
+    height:30px;
+    font-family:Arial;
+    
+}
+.spanCalender
+{
+     margin:20px 0px 0px -20px;
+     position:absolute;
+     z-index:500;
+    
+}
+
+.cal_Theme1 .ajax__calendar_container   {
+    background-color: white;
+    border:solid 1px #ccccff;
+    outline:none;
+}
+
+.cal_Theme1 .ajax__calendar_header  {
+    background-color: #99CCCC;
+    margin-bottom: 4px;
+}
+
+.cal_Theme1 .ajax__calendar_title,
+.cal_Theme1 .ajax__calendar_next,
+.cal_Theme1 .ajax__calendar_prev    {
+    color: #336666;
+    padding-top: 3px;
+     
+}
+
+.cal_Theme1 .ajax__calendar_body    {
+    background-color: #e9e9e9;
+    border: solid 1px #ccccff;
+}
+
+.cal_Theme1 .ajax__calendar_dayname {
+    text-align:center;
+    font-weight:bold;
+    margin-bottom: 4px;
+    margin-top: 2px;
+}
+
+.cal_Theme1 .ajax__calendar_day {
+    text-align:center;
+}
+
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_day,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_month,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_year,
+.cal_Theme1 .ajax__calendar_active  {
+    color: #004080;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.cal_Theme1 .ajax__calendar_today   {
+    font-weight:bold;
+}
+
+.cal_Theme1 .ajax__calendar_other,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_today,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_title {
+    color: #bbbbbb;
+}

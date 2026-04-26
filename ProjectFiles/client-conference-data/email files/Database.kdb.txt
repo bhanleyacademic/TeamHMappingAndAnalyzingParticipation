@@ -1,0 +1,1022 @@
+﻿[Jimmy Biggs Memorial Golf Benefit Website]
+Group: Websites
+User Name: admin
+URL: www.cabrinitmcgolf.org
+Password: cabrini
+Notes: to access admin page go to:
+www.cabrinitmcgolf.org/control
+
+[T/MC Portal - Dan's login]
+Group: Websites
+User Name: tutormentor2
+URL: www.tutormentorconnection.org
+Password: iupui
+Notes: 
+
+[Tutor/Mentor Program Locator Website]
+Group: Websites
+User Name: brinkster\dbassill
+URL: www.tutormentorprogramlocator.net
+Password: letmein
+Notes: This is old version.  The new version is tutormentor1 and tmc2010
+
+[Tutormentor Blog Login (old Blogger)]
+Group: Websites
+User Name: tutormentor
+URL: tutormentor.blogspot.com
+Password: tutormentor
+Notes: 
+
+[Conference site FTP Account]
+Group: Websites
+User Name: tutormentor
+URL: ftp://208.106.209.108
+Password: ourTe@m11
+Notes: hosted by CrystalTech
+https://www.webcontrolcenter.com/customer.aspx
+
+[Conference Site Website Login]
+Group: Websites
+User Name: tutormentor
+URL: https://www.webcontrolcenter.com/customer.aspx
+Password: cabrini21
+Notes: admin email: tutormentor@tutormentorconference.org
+secret answer: 6/28/86
+Customer ID: 576542
+
+previous password was cabrini21
+
+[domain.yahoo.com]
+Group: Websites
+User Name: tutormentor
+URL: domain.yahoo.com
+Password: cabrini
+Notes: www.cabriniconnections.net and www.cabriniconnections.com registered through this company
+
+[Cabrini Connections Wordpress blog]
+Group: Websites
+User Name: arianelee
+URL: cabriniconnections.wordpress.com
+Password: Musa8Fatou
+Notes: 
+
+[Planning on writeboard]
+Group: Websites
+User Name: 
+URL: http://123.writeboard.com/819d6b9a24a078caf
+Password: Kl!ng0n
+Notes: this is shared planning space for Cabrini Connections that was used prior to creating the Wiki that is now on the CC web site.
+
+[customer services for TME site]
+Group: Websites
+User Name: www.tutormentorexchange.net
+URL: https://support.web.com
+Password: tutormentor
+Notes: this is customer service for www.tutormentorexchange.net the secret word is the password
+
+[Tutor/Mentor Conference]
+Group: Websites
+User Name: tutormentor
+URL: http://www.tutormentorconference.org
+Password: cabrini21
+Notes: 
+
+[Interns at Hong Kong]
+Group: Websites
+User Name: Michael_tam123@hotmail.com
+URL: http://michaelcnt.blogspot.com/ 
+Password: tutormentor
+Notes: Dan also has administrative permission on this blog.
+
+[Writing Club Blog]
+Group: Websites
+User Name: megbacino@hotmail.com 
+URL: http://cabriniconnectionswritinggroup.blogspot.com/
+Password: icecream
+Notes: Cassina and Dan both have permissions to administrate this blog.
+
+[Digital Divide Web site]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: http://forums.e-democracy.org/
+Password: myte@m11
+Notes: This replaces the digital divide network web site
+
+[Joomla web sites]
+Group: Websites
+User Name: mentorfo
+URL: https://www.siteground.com/
+Password: tut0rment0r1
+Notes: This is possible hosting alternative to Host.com India for the Joomla sites. Looks like lower monthly rate than what we pay now.
+
+
+
+[norton corporate edition 08]
+Group: Websites
+User Name: vjekoslav.hlede@mentorforme.org
+URL: https://licensing.symantec.com/
+Password: bakesale42%
+Notes: 
+
+[www.tutormentorconnection.org]
+Group: Websites
+User Name: 25339447
+URL: networksolutions.com
+Password: EvvEjZ
+Notes: This is the user id and password for the hosting site of
+www.tutormentorconnection.org.  
+ I was able to log into www.networksolutions.com using the following credentials:
+
+uid: 25339447
+password: EvvEjZ
+
+[Host.com web site]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: https://www.host.co.in/hostbill/accountdetails.php
+Password: qonwhrEYxGWDCKJdOKTy
+Notes: qonwhrEYxGWDCKJdOKTy
+
+[StemQuest]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: http://sites.google.com/site/darpara1003/project-definition
+Password: tut0rment0r
+Notes: 
+
+[Conference attendee list]
+Group: Websites
+User Name: tutormentordan
+URL: http://www.tutormentorconference.org/ConferenceAdmin/
+Password: Cabrini456
+Notes: This page opens up at http://www.tutormentorconference.org/ArchiveRegistrationList/
+
+[University of Michigan]
+Group: Websites
+User Name: tutormentor
+URL: http://asb6.cms.si.umich.edu
+Password: C@br1n1TMC
+Notes: 
+
+[CMap Server]
+Group: Websites
+User Name: bassill.dan
+URL: Concept maps
+Password: tutormentor
+Notes: Name: Daniel Bassill
+Account: Dan
+E-mail Id: tutormentor1@earthlink.net
+
+account: elearning
+password: cabrini1
+permissions: admin
+account: bassill.dan
+password: tutormentor
+permissions: admin 
+
+[Dept of Education Innovation portal]
+Group: Websites
+User Name: tutormentor
+URL: https://innovation.ed.gov/my-portal/
+Password: tut0rment0r
+Notes: 
+
+[Business School Wiki]
+Group: Websites
+User Name: tutormentor
+URL: http://boardfellow.wikispaces.com/
+Password: cabrini
+Notes: 
+
+[Tutor/Mentor Jam docs on Google]
+Group: Websites
+User Name: dan
+URL: http://docs.tutormentorjam.org
+Password: changeme
+Notes: NameEmail StatusEmail quotaLast signed in
+Chirag Pateladmin@tutormentorjam.org
+Administrator
+0%
+Jul 6Bradley Troastbtroast@tutormentorjam.org
+Newly created
+0%
+Jul 22Chirag Patelchirag@tutormentorjam.org
+Administrator
+0%
+3:36 pmDan Bassilldan@tutormentorjam.org
+Newly created
+0%
+Jul 6Karina Walkerkarina@tutormentorjam.org
+Newly created
+0%
+Never logged inMark Shoremshore@tutormentorjam.org
+Newly created
+0%
+Jun 30Nancy Murphynancy@tutormentorjam.org
+Newly created
+0%
+Jul 27Mike Trakantrakan@tutormentorjam.org
+
+
+
+
+
+[Robert Wood Johnson forum]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: http://my.rwjf.org
+Password: tut0rment0r
+Notes: 
+
+[JP Morgan Chase]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: http://www.jpmorganchase.com/corporate/Corporate-Responsibility/grant-programs.htm
+Password: C@brini21
+Notes: Beverly Meek
+10 South Dearborn, Floor 15, MC: IL1-0356
+Chicago, IL 60603-2003
+e-mail: beverly.e.meek@chase.com
+
+http://www.cybergrants.com/pls/cybergrants/ao_login.login?x_gm_id=2608&x_style_id=&x_proposal_type_id=10730
+
+Invitation code 2011: E023877
+
+[United Way agency portal]
+Group: Websites
+User Name: 6384390Bassill
+URL: https://uw-mc.upicsolutions.org/uw-mc/crm/Home.jsp
+Password: HVHFMLHLLD
+Notes: The UW has been given info1@cabriniconnections as primary email and El Da'SheonNix as contact, 6/16/2011
+
+[TakePart News]
+Group: Websites
+User Name: tutormentor
+URL: http://www.takepart.com
+Password: ourTe@m11
+Notes: 
+
+[ADP password]
+Group: Websites
+User Name: tutormentor1@earthlink.net
+URL: 
+Password: C@brini11
+Notes: This email will no longer work after 7/1/2011
+
+[America's Promise]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: www.americaspromise.org
+Password: tut0rment0r
+Notes: 
+
+[Youth Today]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: http://www.youthtoday.org
+Password: C@brini11
+Notes: 
+
+[tutormentorblog]
+Group: Websites
+User Name: tutormentor1@gmail.com
+URL: http://tutormentor.blogspot.com
+Password: myte@m11
+Notes: 
+
+[Danfacebook]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: www.facebook.com
+Password: h@rry111
+Notes: 
+
+[administrator]
+Group: Websites
+User Name: 
+URL: 
+Password: Ch1cag0IT
+Notes: 
+
+[Investing in Communities fund raising site]
+Group: Websites
+User Name: tutormentor
+URL: http://iiconline.org
+Password: c@br1n1team
+Notes: 
+
+[The Royal Order Base Camp]
+Group: Websites
+User Name: BassillD 
+URL: https://camptheroyalorder.basecamphq.com/login
+Password: tut0rment0r
+Notes: updated 10/2010
+
+[GE account]
+Group: Websites
+User Name: info1@cabriniconnections.net
+URL: http://www.gefoundation.com/matchinggifts
+Password: cabrini
+Notes: Go to Non profit participants button, then log in using this email and password.
+
+El Da'Sheon Nix is now listed as contact, as of 6/13/2011
+
+
+[escrip]
+Group: Websites
+User Name: Cabrini Connections
+URL: http://www.escrip.com
+Password: lindsay
+Notes: group ID:  500025364
+
+[GiveForward]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: www.giveforward.org/cabrinitmc
+Password: tut0rment0r
+Notes: 
+
+[IBM COmmunity]
+Group: Websites
+User Name: tutormentor2@earthlink.net
+URL: 
+Password: tut0rment0r
+Notes: question: name of cat
+
+channel
+
+[Dan's Google Account]
+Group: Internet Logins
+User Name: tutormentor1@gmail.com
+URL: www.google.com
+Password: myte@m11
+Notes: works for new Blogger, AdWords, Analytics, etc.
+
+[Groundspring Login]
+Group: Internet Logins
+User Name: tutor/mentorconnecti
+URL: www.groundspring.org
+Password: C@brini11
+Notes: Note:  the above password only applies to the EMMA email system.
+
+The password for Network for Good remains tut0rment0r2
+
+[WebStat T/ME Login]
+Group: Internet Logins
+User Name: tme
+URL: 
+Password: tutormentor
+Notes: 
+
+[Bravenet Account]
+Group: Internet Logins
+User Name: tutormentor
+URL: 
+Password: cabrini21
+Notes: GuestMap on TMC site is tied to this account
+Email associated with this account is: ariane.cabrini@gmail.com
+Birthday associated wtih this account is 12/19/46
+
+[FeedBurner]
+Group: Internet Logins
+User Name: cabrini
+URL: http://feedburner.google.com
+Password: tut0rment0r
+Notes: Your new password is: DE8N4 as of 4/22/10
+
+[PayPal]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: 
+Password: cabrini01
+Notes: 
+
+[Dan's Yahoo! Account]
+Group: Internet Logins
+User Name: tutormentor
+URL: 
+Password: cabrini
+Notes: for Yahoo groups
+
+[Dan's TechSoup Login]
+Group: Internet Logins
+User Name: tutormentor
+URL: 
+Password: cabrini
+Notes: 
+
+[TechSoup - Organization Login]
+Group: Internet Logins
+User Name: tutormentor
+URL: 
+Password: cabrini
+Notes: 
+
+[NPO.net]
+Group: Internet Logins
+User Name: dan
+URL: 
+Password: cabrini21
+Notes: Employer ID:  3955
+
+[Evite ]
+Group: Internet Logins
+User Name: info1@cabriniconnections.net
+URL: www.evite.com
+Password: mentoring
+Notes: 
+
+[Evite History]
+Group: Internet Logins
+User Name: anallorens.cabrini@gmail.com
+URL: www.evite.com
+Password: cabrini
+Notes: 
+
+[Survey Monkey]
+Group: Internet Logins
+User Name: cabrinisurvey
+URL: www.surveymonkey.com
+Password: tutormentor
+Notes: 
+
+[Cabrini Connections Guidestar page]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: http://www.guidestar.com
+Password: cabrini
+Notes: This is the primary on-line giving portal in the USA. We need to update our financial info and board list each  year.
+
+[Tech Club blog]
+Group: Internet Logins
+User Name: tutormentor1@earthlink.net
+URL: http://cabrinitechclub.blogspot.com/
+Password: cabrini
+Notes: this allows you to post articles, but is not the administrative username and password
+
+[Kraft matching gifts]
+Group: Internet Logins
+User Name: cabriniconnections
+URL: https://www.easymatch.com/KraftEIP/agency
+Password: theCCte@m11
+Notes: theCCte@m11
+
+acct # 37916
+
+[Brinkster account for Program Locator]
+Group: Internet Logins
+User Name: tutormentor1
+URL: www.brinkster.com
+Password: tmc2010
+Notes: This is site where dedicated server hosts the T/MC program locator.
+
+[Abbott & Qualcomm on-line]
+Group: Internet Logins
+User Name: cabriniconnections
+URL: https://www.easymatch.com/AbbottFund/agency
+Password: ourTe@m11
+Notes: ourTe@m11
+
+This is also the address for Qualcomm matching grant program
+https://www.easymatch.com/qualcomm/agency
+
+Abbott account # is 1386
+
+This is also the address for Prudential matching grant program
+https://www.easymatch.com/prudential/agency
+Acct # for Prudential is 43650 
+
+[Tutor/Mentor on Google]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: http://sites.google.com/site/darpara1003/
+Password: tut0rment0r
+Notes: collaboration with Brian Banks on DARPA funding
+
+[Drop Box for Cabrini Connections]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: https://www.dropbox.com
+Password: tut0rment0r
+Notes: shared workspace
+
+[Verizon matching Gift]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: http://www.verizonfoundation.org/nonprofit/vip
+Password: myCCte@m11
+Notes: myCCte@m11 must be updated every 1.5 years. The next time it would be "12" and so forth.
+
+[WHM Log in for CC and TME site]
+Group: Internet Logins
+User Name: root
+URL: http://115.124.100.176:2086
+Password: S3cru3P@s$kokakoka76
+Notes: Root
+S3cru3P@s$kokakoka76
+
+[SparkAction]
+Group: Internet Logins
+User Name: tutormentor
+URL: http://sparkaction.org/
+Password: C@brini11
+Notes: 
+
+[Chamber of Commerce ]
+Group: Internet Logins
+User Name: tutormentor
+URL: https://ww2.chicagolandchamber.org
+Password: cabrini
+Notes: 
+
+[Charlie Rose forum]
+Group: Internet Logins
+User Name: tutormentor
+URL: http://www.charlierose.com/account/
+Password: tut0rment0r
+Notes: 
+
+[New  York Times]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: http://community.nytimes.com
+Password: tut0rment0r
+Notes: 
+
+[YouTube for Cabrini Connections]
+Group: Internet Logins
+User Name: tutormentor1@gmail.com
+URL: www.youtube.com
+Password: cabrini
+Notes: old username: cabriniconnections
+old pw: tutormentor
+
+[NUTutormentor]
+Group: Internet Logins
+User Name: chris.warrens.mail@gmail.com
+URL: http://nututormentor.ning.com
+Password: Chris
+Notes: we are paying the mini plan fee of 19.99 a year. Chris is the network owner
+
+[Tutor/Mentor Jam]
+Group: Internet Logins
+User Name: dan
+URL: http://mail.tutormentorjam.org
+Password: myj@m11
+Notes: 
+
+[Chicago Non Profit]
+Group: Internet Logins
+User Name: tutormentor
+URL: http://www.chicagononprofit.org/dashboard
+Password: C@brini11
+Notes: email is info1@cabriniconnections.net
+
+[Netlog forum]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: http://en.netlog.com
+Password: myC@brini11
+Notes: 
+
+[Dan wordpress]
+Group: Internet Logins
+User Name: tutormentor1
+URL: http://dashboard.wordpress.com
+Password: myC@brini11
+Notes: 
+
+[Razoo]
+Group: Internet Logins
+User Name: info1@cabriniconnections.net
+URL: https://www.razoo.com
+Password: tut0rment0r
+Notes: admin page is https://www.razoo.com/organizations/363893431/edit
+
+This site needs to change from Dan Bassill profile to someone in the Cabrini Connections org. 
+
+[EdWeek blog]
+Group: Internet Logins
+User Name: tutormentor1@earthlink.net
+URL: http://blogs.edweek.org
+Password: Y3Q54DD
+Notes: 
+
+[waiting for superman]
+Group: Internet Logins
+User Name: tutormetor
+URL: 
+Password: C@brini11
+Notes: 
+
+[PRWeb]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: http://service.prweb.com
+Password: myprte@m11
+Notes: 
+
+[The Big Give]
+Group: Internet Logins
+User Name: Cabrini Connections, Tutor/Mentor Connection
+URL: http://www.thebiggive.org.uk
+Password: C@brini2010
+Notes: 
+
+[Thinkfinity community]
+Group: Internet Logins
+User Name: tutormentor
+URL: http://community.thinkfinity.org/index.jspa
+Password: myte@m11
+Notes: email is tutormentor1@gmail.com
+
+[Jumo web site for Cabrini Connectons]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: http://www.jumo.com/cabriniconnectionstutorme
+Password: tut0rment0r
+Notes: 
+
+[Deutsche Bank Americas]
+Group: Internet Logins
+User Name: 54730
+URL: https://www.easymatch.com/DBAF/agency
+Password: ourTe@m11
+Notes: Account # is 15638
+
+[In The Arena]
+Group: Internet Logins
+User Name: dbassill
+URL: http://inthearena.daremightythings.com/Home.aspx
+Password: tut0rment0r
+Notes: 
+
+[Donors Forum]
+Group: Internet Logins
+User Name: bassilldDF
+URL: www.donorsforum.org 
+Password: 157646
+Notes: 
+
+[Encore.org]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: www.encore.org
+Password: tut0rment0r11
+Notes: 
+
+[Bank of America]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: https://www.cybergrants.com/pls/cybergrants/ao_login.login?x_gm_id=1499&x_proposal_type_id=8904
+Password: C@br1n1
+Notes: https://www.cybergrants.com/pls/cybergrants/ao_login.login?x_gm_id=1499&x_proposal_type_id=8904
+
+El Da'Sheon has created a different log in. Use his.
+
+[Wiser Earth ]
+Group: Internet Logins
+User Name: tutormentor
+URL: http://www.wiserearth.org/user/tutormentor/section/main
+Password: cabrini
+Notes: This is one of Dan's networking places.
+
+[US Postal Service]
+Group: Internet Logins
+User Name: tutormentor
+URL: USPostalService@usps.com
+Password: C@brini11
+Notes: This is our account on the US Post Office web site. I made Toni Pullen the contact person.
+
+[Adler School]
+Group: Internet Logins
+User Name: tutormentor2@earthlink.net
+URL: http://www.adlerpracticum.com/Adler.UI/SiteUser/CSPEvaluationForm.aspx?StudentID=2438&SiteID=350&RecordID=7956&eID=1466&EvaluationNo=2&save=True
+Password: 06475185
+Notes: http://www.adlerpracticum.com/Adler.UI/SiteUser/CSPEvaluationForm.aspx?StudentID=2438&SiteID=350&RecordID=7956&eID=1466&EvaluationNo=2&save=True
+
+[my skype]
+Group: Internet Logins
+User Name: dbassill
+URL: 
+Password: myte@m11
+Notes: 
+
+[ContactTwo1996.fm7 Admin Login]
+Group: Local Network
+User Name: admin
+URL: 
+Password: iwtdLux9
+Notes: 
+
+[ContactTwo1996.fm7 Data Entry Login]
+Group: Local Network
+User Name: staff
+URL: 
+Password: tutormentor
+Notes: To access go to  http://Dell-7:88 from a Internet Explorer window
+
+[Dan's Mac (old Beige G3)]
+Group: Local Network
+User Name: Bassill
+URL: 
+Password: P0w3rPC
+Notes: name: tutormentor
+
+[Dan's old Mac #2 (beige G3) AppleTalk Login]
+Group: Local Network
+User Name: Bassill
+URL: 
+Password: P0w3rPC
+Notes: name: beige G3
+
+[Dan's old Mac AppleTalk Login]
+Group: Local Network
+User Name: ana
+URL: 
+Password: password
+Notes: 
+
+[IYP Macs (Macs 1,2,3,4)]
+Group: Local Network
+User Name: danielbassill
+URL: 
+Password: tutormentor
+Notes: 
+
+[Dan's Mac]
+Group: Local Network
+User Name: danielbassill
+URL: 
+Password: tutormentor1
+Notes: 
+
+[Linksys Wireless Router]
+Group: Local Network
+User Name: cabrini
+URL: http://192.168.1.5
+Password: 96240B546E
+Notes: 
+
+[admin - OLD]
+Group: Local Network
+User Name: administrator
+URL: 
+Password: APSTNDP
+Notes: 
+
+[info1@cabriniconnections.net]
+Group: eMail
+User Name: info1@cabriniconnections.net
+URL: http://www.burlee.com/burleemail/burleemail.html
+Password: tutormentor
+Notes: can also access via www.mail2web.com
+
+[info@tutormentorconference.org]
+Group: eMail
+User Name: info
+URL: https://maila63.webcontrolcenter.com/login.aspx
+Password: cabrini21
+Notes: can also log on via www.mail2web.com
+
+[Burlee Mail Admin]
+Group: eMail
+User Name: cabriniconnections@cabriniconnections.net
+URL: 
+Password: tutormentor
+Notes: 
+
+[cabriniblog@cabriniconnections.net]
+Group: eMail
+User Name: cabriniblog
+URL: 
+Password: blogger
+Notes: 
+
+[registration@tutormentorconference.org]
+Group: eMail
+User Name: registration
+URL: https://maila63.webcontrolcenter.com/login.aspx
+Password: cabrini21
+Notes: 
+
+[Dan's Staff Login]
+Group: SVHATS
+User Name: tutormentor1
+URL: 
+Password: cabrini1
+Notes: 
+
+[Ariane's Volunteer Login]
+Group: SVHATS
+User Name: ArianeL
+URL: 
+Password: gessuric
+Notes: 
+
+[Ariane's Student Login]
+Group: SVHATS
+User Name: A JrL
+URL: 
+Password: AJrL
+Notes: 
+
+[Idealist - set  up new account]
+Group: Volunteer Posting Sites
+User Name:  
+URL: www.idealist.org
+Password:  
+Notes: I was not able to change the contact information from myself. Since we have not used this in more than 2  years, I deleted the account.
+
+Create a new profile if you want to use this in the future.
+
+[VolunteerMatch]
+Group: Volunteer Posting Sites
+User Name: info1@cabriniconnections.net
+URL: www.volunteermatch.org
+Password: ourte@m11
+Notes: I was able to change the primary contact to El Da'Sheon
+
+[CharityAmerica.com]
+Group: Volunteer Posting Sites
+User Name: cabriniconnections
+URL: http://www.charityamerica.com
+Password: c@br1n1
+Notes: I have updated this site with 2009 financial info and changing contact to El Da'Sheon Nix (6/3/11)
+
+[Mission Fish (a program of eBey)]
+Group: Volunteer Posting Sites
+User Name: tutormentor
+URL: http://www.missionfish.org
+Password: actn0w11
+Notes: This is a site that encourages eBay sellers to set aside a percent of sales for a non profit.
+
+Site updated. Email is now info1@cabriniconnections.net and contact is El Nix (6/3/20110
+
+[BoardnetUSA]
+Group: Volunteer Posting Sites
+User Name: 3638934313481
+URL: http://www.boardnetusa.org/public/home.asp
+Password: myc@br1n1
+Notes: this site is a good place to prospect for board members and leadership volunteers
+
+I have updated the site to focus only on Cabrini Connections and add El Da'Sheon Nix as the Executive Director. 
+
+[WomenonCall.org]
+Group: Volunteer Posting Sites
+User Name: tutormentor
+URL: http://www.womenoncall.org
+Password: cabrini
+Notes: This site has been updated to focus only on Cabrini Connections. The contact person and email address has been changed.  6/3/11
+
+[University of Michigan interns]
+Group: Volunteer Posting Sites
+User Name: tutormentor2@earthlink.net
+URL: http://asb6.cms.si.umich.edu/content/home?destination=node%2F3
+Password: C@br1n1TMC
+Notes: University of Michigan spring break interns
+
+[Global Challenge forums]
+Group: Volunteer Posting Sites
+User Name: tutormentor
+URL: www.gca.net
+Password: myte@m11
+Notes: 
+
+[Loyola Career Center]
+Group: Volunteer Posting Sites
+User Name: tutormentor2@earthlink.net
+URL: https://luc-csm.symplicity.com/employers/
+Password: soarwater
+Notes: 
+
+[MentorForMe - Joomla]
+Group: MentorForMe.org
+User Name: vhlede
+URL: http://mentorforme.org/
+Password: zaragaravara75x
+Notes: 
+
+[Host.co.in - Access WHM/cPanel]
+Group: Trakan
+User Name: root
+URL: http://174.141.224.100:2086/
+Password: S3cru3P@s$kokakoka76
+Notes: This is useful for managing files and directories for CabriniConnections.Net, TutorMentorExchange.Net, and TutorMentorJam.org
+
+Access the cPanel by clicking the "List Accounts" link and then selecting the cPanel you need.
+
+I use it when I need to ftp directly to the server (helpful, for instance when Joomla's media manager doesn't handle an mp3... you can ftp it using the cPanel (Control Panel) and then link to it using a relative link to the cabriniconnections.net/ directories)
+
+
+[Dreamweaver - Program Locator]
+Group: Trakan
+User Name: CABRINI
+URL: 
+Password: Dan1Bassill
+Notes: Use 'Site' menu --> 'Manage Sites'... and make sure an entry is there for 'Program Locator'... it should have: 
+
+LOCAL INFO
+Local Root Folder: S:\StaffCommon\Vattsystems-ProgramLocator\
+HTTP Address: http://tutormentorprogramlocator.net/
+
+REMOTE INFO
+Access: FTP
+FTP Host: tutormentorprogramlocator.net
+Login: CABRINI
+Password: [see above]
+
+Test to see if it connects...
+
+if it does you're set.  Just click the "Connect to Remote Host" button in the Nav Pane's "Files" Tab
+
+[Front Page - Program Locator]
+Group: Trakan
+User Name: CABRINI
+URL: 
+Password: Dan1Bassill
+Notes: Open front page then open the file in Staff Common, same way I  update newsletters.
+
+In the "Remote Web Site Properties" dialog box, configure it to have these settings:
+
+* Remote Web Server Type: FTP
+* Remote Web Site Location: ftp://tutormentorprogramlocator.net
+
+Now, make the connection from the "View" Menu --> "Remote Website," in the "Name and Password Required" dialog box, add:
+
+Name: CABRINI
+Password: [FROM ABOVE]
+
+Possible Contact info for Ganesh:
+http://www.networksolutions.com/whois-search/vattsystems.com
+Mahalingam, Priya  priyagmahalingam@yahoo.com
+
+[Tutor/Mentor Jam GoDaddy Account]
+Group: Trakan
+User Name: 36026819
+URL: https://idp.godaddy.com/login.aspx?SPKey=GDMYA-M1PWMYAWEB009&myaurl=%252fDefault.aspx&isc=bido810bl
+Password: Dan1Vador
+Notes: If for whatever reason, we reinstate http://tutormentorjam.org/, its account info is on GoDaddy.
+
+Login to the account manager here:
+https://idp.godaddy.com/login.aspx?SPKey=GDMYA-M1PWMYAWEB009&myaurl=%252fDefault.aspx&isc=bido810bl
+
+user: 36026819
+pw: [from above]
+
+For whatever reason, I also have this written down:
+
+TUTORMENTORJAM-
+Account pw = miUd0-Jam
+info@tutormentorjam.org
+Dan1Vador
+
+[ESRI Global Account]
+Group: Trakan
+User Name: trakan
+URL: https://webaccounts.esri.com/CAS/index.cfm
+Password: tut0rment0r1
+Notes: The Esri Global Account gives users convenient access to areas of the Web site that require a login.
+
+When you see the Esri key symbol beside any Esri Web site login button, you may use your Esri Global Account to login.
+
+The Esri Global Account... your key to unlock many valuable services on Esri's Web sites.
+
+[How To Export ProgramLocator Data To Excel]
+Group: Trakan
+User Name: tutormentor2@earthlink.net
+URL: http://www.tutormentorprogramlocator.net/portal2008/login.asp 
+Password: danvador
+Notes: Here's the trick to getting this to work:
+
+1. Once signed in, follow this menu path:
+Admin -> Program Locator -> Excel Reports
+
+2.  For some reason you now have to log in again.  So log in again.
+
+3. Follow this menu path again:
+Admin -> Program Locator -> Excel Reports
+
+You should be in now.
+
+[Brinkster Login]
+Group: Trakan
+User Name: tutormentor1
+URL: https://www.brinkster.com/Login.aspx
+Password: tmc2010
+Notes: 
+
+[Tutor/Mentor Jam code]
+Group: Trakan
+User Name: 
+URL: 
+Password: E1KNpHNtmsfiNYDT0l6G
+Notes: see Host.co.in KeePass entry above, to access HTML and all live files, using WHM/cPanel login info.
+
+[Trakan user login info]
+Group: Trakan
+User Name: trakan.mike
+URL: 
+Password: nakart44$
+Notes: all of my files are in Shared/Trakan on the server
+

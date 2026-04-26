@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/bhanley/PycharmProjects/YourConferenceNetwork rev-parse --is-inside-work-tree)",
+      "Bash(git -C /Users/bhanley/PycharmProjects/YourConferenceNetwork log --oneline -5)",
+      "Bash(git -C /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation rev-parse --is-inside-work-tree)",
+      "Bash(git -C /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation log --oneline -5)",
+      "Bash(git -C /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation log --oneline)",
+      "Bash(git -C /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation status)",
+      "Bash(git *)",
+      "Bash(rsync -av --dry-run --delete --exclude=.DS_Store --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.env --exclude=.claude/ --exclude=data/ --exclude=staticfiles/ --exclude=out/ --exclude=.git/ /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/MappingAndAnalyzingParticipation/)",
+      "Bash(rsync -av --dry-run --delete --exclude=.DS_Store --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.claude/ --exclude=backend/db.sqlite3 --exclude=backend/media/ --exclude=backend/staticfiles/ '--exclude=Ntec placeholder/' --exclude=Rasket-Vue_v1.0/ '--exclude=*.zip' --exclude=.git/ /Users/bhanley/PycharmProjects/YourConferenceNetwork/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/YourConferenceNetwork/)",
+      "Bash(rsync -av --delete --exclude=.DS_Store --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.env --exclude=.claude/ --exclude=data/ --exclude=staticfiles/ --exclude=out/ --exclude=.git/ /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/MappingAndAnalyzingParticipation/)",
+      "Bash(rsync -av --delete --exclude=.DS_Store --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.claude/ --exclude=backend/db.sqlite3 --exclude=backend/media/ --exclude=backend/staticfiles/ '--exclude=Ntec placeholder/' --exclude=Rasket-Vue_v1.0/ '--exclude=*.zip' --exclude=.git/ /Users/bhanley/PycharmProjects/YourConferenceNetwork/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/YourConferenceNetwork/)",
+      "Bash(ssh *)",
+      "Bash(xargs rm *)",
+      "Bash(mv /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation/Intermediate_Presentation.pptx /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation/knowledge/)",
+      "Bash(mv /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation/MappingAndAnalyzingParticipation_ProjectPlan.pptx /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation/knowledge/)",
+      "Bash(rm -rf /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation/staticfiles)",
+      "Bash(mkdir -p \"/Users/bhanley/PycharmProjects/YourConferenceNetwork/design-reference\")",
+      "Bash(mv '/Users/bhanley/PycharmProjects/YourConferenceNetwork/Ntec placeholder' /Users/bhanley/PycharmProjects/YourConferenceNetwork/design-reference/)",
+      "Bash(mv /Users/bhanley/PycharmProjects/YourConferenceNetwork/Rasket-Vue_v1.0 /Users/bhanley/PycharmProjects/YourConferenceNetwork/design-reference/)",
+      "Bash(rm \"/Users/bhanley/PycharmProjects/YourConferenceNetwork/ntec-saas-it-solution-html-template-2024-04-03-17-28-54-utc.zip\")",
+      "Bash(rm \"/Users/bhanley/PycharmProjects/YourConferenceNetwork/rasket-vue-js-admin-dashboard-template-2025-01-15-04-14-22-utc.zip\")",
+      "Bash(rsync -a --delete --exclude=.DS_Store --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.env --exclude=.claude/ --exclude=data/ --exclude=staticfiles/ --exclude=out/ --exclude=db.sqlite3 --exclude=.git/ /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/MappingAndAnalyzingParticipation/)",
+      "Bash(rsync -a --delete --exclude=.DS_Store --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.claude/ --exclude=backend/db.sqlite3 --exclude=backend/media/ --exclude=backend/staticfiles/ --exclude=.git/ /Users/bhanley/PycharmProjects/YourConferenceNetwork/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/YourConferenceNetwork/)"
+    ]
+  }
+}

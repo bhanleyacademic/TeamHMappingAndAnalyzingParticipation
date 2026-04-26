@@ -1,0 +1,41 @@
+.anylinkcss
+{
+    position: absolute;
+    visibility: hidden;
+    border: 0px;
+    border-bottom-width: 0;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    font: normal 12px Verdana;
+    line-height: 18px;
+    z-index: 100;
+    background-color: #ffffff;
+    width: 105px;
+    text-align: left;
+    
+    
+}
+
+
+.anylinkcss a{
+width: 100%;
+display: block;
+text-indent: 3px;
+padding: 1px 0;
+text-decoration:none;
+font-weight: bold;
+text-indent: 5px;
+color:#ffffcc;
+}
+
+
+
+.anylinkcss a:hover
+{
+    /*hover background color*/
+    background-color:#FFFFCC;
+     text-decoration:none;
+      
+    color: #0074c4;
+}

@@ -3,8 +3,11 @@ __pycache__/
 *.pyc
 *.pyo
 staticfiles/
+out/
+db.sqlite3
 
 /.claude/
 data/
 .venv/
 .idea/
+.DS_Store
