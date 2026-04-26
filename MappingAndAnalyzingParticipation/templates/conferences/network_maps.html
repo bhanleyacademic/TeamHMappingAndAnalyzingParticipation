@@ -1,41 +1,47 @@
 {% extends "base.html" %}
 {% block title %}Network Maps – T/MC Network{% endblock %}
+{% block page_banner %}
+<div class="page-banner">
+  <div class="container">
+    <p class="banner-label">T/MC Conference Network</p>
+    <h1 class="banner-title">Network Maps</h1>
+  </div>
+</div>
+{% endblock %}
 {% block content %}
-<h1>Network Maps</h1>
-<p style="color:#555; margin-bottom:1.25rem; font-size:0.92rem;">
-  Three views of the Tutor/Mentor conference participation network (1994–2014),
-  generated from the cleaned dataset. Each map renders live from the database.
-  Images may take a few seconds to load.
+<p style="color:#848e9f; margin-bottom:1.75rem; font-size:.92rem;">
+  Three views of the Tutor/Mentor conference participation network (1994–2014).
+  Maps 1 and 2 are interactive (Kumu.io). Map 3 is rendered live from the database
+  and may take a few seconds to load.
 </p>
 
-<div class="card">
-  <h2 style="margin-top:0;">Map 1 — Organization–Event Bipartite Network</h2>
-  <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">
-    Each organization (colored by sector) is connected to every conference event it attended (orange).
-    Node size encodes years of participation (org) or total attendees (event).
-    Only orgs attending ≥3 events and events with ≥10 orgs are shown.
+<div class="data-card mb-4">
+  <h2 style="margin-top:0;">Map 1 — Organization–Event Bipartite Network (Interactive)</h2>
+  <p style="font-size:.85rem; color:#848e9f; margin-bottom:.75rem;">
+    Each organization (colored by sector) is connected to every conference event it attended.
+    Interactive — click any node to explore connections, use the legend to filter by sector.
+    Powered by Kumu.io with live data from this platform.
   </p>
-  <img src="{% url 'conferences:map_org_event' %}"
-       alt="Organization–Event Bipartite Network"
-       style="width:100%; border-radius:6px; display:block;">
+  <div style="border-radius:6px; overflow:hidden;">
+    <iframe src="https://embed.kumu.io/86fe43ff229d036ab496eb9b1aee5d7a" width="940" height="600" frameborder="0"></iframe>
+  </div>
 </div>
 
-<div class="card">
-  <h2 style="margin-top:0;">Map 2 — Organization–Organization Co-attendance Network</h2>
-  <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">
-    Organizations connected by shared conference attendance. Edge weight = number of
-    shared conferences (minimum 3 shown). Node size = events attended. Top 20 nodes by
-    degree are labeled — these are the network's most-connected organizations.
-    Color encodes SNA sector.
+<div class="data-card mb-4">
+  <h2 style="margin-top:0;">Map 2 — Organization–Organization Co-attendance Network (Interactive)</h2>
+  <p style="font-size:.85rem; color:#848e9f; margin-bottom:.75rem;">
+    Organizations connected by shared conference attendance. Edge weight = shared conferences (minimum 3).
+    Node size = conferences attended. Color encodes SNA sector.
+    Interactive — click any node to explore connections, filter by sector below the map.
   </p>
-  <img src="{% url 'conferences:map_org_org' %}"
-       alt="Organization–Organization Co-attendance Network"
-       style="width:100%; border-radius:6px; display:block;">
+  <div style="border-radius:6px; overflow:hidden;">
+    <iframe src="https://embed.kumu.io/8be991e9f5f40766ad9c14430b449490" width="940" height="600" frameborder="0"></iframe>
+  </div>
 </div>
 
-<div class="card">
+<div class="data-card mb-4">
   <h2 style="margin-top:0;">Map 3 — Event → Sector → Organization (Three-Layer, 2004–2010)</h2>
-  <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">
+  <p style="font-size:.85rem; color:#848e9f; margin-bottom:.75rem;">
     A three-layer structural view focused on the peak attendance years (2004–2010).
     Left layer: conference events. Center: SNA sectors. Right: organizations attending
     ≥4 events in the window. Shows how sectors bridge events and organizations,
@@ -46,16 +52,50 @@
        style="width:100%; border-radius:6px; display:block;">
 </div>
 
-<div class="card" style="background:#f0f4f8;">
+<div class="data-card mb-4" style="background:#eef0fb; border-left: 4px solid #2e3192;">
+  <h2 style="margin-top:0;"><i class="fas fa-globe" style="color:#2e3192; margin-right:.4rem;"></i>Live Kumu.io Blueprints</h2>
+  <p style="font-size:.85rem; color:#555; margin-bottom:1rem; line-height:1.6;">
+    Each graph type is available as a public JSON endpoint for Kumu's
+    <a href="https://docs.kumu.io/guides/import/blueprints#set-a-remote-json-link" target="_blank" rel="noopener" style="color:#2e3192;">remote blueprint</a>
+    import — same data as the CSV exports below, live from the database.
+    In Kumu: <em>Import → Blueprint → Remote (URL)</em> → paste any link below.
+    Use the <code>https://tutormentor.network/...</code> form (HTTPS required by Kumu).
+  </p>
+  <table class="tbl" style="background:#fff;">
+    <thead><tr><th>Graph type</th><th>Elements</th><th>Connections</th><th>JSON endpoint</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Org ↔ Event</strong><br><span style="font-size:.78rem;color:#848e9f;">Bipartite</span></td>
+        <td style="font-size:.82rem;">Orgs + Conference Events</td>
+        <td style="font-size:.82rem;">Attendance edges</td>
+        <td><a href="{% url 'conferences:kumu_org_event' %}" target="_blank" class="btn-app btn-app-sm" style="white-space:nowrap;">org-event.json</a></td>
+      </tr>
+      <tr>
+        <td><strong>Org ↔ Org</strong><br><span style="font-size:.78rem;color:#848e9f;">Co-attendance</span></td>
+        <td style="font-size:.82rem;">Organizations only</td>
+        <td style="font-size:.82rem;">Shared conferences (weighted)</td>
+        <td><a href="{% url 'conferences:kumu_org_org' %}" target="_blank" class="btn-app btn-app-sm" style="white-space:nowrap;">org-org.json</a></td>
+      </tr>
+      <tr>
+        <td><strong>Event → Sector → Org</strong><br><span style="font-size:.78rem;color:#848e9f;">Three-layer</span></td>
+        <td style="font-size:.82rem;">Events + Sectors + Orgs</td>
+        <td style="font-size:.82rem;">Event–Sector + Sector–Org</td>
+        <td><a href="{% url 'conferences:kumu_3layer' %}" target="_blank" class="btn-app btn-app-sm" style="white-space:nowrap;">3layer.json</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="data-card" style="background:#eef0fb;">
   <h2 style="margin-top:0;">Export for Kumu.io / Gephi</h2>
-  <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">
+  <p style="font-size:.85rem; color:#555; margin-bottom:.75rem;">
     Download the underlying data as CSVs to build interactive versions of these maps in Kumu.io or Gephi.
   </p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a class="btn btn-green btn-sm" href="{% url 'conferences:export_nodes' %}">nodes.csv</a>
-    <a class="btn btn-green btn-sm" href="{% url 'conferences:export_edges_org_event' %}">edges: org↔event</a>
-    <a class="btn btn-green btn-sm" href="{% url 'conferences:export_edges_org_org' %}">edges: org↔org</a>
-    <a class="btn btn-green btn-sm" href="{% url 'conferences:export_edges_event_sector_org' %}">edges: 3-layer</a>
+  <div class="d-flex flex-wrap" style="gap:.6rem;">
+    <a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_nodes' %}">nodes.csv</a>
+    <a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_edges_org_event' %}">edges: org↔event</a>
+    <a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_edges_org_org' %}">edges: org↔org</a>
+    <a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_edges_event_sector_org' %}">edges: 3-layer</a>
   </div>
 </div>
 {% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base_marketing.html" %}
+{% load static %}
+
+{% block title %}Contact — YourConferenceNetwork{% endblock %}
+
+{% block content %}
+<section class="page__banner pt-120 pb-60" style="background: linear-gradient(135deg, #0D1B2A 0%, #1A3A5C 100%);">
+  <div class="container" data-aos="fade-up">
+    <div class="text-center">
+      <h1 class="text-white mb-20">Get In Touch</h1>
+      <p class="text-white-50">Questions about the methodology, pricing, or your data? We're here.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact__section pt-100 pb-100" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-5 mb-40">
+        <h3 class="mb-30">Contact Information</h3>
+        <p class="mb-20">Reach out with questions about the methodology, data templates, pricing, or to request a demo.</p>
+        <div class="mb-20">
+          <strong>Email</strong><br>
+          <a href="mailto:hello@yourconferencenetwork.com">hello@yourconferencenetwork.com</a>
+        </div>
+        <div class="mb-20">
+          <strong>Support</strong><br>
+          <a href="{% url 'faq' %}">Check our FAQ first →</a>
+        </div>
+        <div class="mb-20">
+          <strong>Dashboard Access</strong><br>
+          <a href="{% url 'spa-shell' %}">Sign in to your account →</a>
+        </div>
+      </div>
+      <div class="col-xl-7">
+        <form method="post" action="#">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 mb-20">
+              <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+            </div>
+            <div class="col-md-6 mb-20">
+              <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+            </div>
+            <div class="col-md-6 mb-20">
+              <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+            </div>
+            <div class="col-md-6 mb-20">
+              <input type="text" name="organization" class="form-control" placeholder="Organization">
+            </div>
+            <div class="col-12 mb-20">
+              <select name="subject" class="form-control">
+                <option value="">Subject</option>
+                <option>General Question</option>
+                <option>Pricing / Plans</option>
+                <option>Data Template Help</option>
+                <option>Technical Support</option>
+                <option>Partnership</option>
+              </select>
+            </div>
+            <div class="col-12 mb-30">
+              <textarea name="message" class="form-control" rows="5" placeholder="Your message..." required></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="ht_btn"><span>Send Message</span></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

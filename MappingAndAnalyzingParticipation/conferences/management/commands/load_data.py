@@ -18,7 +18,7 @@ from conferences.sna_normalize import normalize
 
 DEFAULT_CSV = (
     Path(settings.BASE_DIR)
-    / "ProjectFiles"
+    / "knowledge"
     / "All_Conferences_Data_Cleaned-2026 - Sheet1.csv"
 )
 

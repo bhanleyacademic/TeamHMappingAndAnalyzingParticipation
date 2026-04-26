@@ -1,0 +1,74 @@
+{% extends "base_marketing.html" %}
+{% load static %}
+
+{% block title %}Services — YourConferenceNetwork{% endblock %}
+
+{% block content %}
+<section class="page__banner pt-120 pb-60" style="background: linear-gradient(135deg, #0D1B2A 0%, #1A3A5C 100%);">
+  <div class="container" data-aos="fade-up">
+    <div class="text-center">
+      <h1 class="text-white mb-20">What YourConferenceNetwork Does</h1>
+      <p class="text-white-50">The full methodology — from CSV upload to publishable network maps.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services__section pt-100 pb-100" data-aos="fade-up">
+  <div class="container">
+    <div class="row mb-80">
+      <div class="col-xl-6">
+        <h5 class="section__sub__title">STEP 1</h5>
+        <h2 class="section__title__main mb-30">Upload Your Attendance Data</h2>
+        <p class="mb-20">Download our pre-formatted CSV template. Fill in attendance records from your conference sign-in sheets, registration databases, or event management tools.</p>
+        <p class="mb-20">Required fields: Organization name, Sector type, Conference date (MM/YYYY), and Location. Optional: Individual names, titles, contact details.</p>
+        <p>Our pipeline automatically normalizes your sector categories — mapping variants like "Program/Faith" and "program-faith" to a single canonical "Program" category — and parses conference dates into sortable year/month values.</p>
+      </div>
+      <div class="col-xl-6">
+        <img src="{% static 'ntec/assets/img/hero/hero__one__01.png' %}" alt="Data upload" class="img-fluid">
+      </div>
+    </div>
+
+    <div class="row mb-80">
+      <div class="col-xl-6 order-xl-2">
+        <h5 class="section__sub__title">STEP 2</h5>
+        <h2 class="section__title__main mb-30">Explore the Dashboard</h2>
+        <p class="mb-20">Once your data is processed, your dashboard shows summary KPIs: total records, unique organizations, unique conference events, and year range.</p>
+        <p class="mb-20">The stacked bar chart shows attendance per conference event broken down by sector. Filter by year, state, or sector type to focus on specific slices of your data.</p>
+        <p>Search any organization name to see their full conference history — which events they attended and their sector classification.</p>
+      </div>
+      <div class="col-xl-6 order-xl-1">
+        <img src="{% static 'ntec/assets/img/hero/hero__one__01.png' %}" alt="Dashboard" class="img-fluid">
+      </div>
+    </div>
+
+    <div class="row mb-60">
+      <div class="col-xl-4 mb-30">
+        <div class="single__offer__box">
+          <h4 class="offer__title mb-20">Org–Event Bipartite Network</h4>
+          <p>Organizations connected to the conference events they attended. Node size encodes years participated (orgs) and total attendees (events). Filter by minimum events attended.</p>
+          <p><strong>Export formats:</strong> Kumu.io JSON blueprint, Gephi CSV edges</p>
+        </div>
+      </div>
+      <div class="col-xl-4 mb-30">
+        <div class="single__offer__box">
+          <h4 class="offer__title mb-20">Co-Attendance Network</h4>
+          <p>Organizations connected when they attended the same conference. Edge weight = number of shared conferences. Reveals alliances and community clusters across sectors.</p>
+          <p><strong>Export formats:</strong> Kumu.io JSON blueprint, Gephi CSV edges (weighted)</p>
+        </div>
+      </div>
+      <div class="col-xl-4 mb-30">
+        <div class="single__offer__box">
+          <h4 class="offer__title mb-20">Three-Layer Directed Network</h4>
+          <p>Conference Events → Sectors → Organizations. A directed three-layer model showing how event types connect to different community sectors and the organizations within them.</p>
+          <p><strong>Export formats:</strong> Kumu.io JSON blueprint, CSV edge list</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-40">
+      <a href="{% url 'pricing' %}" class="ht_btn me-3"><span>View Pricing</span></a>
+      <a href="{% url 'spa-shell' %}" class="ht_btn" style="background:transparent;border:2px solid #FC3C59;color:#FC3C59;"><span>Try Free</span></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,1 @@
+import{d as a,f as o,o as s,b as n,aq as c}from"./index-Dns9G9iX.js";const i=a({__name:"ApexChart",props:{chart:{type:Object,required:!0}},setup(e){return(t,h)=>{const r=o("apexchart");return s(),n(r,c({height:e.chart.height,type:e.chart.type,series:e.chart.series,options:e.chart.options},t.$attrs),null,16,["height","type","series","options"])}}});export{i as _};

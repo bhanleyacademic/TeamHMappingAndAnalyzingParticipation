@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Search Organizations – T/MC Conference Network{% endblock %}
+{% block extra_css %}
+<style>
+  .org-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.07); padding: .85rem 1.1rem; margin-bottom: .65rem; }
+  .org-name { font-size: 1rem; font-weight: 700; color: #1a1f3c; margin-bottom: .2rem; }
+  .org-meta { font-size: .82rem; color: #848e9f; margin-bottom: .5rem; }
+  .conf-list { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .conf-chip { background: #eef0fb; color: #2e3192; border-radius: 4px; padding: .2rem .55rem; font-size: .78rem; font-weight: 500; }
+  .sector-badge { display: inline-block; padding: .15rem .5rem; border-radius: 3px; font-size: .75rem; font-weight: 600; color: #fff; background: #2e3192; margin-left: .4rem; vertical-align: middle; }
+</style>
+{% endblock %}
+{% block page_banner %}
+<div class="page-banner">
+  <div class="container">
+    <p class="banner-label">T/MC Conference Network</p>
+    <h1 class="banner-title">Organization Search</h1>
+  </div>
+</div>
+{% endblock %}
+{% block content %}
+
+<h1 class="mb-3">Search Organizations</h1>
+
+<form method="get" action="">
+  <div class="d-flex mb-4" style="gap:.5rem; max-width:600px;">
+    <input type="text" name="q" value="{{ query }}"
+           placeholder="Organization name or keyword…" autofocus
+           style="flex:1; padding:.5rem .75rem; border:1px solid #d0d5dd; border-radius:4px; font-size:.95rem; font-family:inherit;">
+    <button class="btn-app" type="submit">Search</button>
+    {% if query %}
+      <a class="btn-app btn-app-grey" href="{% url 'conferences:participant_search' %}">Clear</a>
+    {% endif %}
+  </div>
+</form>
+
+{% if query %}
+  {% if org_results %}
+    <div class="result-count">
+      {{ org_count }} organization{{ org_count|pluralize }} matching "{{ query }}"
+    </div>
+    {% for o in org_results %}
+      <div class="org-card">
+        <div class="org-name">
+          {{ o.organization }}
+          {% if o.sector %}<span class="sector-badge">{{ o.sector }}</span>{% endif %}
+        </div>
+        <div class="org-meta">
+          {{ o.conference_count }} conference{{ o.conference_count|pluralize }}
+          &nbsp;·&nbsp; {{ o.year_range }}
+        </div>
+        <div class="conf-list">
+          {% for c in o.conferences %}
+            <span class="conf-chip">{{ c }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="empty">No organizations found matching "{{ query }}".</p>
+  {% endif %}
+{% else %}
+  <p style="color:#848e9f; font-size:.9rem; margin-top:.5rem;">
+    Search by organization name to see their full conference attendance history.
+  </p>
+{% endif %}
+
+{% endblock %}

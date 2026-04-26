@@ -1,59 +1,78 @@
 {% extends "base.html" %}
 {% block title %}Data Quality – T/MC Network{% endblock %}
+{% block page_banner %}
+<div class="page-banner">
+  <div class="container">
+    <p class="banner-label">T/MC Conference Network</p>
+    <h1 class="banner-title">Data Quality Report</h1>
+  </div>
+</div>
+{% endblock %}
 {% block content %}
-<h1>Data Quality Report</h1>
 
-<div class="metrics">
-  <div class="metric">
-    <div class="value">{{ total }}</div>
-    <div class="label">Total Records</div>
+<!-- Metrics row -->
+<div class="row mb-4">
+  <div class="col-6 col-md-3 mb-3">
+    <div class="metric-card">
+      <div class="value">{{ total }}</div>
+      <div class="label">Total Records</div>
+    </div>
   </div>
-  <div class="metric" style="border-top: 4px solid {% if missing_org > 0 %}#b71c1c{% else %}#2e7d32{% endif %};">
-    <div class="value {% if missing_org > 0 %}warning{% endif %}">{{ missing_org }}</div>
-    <div class="label">Missing Organization</div>
+  <div class="col-6 col-md-3 mb-3">
+    <div class="metric-card" style="border-top: 4px solid {% if missing_org > 0 %}#b71c1c{% else %}#2e7d32{% endif %};">
+      <div class="value {% if missing_org > 0 %}warning{% endif %}">{{ missing_org }}</div>
+      <div class="label">Missing Organization</div>
+    </div>
   </div>
-  <div class="metric" style="border-top: 4px solid {% if missing_sna > 0 %}#b71c1c{% else %}#2e7d32{% endif %};">
-    <div class="value {% if missing_sna > 0 %}warning{% endif %}">{{ missing_sna }}</div>
-    <div class="label">Missing SNA Category</div>
+  <div class="col-6 col-md-3 mb-3">
+    <div class="metric-card" style="border-top: 4px solid {% if missing_sna > 0 %}#b71c1c{% else %}#2e7d32{% endif %};">
+      <div class="value {% if missing_sna > 0 %}warning{% endif %}">{{ missing_sna }}</div>
+      <div class="label">Missing SNA Category</div>
+    </div>
   </div>
-  <div class="metric">
-    <div class="value">{{ unmapped }}</div>
-    <div class="label">Mapped to "Other"</div>
+  <div class="col-6 col-md-3 mb-3">
+    <div class="metric-card">
+      <div class="value">{{ unmapped }}</div>
+      <div class="label">Mapped to "Other"</div>
+    </div>
   </div>
 </div>
 
-<div class="grid-2">
-  <div class="card">
-    <h2>Normalized SNA Category Counts</h2>
-    <table>
-      <thead><tr><th>Canonical Category</th><th>Records</th></tr></thead>
-      <tbody>
-        {% for row in normalized_dist %}
-        <tr>
-          <td>{{ row.sna_category|default:"(blank)" }}</td>
-          <td>{{ row.count }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <div class="data-card h-100 mb-0">
+      <h2>Normalized SNA Category Counts</h2>
+      <table class="tbl">
+        <thead><tr><th>Canonical Category</th><th>Records</th></tr></thead>
+        <tbody>
+          {% for row in normalized_dist %}
+          <tr>
+            <td>{{ row.sna_category|default:"(blank)" }}</td>
+            <td>{{ row.count }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
-
-  <div class="card">
-    <h2>Top Raw SNA Values (before normalization)</h2>
-    <p style="font-size:0.82rem; color:#777; margin-bottom:0.5rem;">
-      Top 30 original values from the dataset — used to build the normalization map.
-    </p>
-    <table>
-      <thead><tr><th>Original Value</th><th>Records</th></tr></thead>
-      <tbody>
-        {% for row in original_dist %}
-        <tr>
-          <td>{{ row.sna_category_original|default:"(blank)" }}</td>
-          <td>{{ row.count }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="col-md-6 mb-4">
+    <div class="data-card h-100 mb-0">
+      <h2>Top Raw SNA Values (before normalization)</h2>
+      <p style="font-size:.82rem; color:#848e9f; margin-bottom:.5rem;">
+        Top 30 original values from the dataset — used to build the normalization map.
+      </p>
+      <table class="tbl">
+        <thead><tr><th>Original Value</th><th>Records</th></tr></thead>
+        <tbody>
+          {% for row in original_dist %}
+          <tr>
+            <td>{{ row.sna_category_original|default:"(blank)" }}</td>
+            <td>{{ row.count }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 {% endblock %}

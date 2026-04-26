@@ -9,6 +9,7 @@ import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 import networkx as nx
 import plotly.graph_objects as go
+from django.db import models
 from django.db.models import Count, Q
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -52,6 +53,86 @@ def _available_states():
         .distinct()
         .order_by("state")
     )
+
+
+# ---------------------------------------------------------------------------
+# Methodology
+# ---------------------------------------------------------------------------
+
+def participant_search(request):
+    query = request.GET.get("q", "").strip()
+    org_results = []
+
+    if query:
+        org_records = (
+            Attendance.objects.filter(organization__icontains=query)
+            .exclude(organization="")
+            .values("organization", "sna_category", "conference", "year")
+            .order_by("organization", "year")
+        )
+
+        org_grouped = defaultdict(list)
+        for r in org_records:
+            org_grouped[r["organization"]].append(r)
+
+        for org, records in sorted(org_grouped.items()):
+            years = sorted({r["year"] for r in records if r["year"]})
+            sector = records[0]["sna_category"] if records else ""
+            conferences = sorted(
+                {r["conference"] for r in records},
+                key=lambda c: (
+                    int(c.split("/")[1]) if "/" in c else 0,
+                    int(c.split("/")[0]) if "/" in c else 0,
+                )
+            )
+            org_results.append({
+                "organization": org,
+                "sector": sector,
+                "conference_count": len(conferences),
+                "conferences": conferences,
+                "year_range": f"{years[0]}–{years[-1]}" if years else "—",
+            })
+
+    context = {
+        "query": query,
+        "org_results": org_results,
+        "org_count": len(org_results),
+    }
+    return render(request, "conferences/participant_search.html", context)
+
+
+def previous_iteration(request):
+    return render(request, "conferences/previous_iteration.html")
+
+
+def methodology(request):
+    total_records = Attendance.objects.count()
+    unique_orgs = Attendance.objects.exclude(organization="").values("organization").distinct().count()
+    unique_events = Attendance.objects.values("conference").distinct().count()
+    year_range = Attendance.objects.exclude(year__isnull=True).aggregate(
+        first=models.Min("year"), last=models.Max("year")
+    )
+    sector_counts = (
+        Attendance.objects.exclude(sna_category="")
+        .values("sna_category")
+        .annotate(count=Count("id"))
+        .order_by("-count")
+    )
+    raw_variant_count = (
+        Attendance.objects.values("sna_category_original")
+        .distinct()
+        .count()
+    )
+    context = {
+        "total_records": total_records,
+        "unique_orgs": unique_orgs,
+        "unique_events": unique_events,
+        "year_range": year_range,
+        "sector_counts": sector_counts,
+        "raw_variant_count": raw_variant_count,
+        "canonical_count": len(CANONICAL_CATEGORIES),
+    }
+    return render(request, "conferences/methodology.html", context)
 
 
 # ---------------------------------------------------------------------------
@@ -351,6 +432,228 @@ def export_edges_event_sector_org(request):
     for sec, org in sorted(sector_org):
         writer.writerow([sec, org, "Sector-Org"])
     return response
+
+
+# ---------------------------------------------------------------------------
+# Kumu.io blueprint JSON endpoints
+# One endpoint per graph type, mirroring the CSV exports exactly.
+# ---------------------------------------------------------------------------
+
+def _kumu_response(blueprint):
+    return JsonResponse(blueprint)
+
+
+def kumu_org_event(request):
+    """
+    Kumu blueprint: Organization–Event bipartite network.
+    Elements: orgs (type=SNA category) + conference events (type=Conference Event).
+    Connections: attendance edges (org → event).
+
+    Query params:
+      min_events  — org must have attended this many conferences (default 3)
+      min_orgs    — event must have had this many organizations attend (default 10)
+    """
+    try:
+        min_events = max(1, int(request.GET.get("min_events", 3)))
+    except (ValueError, TypeError):
+        min_events = 3
+    try:
+        min_orgs = max(1, int(request.GET.get("min_orgs", 10)))
+    except (ValueError, TypeError):
+        min_orgs = 10
+
+    qs = Attendance.objects.exclude(organization="").values(
+        "organization", "sna_category", "conference"
+    )
+
+    org_data = {}
+    event_org_sets = defaultdict(set)
+    event_record_counts = defaultdict(int)
+
+    for a in qs:
+        org = a["organization"]
+        evt = a["conference"]
+        if org not in org_data:
+            org_data[org] = {"sna_category": a["sna_category"], "events": set(), "records": 0}
+        org_data[org]["records"] += 1
+        org_data[org]["events"].add(evt)
+        event_org_sets[evt].add(org)
+        event_record_counts[evt] += 1
+
+    # Apply filters
+    active_orgs = {org for org, d in org_data.items() if len(d["events"]) >= min_events}
+    active_events = {evt for evt, orgs in event_org_sets.items() if len(orgs) >= min_orgs}
+
+    elements = []
+    for org in sorted(active_orgs):
+        d = org_data[org]
+        elements.append({
+            "label": org,
+            "type": d["sna_category"],
+            "conferences attended": len(d["events"]),
+            "attendance records": d["records"],
+            "organizations attended": 0,
+        })
+    for evt in sorted(active_events):
+        elements.append({
+            "label": evt,
+            "type": "Conference Event",
+            "conferences attended": 0,
+            "attendance records": event_record_counts[evt],
+            "organizations attended": len(event_org_sets[evt]),
+        })
+
+    connections = [
+        {"from": org, "to": evt, "direction": "undirected"}
+        for org in active_orgs
+        for evt in org_data[org]["events"]
+        if evt in active_events
+    ]
+
+    return _kumu_response({"elements": elements, "connections": connections})
+
+
+def kumu_org_org(request):
+    """
+    Kumu blueprint: Organization–Organization co-attendance network.
+    Elements: orgs (type=SNA category).
+    Connections: co-attendance edges (weight = shared conferences).
+
+    Query params:
+      min_events  — org must have attended this many conferences (default 2)
+      min_weight  — edge requires this many shared conferences (default 3)
+    """
+    try:
+        min_events = max(1, int(request.GET.get("min_events", 2)))
+    except (ValueError, TypeError):
+        min_events = 2
+    try:
+        min_weight = max(1, int(request.GET.get("min_weight", 3)))
+    except (ValueError, TypeError):
+        min_weight = 3
+
+    # Build co-attendance pairs
+    conf_orgs = defaultdict(set)
+    org_event_count = defaultdict(set)
+    org_meta = {}
+
+    for a in Attendance.objects.exclude(organization="").values(
+        "organization", "sna_category", "conference"
+    ):
+        org = a["organization"]
+        conf_orgs[a["conference"]].add(org)
+        org_event_count[org].add(a["conference"])
+        if org not in org_meta:
+            org_meta[org] = {"sna_category": a["sna_category"], "records": 0}
+        org_meta[org]["records"] += 1
+
+    # Filter orgs by min_events
+    active_orgs = {org for org, evts in org_event_count.items() if len(evts) >= min_events}
+
+    pair_weight = defaultdict(int)
+    for orgs_in_conf in conf_orgs.values():
+        shared = sorted(o for o in orgs_in_conf if o in active_orgs)
+        for i, a in enumerate(shared):
+            for b in shared[i + 1:]:
+                pair_weight[(a, b)] += 1
+
+    # Only include orgs that appear in at least one qualifying edge
+    orgs_with_edges = {org for (a, b), w in pair_weight.items() if w >= min_weight for org in (a, b)}
+
+    elements = [
+        {
+            "label": org,
+            "type": org_meta[org]["sna_category"],
+            "conferences attended": len(org_event_count[org]),
+            "attendance records": org_meta[org]["records"],
+        }
+        for org in sorted(active_orgs & orgs_with_edges)
+    ]
+
+    connections = [
+        {
+            "from": src,
+            "to": tgt,
+            "shared conferences": weight,
+            "direction": "undirected",
+        }
+        for (src, tgt), weight in sorted(pair_weight.items(), key=lambda x: -x[1])
+        if weight >= min_weight
+    ]
+
+    return _kumu_response({"elements": elements, "connections": connections})
+
+
+def kumu_3layer(request):
+    """
+    Kumu blueprint: Event → Sector → Organization three-layer network.
+    Elements: conference events (type=Conference Event) + sectors (type=Sector) + orgs (type=SNA category).
+    Connections: event→sector and sector→org edges.
+
+    Query params:
+      year_min   — start of year window (default 2004)
+      year_max   — end of year window (default 2010)
+      min_events — org must have attended this many events in the window (default 4)
+    """
+    try:
+        year_min = int(request.GET.get("year_min", 2004))
+    except (ValueError, TypeError):
+        year_min = 2004
+    try:
+        year_max = int(request.GET.get("year_max", 2010))
+    except (ValueError, TypeError):
+        year_max = 2010
+    try:
+        min_events = max(1, int(request.GET.get("min_events", 4)))
+    except (ValueError, TypeError):
+        min_events = 4
+
+    attendances = list(
+        Attendance.objects.exclude(organization="")
+        .filter(year__gte=year_min, year__lte=year_max)
+        .values("organization", "sna_category", "conference", "year")
+    )
+
+    # Count events per org within the window, then filter
+    org_events_in_window = defaultdict(set)
+    org_sector = {}
+    for a in attendances:
+        org_events_in_window[a["organization"]].add(a["conference"])
+        org_sector[a["organization"]] = a["sna_category"]
+
+    active_orgs = {org for org, evts in org_events_in_window.items() if len(evts) >= min_events}
+
+    event_sector = set()
+    sector_org = set()
+    for a in attendances:
+        if a["organization"] in active_orgs:
+            event_sector.add((a["conference"], a["sna_category"]))
+            sector_org.add((a["sna_category"], a["organization"]))
+
+    all_events  = sorted(e for e, _ in event_sector)
+    all_sectors = sorted(s for _, s in event_sector)
+    all_orgs    = sorted(active_orgs)
+
+    def positions(items):
+        """Spread items evenly 0–100 along the Y axis."""
+        n = len(items)
+        return [round(i * 100 / max(n - 1, 1)) for i in range(n)]
+
+    elements = []
+    for evt, y in zip(all_events, positions(all_events)):
+        elements.append({"label": evt, "type": "Conference Event", "layer": 0, "position": y})
+    for sec, y in zip(all_sectors, positions(all_sectors)):
+        elements.append({"label": sec, "type": "Sector", "layer": 50, "position": y})
+    for org, y in zip(all_orgs, positions(all_orgs)):
+        elements.append({"label": org, "type": org_sector.get(org, "Other"), "layer": 100, "position": y})
+
+    connections = []
+    for evt, sec in sorted(event_sector):
+        connections.append({"from": evt, "to": sec, "layer": "Event–Sector", "direction": "directed"})
+    for sec, org in sorted(sector_org):
+        connections.append({"from": sec, "to": org, "layer": "Sector–Org", "direction": "directed"})
+
+    return _kumu_response({"elements": elements, "connections": connections})
 
 
 # ---------------------------------------------------------------------------

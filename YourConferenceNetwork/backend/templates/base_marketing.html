@@ -1,0 +1,234 @@
+cs{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FC3C59">
+  <meta name="cf-2" content="no-beacon">
+  <meta name="description" content="{% block meta_description %}YourConferenceNetwork — Conference Participation Network Analysis SaaS{% endblock %}">
+  <title>{% block title %}YourConferenceNetwork{% endblock %}</title>
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'ntec/assets/img/favicon.ico' %}">
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/fonts/bootstrap-icons/font-css.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/animate.min.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/swiper-bundle.min.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/metisMenu.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/aos.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/spacing.css' %}">
+  <link rel="stylesheet" href="{% static 'ntec/assets/css/main.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <div class="main-page-wrapper">
+
+    <!-- preloader -->
+    <div id="preloader">
+      <div class="preloader"><span></span><span></span></div>
+    </div>
+
+    <!-- offcanvas search -->
+    <div class="offcanvas offcanvas-top theme-bg" tabindex="-1" id="offcanvasTop">
+      <div class="offcanvas-header">
+        <a data-bs-dismiss="offcanvas" aria-label="Close">
+          <i class="fas fa-times search-close" id="search-close"></i>
+        </a>
+      </div>
+      <div class="offcanvas-body">
+        <div class="search-wrap">
+          <form method="get">
+            <input type="search" class="main-search-input" placeholder="Search Your Keyword...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide-bar -->
+    <aside class="slide-bar">
+      <div class="close-mobile-menu">
+        <a href="javascript:void(0);"><i class="fas fa-times"></i></a>
+      </div>
+      <div class="offset-sidebar">
+        <div class="offset-widget offset-logo mb-30">
+          <a href="{% url 'home' %}">
+            <img src="{% static 'ntec/assets/img/logo/header-logo-02.png' %}" alt="logo">
+          </a>
+        </div>
+        <div class="mobile-menu"></div>
+        <div class="offset-widget mb-40">
+          <div class="info-widget">
+            <h4 class="offset-title mb-20">About Us</h4>
+            <p class="mb-30">YourConferenceNetwork helps organizations understand participation patterns across conferences and events using network analysis methodology.</p>
+          </div>
+        </div>
+        <div class="offset-widget mb-30 pr-10">
+          <div class="info-widget info-widget2">
+            <h4 class="offset-title mb-20">Contact Info</h4>
+            <p><i class="fal fa-envelope-open"></i> hello@yourconferencenetwork.com</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="body-overlay"></div>
+
+    <!-- Header / Navbar -->
+    <header class="theme-main-menu theme-menu-one pt-10 pb-10 position-relative">
+      <div class="main-header-area">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="col-xxl-2 col-xl-2 d-none d-xl-inline-block">
+              <div class="logo-area">
+                <a class="front" href="{% url 'home' %}">
+                  <img src="{% static 'ntec/assets/img/logo/header-logo-01.png' %}" alt="YourConferenceNetwork">
+                </a>
+              </div>
+            </div>
+            <div class="col-xxl-5 col-xl-6 col-6 d-flex align-items-center">
+              <div class="logo-area d-xl-none d-md-inline-block">
+                <a class="front" href="{% url 'home' %}">
+                  <img src="{% static 'ntec/assets/img/logo/header-logo-01.png' %}" alt="YourConferenceNetwork">
+                </a>
+              </div>
+              <div class="main-menu d-none d-xl-block">
+                <nav id="mobile-menu">
+                  <ul class="menu-list ps-0">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <!--<li><a href="{% url 'pricing' %}">Pricing</a></li>-->
+                    <li><a href="{% url 'faq' %}">FAQ</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div class="col-xxl-5 col-xl-4 col-6 d-flex align-items-center justify-content-end">
+              <div class="right-nav d-flex align-items-center justify-content-end">
+                <div class="quote__btn d-none d-xl-inline-block me-3">
+                  <a href="{% url 'spa-shell' %}" class="ht_btn">
+                    <span>{% if user.is_authenticated %}Go to Dashboard{% else %}Sign In{% endif %}</span>
+                  </a>
+                </div>
+                {% if not user.is_authenticated %}
+                <div class="quote__btn d-none d-xl-inline-block">
+                  <a href="{% url 'spa-shell' %}" class="ht_btn" style="background:transparent;border:2px solid #FC3C59;color:#FC3C59;">
+                    <span>Get Started Free</span>
+                  </a>
+                </div>
+                {% endif %}
+                <div class="hamburger-menu d-xl-none">
+                  <a class="round-menu" href="javascript:void(0);">
+                    <i class="far fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- header end -->
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- footer -->
+    <footer class="footer-area">
+      <div class="footer__bg__one">
+        <div class="footer__wrapper__one position-relative pt-120">
+          <img src="{% static 'ntec/assets/img/shape/footer__01.png' %}" alt="" class="shapes footer__01">
+          <img src="{% static 'ntec/assets/img/shape/footer__02.png' %}" alt="" class="shapes footer__02">
+          <div class="container" data-aos="fade-up">
+            <div class="row pb-35">
+              <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                <div class="footer__widget footer__widget__one mb-30">
+                  <a href="{% url 'home' %}" class="footer-logo d-inline-block mb-30">
+                    <img src="{% static 'ntec/assets/img/logo/header-logo-01.png' %}" alt="footer-logo">
+                  </a>
+                  <p class="mb-30">YourConferenceNetwork — Conference participation network analysis for nonprofits, foundations, and community builders.</p>
+                  <p><i class="fal fa-envelope-open"></i> hello@yourconferencenetwork.com</p>
+                </div>
+              </div>
+              <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 ms-auto">
+                <div class="footer__widget mt-20">
+                  <h4 class="widget__title mb-30">Quick Links</h4>
+                  <ul>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'faq' %}">FAQ</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 ms-auto">
+                <div class="footer__widget mt-20">
+                  <h4 class="widget__title mb-30">Features</h4>
+                  <ul>
+                    <li><a href="{% url 'services' %}">Network Analysis</a></li>
+                    <li><a href="{% url 'services' %}">CSV Data Upload</a></li>
+                    <li><a href="{% url 'services' %}">Kumu.io Integration</a></li>
+                    <li><a href="{% url 'services' %}">Gephi Export</a></li>
+                    <li><a href="{% url 'services' %}">Participation Charts</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6">
+                <div class="footer__widget footer__contact mb-30 mt-20">
+                  <h4 class="widget__title mb-30">Get Started</h4>
+                  <p>Upload your conference attendance data and discover your network in minutes.</p>
+                  <a href="{% url 'spa-shell' %}" class="ht_btn mt-20"><span>Start Free Trial</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="devider__line"></div>
+            <div class="copyright__area pt-35">
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="copyright__text pb-30">
+                    <p>&copy; {% now "Y" %} YourConferenceNetwork. All Rights Reserved.</p>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <ul class="text-start text-xl-end">
+                    <li><a href="{% url 'faq' %}">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /.main-page-wrapper -->
+
+  <!-- JS -->
+  <script src="{% static 'ntec/assets/js/vendor/jquery-2.2.4.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/vendor/popper.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/vendor/bootstrap.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/jquery.meanmenu.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/slick.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/jquery.counterup.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/metisMenu.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/wow.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/aos.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/jquery.scrollUp.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/jquery.easypiechart.min.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/plugins.js' %}"></script>
+  <script src="{% static 'ntec/assets/js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

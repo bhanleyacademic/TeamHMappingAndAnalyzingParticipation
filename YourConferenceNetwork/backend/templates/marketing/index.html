@@ -1,0 +1,185 @@
+{% extends "base_marketing.html" %}
+{% load static %}
+
+{% block title %}YourConferenceNetwork — Conference Participation Network Analysis{% endblock %}
+{% block meta_description %}Understand who shows up to build your community. Upload conference attendance data and discover organizational networks with YourConferenceNetwork.{% endblock %}
+
+{% block content %}
+
+<!-- Hero Banner -->
+<section class="theme__main__banner position-relative">
+  <div class="swiper hero__slider__one" data-aos="fade-up">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="main__banner__bg">
+          <div class="container-fluid position-relative">
+            <div class="container">
+              <div class="row align-items-center pt-60 pb-25">
+                <div class="col-xl-6 pb-lg-40">
+                  <div class="theme__content text-xl-start text-lg-center">
+                    <h1 class="banner__main__title mb-45">Who Shows Up to Build Your Community?</h1>
+                    <div class="row">
+                      <div class="col-xxl-12">
+                        <p class="banner__description mb-45">Upload your conference attendance data and discover the organizational networks, participation patterns, and sector relationships that define your community over time.</p>
+                      </div>
+                    </div>
+                    <div class="banner__button d-lg-flex align-items-center mb-45">
+                      <a href="{% url 'spa-shell' %}" class="ht_btn mb-md-30">
+                        <span>Start Free — Upload Your Data</span>
+                      </a>
+                      <a href="{% url 'services' %}" class="ms-lg-3">
+                        <span>See How It Works →</span>
+                      </a>
+                    </div>
+                    <div class="user__review d-lg-flex align-items-center">
+                      <div class="review__text">
+                        <h4 class="mb-20"><span class="counter">6400</span>+ Records Analyzed</h4>
+                        <h5>Across 42 conferences spanning 21 years</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="hero__img position-relative">
+                    <img src="{% static 'ntec/assets/img/hero/hero__one__01.png' %}" alt="Network visualization">
+                    <div class="shapes developer__list d-lg-flex align-items-center">
+                      <div class="employer__list">
+                        <h4><span class="counter">11</span></h4>
+                        <h5>Sector Types</h5>
+                      </div>
+                      <div class="worker__list">
+                        <h4><span class="counter">3</span></h4>
+                        <h5>Network Models</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img src="{% static 'ntec/assets/img/shape/home__01.svg' %}" alt="" class="shapes shape__01">
+            <img src="{% static 'ntec/assets/img/shape/home__02.svg' %}" alt="" class="shapes shape__02">
+            <img src="{% static 'ntec/assets/img/shape/home__03.svg' %}" alt="" class="shapes shape__03">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What We Offer -->
+<section class="offer__section pb-100 pb-lg-40 pt-120 pt-lg-40">
+  <div class="offer__bg__wrapper" data-aos="fade-up">
+    <div class="container">
+      <div class="section__title mb-60">
+        <div class="text-start text-lg-center">
+          <h5 class="section__sub__title">THE METHODOLOGY</h5>
+          <div class="row">
+            <div class="col-xl-7 col-lg-8 m-auto">
+              <h2 class="section__title__main">Three Ways to See Your Network</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-xxl-4 col-xl-6 col-lg-6">
+          <div class="single__offer__box">
+            <div class="icon mb-30">
+              <img class="icon-front" src="{% static 'ntec/assets/img/icon/offer__icon__01.svg' %}" alt="icon">
+            </div>
+            <div class="offer__name">
+              <h4 class="offer__title mb-20">Org–Event Bipartite</h4>
+              <p class="mb-30">Which organizations attended which conferences? See the full bipartite network of participation — sized by years attended and attendance volume.</p>
+              <a href="{% url 'services' %}" class="ht_btn"><span>Learn More</span><i class="bi bi-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-4 col-xl-6 col-lg-6">
+          <div class="single__offer__box">
+            <div class="icon mb-30">
+              <img class="icon-front" src="{% static 'ntec/assets/img/icon/offer__icon__02.svg' %}" alt="icon">
+            </div>
+            <div class="offer__name">
+              <h4 class="offer__title mb-20">Co-Attendance Network</h4>
+              <p class="mb-30">Which organizations showed up together? Co-attendance edges reveal alliances, partnerships, and community clusters you didn't know existed.</p>
+              <a href="{% url 'services' %}" class="ht_btn"><span>Learn More</span><i class="bi bi-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-4 col-xl-6 col-lg-6">
+          <div class="single__offer__box">
+            <div class="icon mb-30">
+              <img class="icon-front" src="{% static 'ntec/assets/img/icon/offer__icon__03.svg' %}" alt="icon">
+            </div>
+            <div class="offer__name">
+              <h4 class="offer__title mb-20">Three-Layer Directed</h4>
+              <p class="mb-30">Conference Events → Sectors → Organizations. A directed three-layer view shows how different event types connect different community sectors.</p>
+              <a href="{% url 'services' %}" class="ht_btn"><span>Learn More</span><i class="bi bi-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="process__section pb-100 pt-100 pt-lg-40 pb-lg-40" data-aos="fade-up">
+  <div class="container">
+    <div class="section__title mb-60 text-center">
+      <h5 class="section__sub__title">SIMPLE PROCESS</h5>
+      <h2 class="section__title__main">From CSV to Network in Minutes</h2>
+    </div>
+    <div class="row">
+      <div class="col-xl-3 col-lg-6 col-md-6">
+        <div class="single__process text-center mb-30">
+          <div class="process__icon mb-20"><span class="process__number">01</span></div>
+          <h4 class="mb-15">Download Template</h4>
+          <p>Grab our pre-formatted CSV template. Fill in your attendance records with organization names, sectors, dates, and locations.</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-6">
+        <div class="single__process text-center mb-30">
+          <div class="process__icon mb-20"><span class="process__number">02</span></div>
+          <h4 class="mb-15">Upload Your Data</h4>
+          <p>Upload your CSV through your secure dashboard. Our pipeline normalizes sector categories and parses conference dates automatically.</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-6">
+        <div class="single__process text-center mb-30">
+          <div class="process__icon mb-20"><span class="process__number">03</span></div>
+          <h4 class="mb-15">Explore Your Network</h4>
+          <p>Interactive charts show attendance by sector over time. Search organizations, filter by year, state, or sector type.</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-6">
+        <div class="single__process text-center mb-30">
+          <div class="process__icon mb-20"><span class="process__number">04</span></div>
+          <h4 class="mb-15">Export &amp; Publish</h4>
+          <p>Download Kumu.io blueprints, Gephi CSV files, or PowerBI-ready exports. Share your network with stakeholders.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta__section pt-80 pb-80" data-aos="fade-up" style="background: linear-gradient(135deg, #0D1B2A 0%, #1A3A5C 100%);">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-xl-8">
+        <h2 class="text-white mb-20">Ready to map your community?</h2>
+        <p class="text-white-50 mb-0">Start with one free dataset. No credit card required.</p>
+      </div>
+      <div class="col-xl-4 text-xl-end mt-xl-0 mt-30">
+        <a href="{% url 'spa-shell' %}" class="ht_btn">
+          <span>Get Started Free</span>
+        </a>
+        <a href="{% url 'pricing' %}" class="ht_btn ms-3" style="background:transparent;border:2px solid #FC3C59;color:#FC3C59;">
+          <span>See Pricing</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

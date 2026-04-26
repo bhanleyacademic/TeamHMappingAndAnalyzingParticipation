@@ -1,0 +1,535 @@
+
+<!doctype html>
+<html lang="en-gb" dir="ltr">
+	<head>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="utf-8">
+	<meta name="author" content="Dan Bassill">
+	<meta name="generator" content="Joomla! - Open Source Content Management">
+	<title>Mapping Event Participation</title>
+	<link href="/templates/shaper_helixultimate/images/favicon.ico" rel="icon" type="image/vnd.microsoft.icon">
+	<link href="https://tutormentorexchange.net/component/finder/search?format=opensearch&amp;Itemid=515" rel="search" title="OpenSearch tutormentorexchange.net" type="application/opensearchdescription+xml">
+<link href="/media/vendor/awesomplete/css/awesomplete.css?1.1.7" rel="stylesheet">
+	<link href="/media/vendor/joomla-custom-elements/css/joomla-alert.min.css?0.4.1" rel="stylesheet">
+	<link href="/media/plg_system_jcepro/site/css/content.min.css?86aa0286b6232c4a5b58f892ce080277" rel="stylesheet">
+	<link href="/templates/shaper_helixultimate/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/plugins/system/helixultimate/assets/css/chosen.css" rel="stylesheet">
+	<link href="/plugins/system/helixultimate/assets/css/system-j4.min.css" rel="stylesheet">
+	<link href="/media/system/css/joomla-fontawesome.min.css?d22b47" rel="stylesheet">
+	<link href="/templates/shaper_helixultimate/css/template.css" rel="stylesheet">
+	<link href="/templates/shaper_helixultimate/css/presets/default.css" rel="stylesheet">
+	<style>/*Main menu*/
+.justify-content-end {
+    justify-content: left !important;
+}
+/*Offcanvas*/
+.burger-icon>span {
+    background-color: #ffffff;
+}
+/*logo*/
+.logo-image
+ {
+    height: 257px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mod-articlesnews.newsflash
+ {
+    padding-top: 10px;
+}
+
+/*Breadcrumbs*/
+.breadcrumb {
+    background-color: transparent;
+--bs-breadcrumb-margin-bottom: 0;
+}
+
+.breadcrumb-item.active {
+    color: #FFF;
+}
+
+/*Search*/
+input#mod-finder-searchword110 {
+    margin: 5px 0;
+}
+
+.form-control {
+border-radius: 0;
+}
+
+/*Body*/
+#sp-main-body {
+    padding: 20px 0;
+}
+
+.article-list .article .featured-article-badge {
+    display: none;
+}
+em {
+    font-style: italic;
+}
+strong {
+    font-weight: bolder;
+}
+a {
+    color: #024978;
+}
+
+h1 {
+    font-size: 1.3em;
+    font-weight: bold;
+    vertical-align: bottom;
+    color: #666;
+    text-align: left;
+}
+h2 {
+    padding: 0;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    vertical-align: bottom;
+    color: #024978;
+    text-align: left;
+    width: 100%;
+}
+.article-list .article .article-header h1, .article-list .article .article-header h2, .article-details .article-header h1, .article-details .article-header h2{
+    font-size: 1.375rem;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #000;
+}
+
+.article-details .featured-article-badge {
+    display: none;
+}
+
+/*Module*/
+#sp-left .sp-module, #sp-right .sp-module {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 3px;
+}
+/*Left/Right Title*/
+#sp-left .sp-module .sp-module-title, #sp-right .sp-module .sp-module-title {
+    margin: 0 0 5px;
+    padding: 10px 10px;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid #f3f3f3;
+    background: #03497A;
+    color: #FFF;
+}
+
+/*Left/Right Menu*/
+#sp-left .sp-module ul>li>a, #sp-right .sp-module ul>li>a {
+    display: block;
+    padding: 5px 0;
+    line-height: 36px;
+    padding: 0px 0 0 10px;
+    background: #f3f3f3;
+    border-bottom: 1px solid #dddddd;
+}
+/*side menu child*/
+#sp-left .sp-module ul li, #sp-right .sp-module ul li {
+    position: relative; 
+}
+
+
+#sp-left .sp-module ul li ul.menu-child, #sp-right .sp-module ul li ul.menu-child {
+    display: none;
+    position: absolute; 
+    top: 0; 
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd; 
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1; 
+}
+
+#sp-left .sp-module ul li ul.menu-child{
+left: 100%;
+}
+
+#sp-right .sp-module ul li ul.menu-child{
+right: 100%;
+}
+
+#sp-left .sp-module ul li:hover > ul.menu-child, #sp-right .sp-module ul li:hover > ul.menu-child {
+    display: block;
+}
+
+
+#sp-left .sp-module ul li ul.menu-child li, #sp-right .sp-module ul li ul.menu-child li {   
+list-style-type: none; 
+}
+
+#sp-left .sp-module ul li ul.menu-child li a, #sp-right .sp-module ul li ul.menu-child li a {
+    text-decoration: none;
+}
+#sp-left .sp-module ul li:hover > ul.menu-child, #sp-right .sp-module ul li:hover > ul.menu-child {
+    width: 100%;
+    padding: 10px;
+}
+
+#sp-left .sp-module ul>li.active>a, #sp-right .sp-module ul>li.active>a{
+color: #ff8800;
+}
+
+#sp-left .sp-module ul, #sp-right .sp-module ul {
+    border: 1px solid #dddddd;
+}
+
+/*Full width component*/
+@media (min-width: 992px){
+body.right-module-inactive #sp-component {
+    width: 75% !important; 
+}
+
+
+body.right-module-inactive #sp-left {
+    width: 25% !important;
+}
+
+body.right-module-inactive #sp-right {
+    width: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+body.right-module-active #sp-right {
+    width: 25% !important;
+}
+}
+/*mobile layout*/
+@media (max-width: 768px){
+#sp-component {
+    order: 1; 
+}
+#sp-left {
+    order: 2;
+}
+#sp-right {
+    order: 3;
+}
+}
+
+/*Footer*/
+#sp-footer, #sp-bottom {
+    text-align: center;
+}</style>
+	<style>body{font-family: 'Helvetica', sans-serif;font-size: 13px;font-weight: 400;text-decoration: none;}
+</style>
+	<style>.sp-megamenu-parent > li > a, .sp-megamenu-parent > li > span, .sp-megamenu-parent .sp-dropdown li.sp-menu-item > a{font-family: 'Tahoma', sans-serif;text-decoration: none;}
+</style>
+	<style>.menu.nav-pills > li > a, .menu.nav-pills > li > span, .menu.nav-pills .sp-dropdown li.sp-menu-item > a{font-family: 'Tahoma', sans-serif;text-decoration: none;}
+</style>
+	<style>.logo-image {height:384px;}.logo-image-phone {height:384px;}</style>
+	<style>@media(max-width: 992px) {.logo-image {height: 36px;}.logo-image-phone {height: 36px;}}</style>
+	<style>@media(max-width: 576px) {.logo-image {height: 93px;}.logo-image-phone {height: 93px;}}</style>
+	<style>#sp-header{ background-color:#03497A; }</style>
+	<style>#sp-section-3{ background-color:#03497A;color:#FFFFFF; }</style>
+	<style>#sp-section-3 a{color:#FFFFFF;}</style>
+	<style>#sp-section-3 a:hover{color:#FFFFFF;}</style>
+	<style>#sp-footer{ background-color:#03497A; }</style>
+<script src="/media/vendor/jquery/js/jquery.min.js?3.7.1"></script>
+	<script src="/media/vendor/jquery/js/jquery-noconflict.min.js?3.7.1"></script>
+	<script src="/media/mod_menu/js/menu.min.js?d22b47" type="module"></script>
+	<script type="application/json" class="joomla-script-options new">{"data":{"breakpoints":{"tablet":991,"mobile":480},"header":{"stickyOffset":"100"}},"joomla.jtext":{"MOD_FINDER_SEARCH_VALUE":"Search &hellip;","COM_FINDER_SEARCH_FORM_LIST_LABEL":"Search Results","JLIB_JS_AJAX_ERROR_OTHER":"An error has occurred while fetching the JSON data: HTTP %s status code.","JLIB_JS_AJAX_ERROR_PARSE":"A parse error has occurred while processing the following JSON data:<br><code style=\"color:inherit;white-space:pre-wrap;padding:0;margin:0;border:0;background:inherit;\">%s<\/code>","ERROR":"Error","MESSAGE":"Message","NOTICE":"Notice","WARNING":"Warning","JCLOSE":"Close","JOK":"OK","JOPEN":"Open"},"finder-search":{"url":"\/component\/finder\/?task=suggestions.suggest&format=json&tmpl=component&Itemid=515"},"system.paths":{"root":"","rootFull":"https:\/\/tutormentorexchange.net\/","base":"","baseFull":"https:\/\/tutormentorexchange.net\/"},"csrf.token":"c37f3093720852fb6b13b384f16c7cec"}</script>
+	<script src="/media/system/js/core.min.js?a3d8f8"></script>
+	<script src="/media/vendor/bootstrap/js/alert.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/button.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/carousel.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/collapse.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/dropdown.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/modal.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/offcanvas.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/popover.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/scrollspy.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/tab.min.js?5.3.8" type="module"></script>
+	<script src="/media/vendor/bootstrap/js/toast.min.js?5.3.8" type="module"></script>
+	<script src="/media/system/js/showon.min.js?e51227" type="module"></script>
+	<script src="/media/system/js/joomla-hidden-mail.min.js?80d9c7" type="module"></script>
+	<script src="/media/vendor/awesomplete/js/awesomplete.min.js?1.1.7" defer></script>
+	<script src="/media/com_finder/js/finder.min.js?755761" type="module"></script>
+	<script src="/media/system/js/messages.min.js?9a4811" type="module"></script>
+	<script src="/plugins/system/helixultimate/assets/js/chosen.jquery.js"></script>
+	<script src="/templates/shaper_helixultimate/js/main.js"></script>
+	<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","@id":"https://tutormentorexchange.net/#/schema/BreadcrumbList/35","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://tutormentorexchange.net/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"https://tutormentorexchange.net/mapping-participation","name":"Mapping Event Participation"}}]}</script>
+	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://tutormentorexchange.net/#/schema/Organization/base","name":"tutormentorexchange.net","url":"https://tutormentorexchange.net/"},{"@type":"WebSite","@id":"https://tutormentorexchange.net/#/schema/WebSite/base","url":"https://tutormentorexchange.net/","name":"tutormentorexchange.net","publisher":{"@id":"https://tutormentorexchange.net/#/schema/Organization/base"},"potentialAction":{"@type":"SearchAction","target":"https://tutormentorexchange.net/component/finder/search?q={search_term_string}&amp;Itemid=515","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://tutormentorexchange.net/#/schema/WebPage/base","url":"https://tutormentorexchange.net/mapping-participation","name":"Mapping Event Participation","isPartOf":{"@id":"https://tutormentorexchange.net/#/schema/WebSite/base"},"about":{"@id":"https://tutormentorexchange.net/#/schema/Organization/base"},"inLanguage":"en-GB"},{"@type":"Article","@id":"https://tutormentorexchange.net/#/schema/com_content/article/492","name":"Mapping Event Participation","headline":"Mapping Event Participation","inLanguage":"en-GB","isPartOf":{"@id":"https://tutormentorexchange.net/#/schema/WebPage/base"}}]}</script>
+	<script>// Add this script to check the right column's state and add/remove the class accordingly
+$(document).ready(function() {
+    // Check if there are any modules in the right column
+    if ($('#sp-right').children().length === 0) {
+        $('body').addClass('right-module-inactive').removeClass('right-module-active');
+    } else {
+        $('body').addClass('right-module-active').removeClass('right-module-inactive');
+    }
+});</script>
+	<script>template="shaper_helixultimate";</script>
+			</head>
+	<body class="site helix-ultimate hu com_content com-content view-article layout-default task-none itemid-821 en-gb ltr layout-fluid offcanvas-init offcanvs-position-right">
+
+		
+		
+		<div class="body-wrapper">
+			<div class="body-innerwrapper">
+								<main id="sp-main">
+					
+<header id="sp-header" >
+
+						<div class="container">
+				<div class="container-inner">
+			
+	
+<div class="row">
+	<div id="sp-menu" class="col-lg-12 "><div class="sp-column  d-flex align-items-center justify-content-end"><nav class="sp-megamenu-wrapper d-flex" role="navigation" aria-label="navigation"><ul class="sp-megamenu-parent menu-animation-fade-up d-none d-lg-block"><li class="sp-menu-item"><a   href="/"  >Home</a></li><li class="sp-menu-item"><a   href="/calendar"  >Calendar</a></li><li class="sp-menu-item"><a   href="/contact-us"  >Contact us</a></li><li class="sp-menu-item"><a   href="/tmi-video-1"  >Video</a></li><li class="sp-menu-item"><a   href="/slide-news"  >Slide News</a></li><li class="sp-menu-item"><a   href="/library"  >Library</a></li><li class="sp-menu-item"><a   href="/newsletter-march-2026-e-news"  >Newsletters</a></li><li class="sp-menu-item"><a   href="/getting-started"  >Getting Started</a></li><li class="sp-menu-item"><a   href="https://youtu.be/pRipJPgenFc?list=PLuMPcNCvy863xS79LZh8MdR5MEGbsnZIT"  >T/MC Strategy MAP</a></li><li class="sp-menu-item"><a   href="/interactive-strategy"  >Strategy Presentations</a></li><li class="sp-menu-item"><a   href="http://www.tutormentorexchange.net/conceptmaps"  >Concept Maps</a></li><li class="sp-menu-item"><a   href="/for-phone-viewers"  >For Phone Viewers</a></li></ul><a id="offcanvas-toggler" aria-label="Menu" class="offcanvas-toggler-right offcanvas-toggler-custom d-lg-none" href="#" title="Menu"><div class="burger-icon" aria-hidden="true"><span></span><span></span><span></span></div></a></nav></div></div></div>
+							</div>
+			</div>
+			
+	</header>
+
+<section id="sp-section-2" >
+
+						<div class="container">
+				<div class="container-inner">
+			
+	
+<div class="row">
+	<div id="sp-logo" class="col-12 col-lg-12 "><div class="sp-column "><div class="logo"><a href="/">
+				<img class='logo-image '
+					srcset='https://tutormentorexchange.net/images/logo---2025.jpg 1x'
+					src='https://tutormentorexchange.net/images/logo---2025.jpg'
+					height='384'
+					alt='tutormentorexchange.net'
+				/>
+				</a></div></div></div></div>
+							</div>
+			</div>
+			
+	</section>
+
+<section id="sp-section-3" >
+
+						<div class="container">
+				<div class="container-inner">
+			
+	
+<div class="row">
+	<div id="sp-top2" class="col-lg-2 "><div class="sp-column "><div class="sp-module "><div class="sp-module-content">
+<search>
+    <form class="mod-finder js-finder-searchform form-search" action="/component/finder/search?Itemid=515" method="get" aria-label="search">
+        <label for="mod-finder-searchword110" class="visually-hidden finder">Search</label><input type="text" name="q" id="mod-finder-searchword110" class="js-finder-search-query form-control" value="" placeholder="Search &hellip;">
+                        <input type="hidden" name="Itemid" value="515">    </form>
+</search>
+</div></div></div></div><div id="sp-top3" class="col-lg-10 "><div class="sp-column "><div class="sp-module "><div class="sp-module-content"><nav class="mod-breadcrumbs__wrapper" aria-label="Breadcrumbs">
+    <ol class="mod-breadcrumbs breadcrumb px-3 py-2">
+                    <li class="mod-breadcrumbs__here float-start">
+                You are here: &#160;
+            </li>
+        
+        <li class="mod-breadcrumbs__item breadcrumb-item"><a href="/" class="pathway"><span>Home</span></a></li><li class="mod-breadcrumbs__item breadcrumb-item active"><span>Mapping Event Participation</span></li>    </ol>
+    </nav>
+</div></div></div></div></div>
+							</div>
+			</div>
+			
+	</section>
+
+<section id="sp-section-4" >
+
+				
+	
+<div class="row">
+	<div id="sp-title" class="col-lg-12 "><div class="sp-column "></div></div></div>
+				
+	</section>
+
+<section id="sp-main-body" >
+
+										<div class="container">
+					<div class="container-inner">
+						
+	
+<div class="row">
+	<aside id="sp-left" class="col-lg-3 "><div class="sp-column "><div class="sp-module "><h3 class="sp-module-title">Tutor/Mentor Institute</h3><div class="sp-module-content"><ul class="mod-menu mod-list menu">
+<li class="item-517"><a href="/defining-a-terms" >Tutor/Mentor Learning Network</a></li><li class="item-523 menu-deeper menu-parent"><a href="/definition-of-issues" >Understanding issues and benefits of programs<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-524"><a href="https://drive.google.com/file/d/1QvaSaSMFyX1PBdTjvUPLTr3g6cpYu29V/view" >Defining Terms</a></li><li class="item-525"><a href="/definition-of-issues/ideasanimation" >Strategy Visualizations by interns</a></li></ul></li><li class="item-529"><a href="/mapping-the-programs" >Distribution of Tutor/Mentor Programs</a></li><li class="item-530"><a href="/leadership-strategies" >Leadership Strategies</a></li><li class="item-531"><a href="/business-involvement" >Business involvement</a></li><li class="item-532"><a href="/collaboration-and-capacity-building-articles" >Collaboration &amp; Capacity Building</a></li><li class="item-533"><a href="/planing-strategies" >Planing Strategies</a></li><li class="item-534"><a href="/how-to-start-a-program" >How to Start a Program</a></li><li class="item-535 menu-deeper menu-parent"><a href="/conferences-and-online-forums" >Conferences and OnLine Forums<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-536"><a href="/conferences-and-online-forums/previous-conferences" >Previous Conferences</a></li><li class="item-537"><a href="/conferences-and-online-forums/conf-maps" >Conference maps</a></li></ul></li><li class="item-538 menu-deeper menu-parent"><a href="/chicagoland-volunteer-recruitment" >Volunteer Recruitment<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-539"><a href="/chicagoland-volunteer-recruitment/volunteer-recruitment" >Volunteer recruitment</a></li></ul></li><li class="item-540"><a href="https://www.tutormentorexchange.net/2026-newsletters/march-2026-e-news" >Newsletter</a></li><li class="item-541"><a href="/newsletter" >Sign Up for eMail Newsletter</a></li><li class="item-542 menu-deeper menu-parent"><a href="/2025-newsletters" >2025 T/MI newsletters<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-819"><a href="/2025-newsletters/dec-2025-enews" >December 2025 T/MI News</a></li><li class="item-818"><a href="/2025-newsletters/nov-2025-news" >November 2025 T/MI News</a></li><li class="item-813"><a href="/2025-newsletters/oct-2025-enews" >October 2025 T/MI News</a></li><li class="item-811"><a href="/2025-newsletters/sept-2025-enews" >September 2025 eNews</a></li><li class="item-809"><a href="/2025-newsletters/aug-2025-enews" >August 2025 eNews</a></li><li class="item-807"><a href="/2025-newsletters/july-2025-enews-2" >July 2025  Tutor/Mentor eNews</a></li><li class="item-543"><a href="/2025-newsletters/april-may-2025-enews" >April-May 2025 Tutor/Mentor eNews</a></li><li class="item-786"><a href="/2025-newsletters/sept-2025-news" >September 2025 T/MI News</a></li><li class="item-544"><a href="/2025-newsletters/march-2025-enews" >March 2025 T/MI eNews</a></li><li class="item-545"><a href="/2025-newsletters/feb-2025-enews" >Feb 2025 T/MI eNews</a></li><li class="item-546"><a href="/2025-newsletters/jan-2025-enews" >Jan 2025 TMI eNews</a></li></ul></li><li class="item-823 menu-deeper menu-parent"><a href="/2026-newsletters" >2026 Tutor/Mentor Newsletters<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-822"><a href="/2026-newsletters/jan-2026-enews" >January 2026 T/MI News</a></li><li class="item-835"><a href="/2026-newsletters/feb-2026-enews" >February 2026 T/MI Newsletter</a></li><li class="item-836"><a href="/2026-newsletters/march-2026-e-news" >March 2026 T/MI eNews</a></li></ul></li><li class="item-547 menu-deeper menu-parent"><a href="/2024-newsletters" >2024 Tutor/Mentor Newsletters<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-557"><a href="/2024-newsletters/dec-2024-enews" >Dec 2024 TM eNews</a></li><li class="item-558"><a href="/2024-newsletters/nov-2024-enews" >Nov 2024 eNews</a></li><li class="item-559"><a href="/2024-newsletters/oct-2024-tm-enews" >Oct 2024 TM eNews</a></li><li class="item-560"><a href="/2024-newsletters/sept-2024-t-mi-newsletter" >Sept 2024 T/MI newsletter</a></li><li class="item-561"><a href="/2024-newsletters/aug-2024-enews" >August 2024 T/MI eNews</a></li><li class="item-562"><a href="/2024-newsletters/july-2024-enews" >July-Aug 2024 eNews</a></li><li class="item-563"><a href="/2024-newsletters/may-june-2024" >May-June 2024 eNews</a></li><li class="item-564"><a href="/2024-newsletters/april-2024-enews" >April 2024 Ttor/Mentor eNews</a></li><li class="item-565"><a href="/2024-newsletters/march-2024-enews" >March 2024 T/MI eNews</a></li><li class="item-566"><a href="/2024-newsletters/tmi-news-feb-2024" >TMI Feb 2024 eNews</a></li><li class="item-567"><a href="/2024-newsletters/jan-2024-tmi-news" >January 2024 T/M eNews</a></li></ul></li><li class="item-604 menu-deeper menu-parent"><a href="/archive" >Newsletter archive<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-592 menu-deeper menu-parent"><a href="/archive/2021-enews" >2021 T/M newsletters<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-593"><a href="/archive/2021-enews/dec-2021-enews" >December 2021 eNews</a></li><li class="item-594"><a href="/archive/2021-enews/nov-2021-enews" >November 2021 T/M eNews</a></li><li class="item-595"><a href="/archive/2021-enews/oct-2021-enews" >October 2021  eNews</a></li><li class="item-596"><a href="/archive/2021-enews/sept-2021-enews" >Sept 2021 Tutor/Mentor eNews</a></li><li class="item-597"><a href="/archive/2021-enews/aug-2021-enews" >August 2021 eNews</a></li><li class="item-598"><a href="/archive/2021-enews/june-july-2021-enews" >June-July 2021 eNews</a></li><li class="item-599"><a href="/archive/2021-enews/may-2021-enews" >May 2021 Tutor/Mentor eNews</a></li><li class="item-600"><a href="/archive/2021-enews/april-2021-enews" >April 2021 Tutor/Mentor eNews</a></li><li class="item-601"><a href="/archive/2021-enews/march-2021-enews" >March 2021 Tutor/Mentor eNews</a></li><li class="item-602"><a href="/archive/2021-enews/feb-2021-enews" >Feb 2021 Tutor/Mentor eNews</a></li><li class="item-603"><a href="/archive/2021-enews/jan-2021-enews" >Jan 2021 Tutor/Mentor eNews</a></li></ul></li><li class="item-580 menu-deeper menu-parent"><a href="/archive/2022-enews" >2022 Tutor/Mentor eNews<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-581"><a href="/archive/2022-enews/dec-2022-enews" >December 2022 eNews</a></li><li class="item-582"><a href="/archive/2022-enews/nov-2022-enews" >Nov 2022 eNews</a></li><li class="item-583"><a href="/archive/2022-enews/oct-2022-enews" >October 2022 eNews</a></li><li class="item-584"><a href="/archive/2022-enews/august-2022-enews" >August 2022 eNews</a></li><li class="item-585"><a href="/archive/2022-enews/sept-2022-enews" >Sept 2022 Tutor/Mentor eNews</a></li><li class="item-586"><a href="/archive/2022-enews/july-2022-enews" >July 2022 eNews</a></li><li class="item-587"><a href="/archive/2022-enews/may-june-2022-enews" >May-June 2022 eNews</a></li><li class="item-588"><a href="/archive/2022-enews/april-2022-enews" >April 2022 Tutor/Mentor eNews</a></li><li class="item-589"><a href="/archive/2022-enews/feb-2022-enews" >Feb 2022 eNews</a></li><li class="item-590"><a href="/archive/2022-enews/march-2022-enews" >March 2022 Tutor/Mentor eNews</a></li><li class="item-591"><a href="/archive/2022-enews/jan-2022-enews" >Jan 2022 Tutor/Mentor eNews</a></li></ul></li><li class="item-568 menu-deeper menu-parent"><a href="/archive/2023-newsletters" >2023 Tutor/Mentor Newsletters<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-569"><a href="/archive/2023-newsletters/dec-2023-enews" >December 2023 eNews</a></li><li class="item-570"><a href="/archive/2023-newsletters/nov-2023-enews" >Nov 2023 T/MI eNews</a></li><li class="item-571"><a href="/archive/2023-newsletters/oct-2023-enews" >October 2023 eNews</a></li><li class="item-572"><a href="/archive/2023-newsletters/sept-2023-enews" >Sept 2023 Tutor/Mentor eNews</a></li><li class="item-573"><a href="/archive/2023-newsletters/aug-2023-enews" >August 2023 eNews</a></li><li class="item-574"><a href="/archive/2023-newsletters/july-2023-enews" >July 2023 T/M eNews</a></li><li class="item-575"><a href="/archive/2023-newsletters/june-2023-enews" >June 2023 T/M eNews</a></li><li class="item-576"><a href="/archive/2023-newsletters/april-may-2023-enew" >April-May 2023 eNews</a></li><li class="item-577"><a href="/archive/2023-newsletters/march-2023-enews" >March 2023 Tutor/Mentor eNews</a></li><li class="item-578"><a href="/archive/2023-newsletters/feb-2023-enews" >Feb 2023 eNews</a></li><li class="item-579"><a href="/archive/2023-newsletters/jan-2023-enews" >Jan 2023 Tutor/Mentor eNews</a></li></ul></li></ul></li><li class="item-618 menu-deeper menu-parent"><a href="/conceptmaps" >Concept Map Library<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-803"><a href="/conceptmap/cmap-library-2" target="_blank">Concept Map Library - pg 2</a></li><li class="item-810"><a href="/conceptmap/conceptmaps-3" >Concept Map Library - pg 3</a></li></ul></li><li class="item-619 menu-deeper menu-parent"><a href="/tmi-video-1" >TMI Theater<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-620"><a href="/tmi-video-1/intern-videos" >TMI Theater - intern videos</a></li><li class="item-621"><a href="/tmi-video-1/conference-videos" >TMI Theater - conference videos</a></li></ul></li><li class="item-622 menu-deeper menu-parent"><a href="/visual-essays" >TMI Visual Essays<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-623"><a href="/visual-essays/visual-essays-1" >TMI Visual Essays-Pg 2</a></li><li class="item-624"><a href="/visual-essays/visual-essays-3" >TMI Visual Essays-Pg 3</a></li><li class="item-801"><a href="/visual-essays/visual-essays-4" >Visual Essays - pg 4</a></li><li class="item-802"><a href="/visual-essays/visual-essays-5" >Visual Essays - pg 5</a></li></ul></li><li class="item-821 current active"><a href="/mapping-participation" aria-current="page">Mapping Event Participation</a></li></ul>
+</div></div><div class="sp-module "><h3 class="sp-module-title">Hot Links</h3><div class="sp-module-content"><ul class="mod-menu mod-list menu">
+<li class="item-650 menu-deeper menu-parent"><a href="/chicago-area-program-links" >Chicago-Area Program Links<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-652"><a href="/chicago-area-program-links/chicago-north-tutor-mentor-programs" >Chicago North Tutor/Mentor Programs</a></li><li class="item-653"><a href="/chicago-area-program-links/chicago-central" >Chicago Central Tutor/Mentor Programs</a></li><li class="item-654"><a href="/chicago-area-program-links/chicago-south-central" >Chicago South Central Tutor/Mentor Programs</a></li><li class="item-655"><a href="/chicago-area-program-links/chicago-south" >Chicago South Tutor/Mentor Programs</a></li><li class="item-656"><a href="/chicago-area-program-links/college-access" >College Access T/M Programs</a></li><li class="item-657"><a href="/chicago-area-program-links/multi-site-community-based" >Multi Site &amp; Community Based Tutor/Mentor Programs</a></li><li class="item-658"><a href="/chicago-area-program-links/school-based" >Chicago Area School-Based Tutor Mentor Programs</a></li><li class="item-659"><a href="/chicago-area-program-links/chicago-suburbs" >Chicago Suburbs T/M Programs</a></li></ul></li><li class="item-651"><a href="/chicago-north" >Chicago North Tutor/Mentor Programs</a></li><li class="item-660 menu-deeper menu-parent"><a href="/other-youth-programs" >Additional Youth Serving Programs<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-661"><a href="/other-youth-programs/arts-programs" >Arts, Dance, Music Focus</a></li><li class="item-662"><a href="/other-youth-programs/e-mentor-tutor" >e-Mentoring - e-Tutoring</a></li><li class="item-663"><a href="/other-youth-programs/stem-programs" >STEM focus youth programs</a></li><li class="item-664"><a href="/other-youth-programs/other-programs" >Additional Youth Serving Programs</a></li><li class="item-665"><a href="/other-youth-programs/youth-leadership" >Youth Leadership Programs</a></li><li class="item-666"><a href="/other-youth-programs/intermediaries" >Intermediaries in USA</a></li><li class="item-667"><a href="/other-youth-programs/international-programs" >International Tutor Mentor Programs</a></li><li class="item-668"><a href="/other-youth-programs/program-locators" >Program Locators, Directories</a></li><li class="item-669"><a href="/other-youth-programs/volunteer-recruitment-sites" >Volunteer Recruitment Platforms</a></li></ul></li><li class="item-670"><a href="/tm-programs-on-facebook" >Chicago Area Tutor Mentor Programs on Facebook</a></li><li class="item-671 menu-deeper menu-parent"><a href="/resource-links" >Resource Links<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-672 menu-deeper menu-parent"><a href="/resource-links/law-justice-links" >Library - Justice, Inequality, poverty<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-673"><a href="/resource-links/law-justice-links/justice-poverty-law" >Justice and Poverty Law Links</a></li><li class="item-674"><a href="/resource-links/law-justice-links/poverty-mapping" >Poverty-Crime Mapping</a></li><li class="item-675"><a href="/resource-links/law-justice-links/poverty-race-inequality-links" >Poverty-Race-Inequality</a></li><li class="item-676"><a href="/resource-links/law-justice-links/prevention-links" >Prevention Resource Links</a></li><li class="item-677"><a href="/resource-links/law-justice-links/housing-comdev" >Housing-Community Development</a></li><li class="item-678"><a href="/resource-links/law-justice-links/gender-violence-links" >Violence Against Women - links</a></li><li class="item-679"><a href="/resource-links/law-justice-links/street-gangs" >Street Gangs-Chicago</a></li><li class="item-680"><a href="/resource-links/law-justice-links/rural-issues" >Rural Issues</a></li></ul></li><li class="item-681 menu-deeper menu-parent"><a href="/resource-links/homework-help" >Homework Help Library<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-682"><a href="/resource-links/homework-help/literature-arts" >Literature-Arts</a></li><li class="item-683"><a href="/resource-links/homework-help/literature-arts-2" >Literature-Arts (2)</a></li><li class="item-684"><a href="/resource-links/homework-help/math-science" >Math-Science Links</a></li><li class="item-685"><a href="/resource-links/homework-help/social-science-history" >Social Science, History</a></li><li class="item-686"><a href="/resource-links/homework-help/writing-reading" >Writing Skills-Reading</a></li><li class="item-687"><a href="/resource-links/homework-help/multiple-subjects" >Multiple Subjects</a></li><li class="item-688"><a href="/resource-links/homework-help/extra-curricular-brain-exercises" >Extra Curricular</a></li><li class="item-689"><a href="/resource-links/homework-help/black-history" >Black History Links</a></li><li class="item-690"><a href="/resource-links/homework-help/dictionaries-etc" >Dictionaries-Reference Books</a></li><li class="item-691"><a href="/resource-links/homework-help/paid-tutoring-test-prep" >Test Prep-Paid Tutoring</a></li></ul></li><li class="item-692 menu-deeper menu-parent"><a href="/resource-links/research-links-and-articles" >Library - Research Links<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-693"><a href="/resource-links/research-links-and-articles/education-research" >Education Research and Articles</a></li><li class="item-694"><a href="/resource-links/research-links-and-articles/drop-out-crisis" >Drop Out Crisis</a></li><li class="item-695"><a href="/resource-links/research-links-and-articles/mentoring-tutoring" >Mentoring-Tutoring Research</a></li><li class="item-696"><a href="/resource-links/research-links-and-articles/social-capital" >Social Capital Research</a></li><li class="item-697"><a href="/resource-links/research-links-and-articles/additional-research" >Policy Research and Articles</a></li><li class="item-698"><a href="/resource-links/research-links-and-articles/health-disparities" >Health Disparities Links</a></li><li class="item-699"><a href="/resource-links/research-links-and-articles/misc-links" >Misc Links - International</a></li></ul></li><li class="item-700 menu-deeper menu-parent"><a href="/resource-links/philanthropy-links" >Philanthropy &amp; Fund Raising Links<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-701"><a href="/resource-links/philanthropy-links/challenges-of-npos" >Challenges Facing NPOs</a></li><li class="item-702"><a href="/resource-links/philanthropy-links/general-operating-funds" >General Operating Support</a></li><li class="item-703"><a href="/resource-links/philanthropy-links/fund-raising-platforms" >Fund Raising Platforms</a></li><li class="item-704"><a href="/resource-links/philanthropy-links/grant-resources" >Grant Resources</a></li><li class="item-705"><a href="/resource-links/philanthropy-links/understanding-philanthropy" >Understanding Philanthropy</a></li><li class="item-808"><a href="/resource-links/philanthropy-links/sports-causes" >Athletes and What Causes they Support</a></li></ul></li><li class="item-706 menu-deeper menu-parent"><a href="/resource-links/training-links" >Training &amp; Learning Resources<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-709"><a href="/resource-links/training-links/education-resources" >Resources for Educators</a></li><li class="item-710"><a href="/resource-links/training-links/parent-resources" >Parent Resources</a></li><li class="item-711"><a href="/resource-links/training-links/conferences-of-interest" >Conferences and Events</a></li><li class="item-707 menu-deeper menu-parent"><a href="/resource-links/training-links/tutor-mentor-training" >Training Links for volunteers<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-708"><a href="/resource-links/training-links/tutor-mentor-training/npo-leader-resources" >Resources for NPO Leaders</a></li><li class="item-799"><a href="/resource-links/training-links/tutor-mentor-training/tutor-mentor-learning" >Tutor Mentor training</a></li></ul></li><li class="item-800"><a href="/resource-links/training-links/npo-leaders" >NPO Leader Resources</a></li></ul></li><li class="item-712 menu-deeper menu-parent"><a href="/resource-links/arts-climate-health-stem" >Arts Climate, Health, STEM Links<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-713"><a href="/resource-links/arts-climate-health-stem/arts-programs-resources" >Arts Resources</a></li><li class="item-714"><a href="/resource-links/arts-climate-health-stem/climate-environment" >Climate, Environment Links</a></li><li class="item-715"><a href="/resource-links/arts-climate-health-stem/public-health-links" >Public Health, Mentoring Links</a></li><li class="item-716"><a href="/resource-links/arts-climate-health-stem/stem-resources" >STEM Resources</a></li></ul></li><li class="item-717 menu-deeper menu-parent"><a href="/resource-links/literacy-alt-youth-links" >Literacy, alt youth programs, etc<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-718"><a href="/resource-links/literacy-alt-youth-links/adult-literacy" >Adult Literacy Links</a></li><li class="item-719"><a href="/resource-links/literacy-alt-youth-links/alt-school-programs" >Alternative School Programs</a></li><li class="item-720"><a href="/resource-links/literacy-alt-youth-links/youth-leadership-resources" >Youth Leadership Resources</a></li><li class="item-721"><a href="/resource-links/literacy-alt-youth-links/misc-chi-youth-programs" >Misc Chi Youth Programs</a></li><li class="item-722"><a href="/resource-links/literacy-alt-youth-links/faith-based-resources" >Faith Based Youth Orgs</a></li></ul></li><li class="item-723"><a href="/resource-links/afterschool-networks" >Afterschool networks &amp; resources</a></li><li class="item-724"><a href="/resource-links/political-action-links" >Political Action and Progressive Issues</a></li><li class="item-725 menu-deeper menu-parent"><a href="/resource-links/tech-digital-divide" >Technology - Digital Divide links<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-726"><a href="/resource-links/tech-digital-divide/tech-networks-resources" >Technology Resources and Networks</a></li><li class="item-727"><a href="/resource-links/tech-digital-divide/digital-divide-links" >Digital Access, Digital Divide</a></li><li class="item-728"><a href="/resource-links/tech-digital-divide/useful-digital-tools" >Useful Digital Tools-sites</a></li></ul></li><li class="item-729 menu-deeper menu-parent"><a href="/resource-links/collaboration-process-improvement" >Collaboration, KM, Process Improvement<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-730"><a href="/resource-links/collaboration-process-improvement/collaboration-community-building" >Collaboration-Community Building</a></li><li class="item-731"><a href="/resource-links/collaboration-process-improvement/innovation-km" >Innovation, Knowledge Management</a></li><li class="item-732"><a href="/resource-links/collaboration-process-improvement/concept-maps-visualization" >Concept Maps-Visualization</a></li><li class="item-733"><a href="/resource-links/collaboration-process-improvement/gis-mapping" >GIS Mapping Information</a></li><li class="item-734"><a href="/resource-links/collaboration-process-improvement/process-imp-evaluation" >Process Improvement-Evaluation</a></li><li class="item-735"><a href="/resource-links/collaboration-process-improvement/marketing-links" >Marketing-Communications</a></li></ul></li><li class="item-736 menu-deeper menu-parent"><a href="/resource-links/chi-gov-schools-etc" >Library: Chi gov, public schools, etc<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-737"><a href="/resource-links/chi-gov-schools-etc/chi-gov-misc-npos" >Chicago Gov-Misc NPO links</a></li><li class="item-738"><a href="/resource-links/chi-gov-schools-etc/cps-etc" >Chicago Public Schools-etc</a></li></ul></li><li class="item-739 menu-deeper menu-parent"><a href="/resource-links/college-voc-ed" >College &amp; Career links<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-740"><a href="/resource-links/college-voc-ed/career-voc-ed" >Career &amp; Voc Ed links</a></li><li class="item-741"><a href="/resource-links/college-voc-ed/college-access" >College Access Resources</a></li><li class="item-742"><a href="/resource-links/college-voc-ed/community-college-partnerships" >Community-College Partnerships</a></li></ul></li><li class="item-743 menu-deeper menu-parent"><a href="/resource-links/business-involvement" >Business Involvement Links<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-744"><a href="/resource-links/business-involvement/workforce-development" >Workforce Development links</a></li><li class="item-745"><a href="/resource-links/business-involvement/corp-social-responsibility" >Corporate Social Responsibility links</a></li><li class="item-747"><a href="/resource-links/business-involvement/diversity-strategies" >Diversity &amp; Inclusion</a></li><li class="item-748"><a href="/resource-links/business-involvement/business-schools" >Business School Connections</a></li></ul></li><li class="item-749 menu-deeper menu-parent"><a href="/resource-links/blog-library" >Library: Blogs on education, network biuilding, fund raising<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-750"><a href="/resource-links/blog-library/education-learning-blogs" >Education, cMOOC blogs</a></li><li class="item-751"><a href="/resource-links/blog-library/networking-a-learning" >Networking &amp; Learning blogs</a></li><li class="item-752"><a href="/resource-links/blog-library/fund-raising-blogs" >Fund Raising Blogs</a></li><li class="item-753"><a href="/resource-links/blog-library/tutor-mentor-org-blogs" >Tutor-Mentor Org Blogs</a></li></ul></li><li class="item-754 menu-deeper menu-parent"><a href="/resource-links/social-entrepreneurs" >Social Entrepreneurs<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-755"><a href="/resource-links/social-entrepreneurs/se-networks" >Social Enterprise Networks</a></li><li class="item-756"><a href="/resource-links/social-entrepreneurs/se-funding-links" >Social Enterprise Funding</a></li></ul></li><li class="item-757"><a href="/resource-links/suggested-books" >Suggested Books</a></li><li class="item-758 menu-deeper menu-parent"><a href="/resource-links/vol-admin" >Volunteer Admin Netowrks<span class="menu-toggler"></span></a><ul class="mod-menu__sub list-unstyled small menu-child"><li class="item-759"><a href="/resource-links/vol-admin/volunteerism-networks" >Volunteer Admin Links</a></li><li class="item-760"><a href="/resource-links/vol-admin/volunteer-mgt-tools" >Volunteer Management Tools</a></li><li class="item-761"><a href="/resource-links/vol-admin/senior-vol-resources" >Senior Citizen Volunteering</a></li></ul></li><li class="item-762"><a href="/resource-links/tmc-tmi-history" >Library: T/MC &amp; T/MI History, Blogs, Websites</a></li><li class="item-763"><a href="/resource-links/new-articles" >July-Dec 2022 additions to Library</a></li><li class="item-764"><a href="/resource-links/2023-additions" >Jan-July 2023 additions to library</a></li><li class="item-765"><a href="/resource-links/new-links-2024" >New Links - added 2024</a></li><li class="item-767"><a href="/resource-links/new-links-added-2025" >New Links to library - 2025</a></li></ul></li><li class="item-834"><a href="/featured" >Featured links </a></li><li class="item-820"><a href="/links-added-2026" >New Links - added 2026</a></li><li class="item-768"><a href="/chi-orgs-instagram" >Chicago youth orgs - Instagram</a></li><li class="item-769"><a href="https://twitter.com/i/lists/1276149804511506434" >Chicago T/M Programs on Twitter</a></li><li class="item-817"><a href="/youth-programs-on-linkedin" >Chicago Youth Programs - LinkedIn</a></li><li class="item-770"><a href="http://cmapspublic.ihmc.us/servlet/SBReadResourceServlet?rid=1238727620187_1131671353_30231&amp;partName=htmltext" >Strategy Maps</a></li><li class="item-771"><a href="/intermediaries-chicago" >Intermediary Organizations Serving Chicago Area</a></li><li class="item-773"><a href="http://tutormentorconnection.ning.com" >Collaboration Forum</a></li><li class="item-774"><a href="http://www.tutormentorexchange.net/awards-and-recognition" >Awards and Recognition</a></li></ul>
+</div></div></div></aside>
+<div id="sp-component" class="col-lg-6 ">
+	<div class="sp-column ">
+		<div id="system-message-container" aria-live="polite"></div>
+
+
+		
+		<div class="article-details " itemscope itemtype="https://schema.org/Article">
+    <meta itemprop="inLanguage" content="en-GB">
+
+    
+    
+    
+    
+            <div class="article-header">
+                            <h1 itemprop="headline">
+                    Mapping Event Participation                </h1>
+            
+            
+            
+                    </div>
+    
+    <div class="article-can-edit d-flex flex-wrap justify-content-between">
+                
+            </div>
+
+    
+        
+                
+    
+        
+        
+        
+        <div itemprop="articleBody">
+            <p><span style="font-size: 14pt;"><strong>Who attended? Who's missing?&nbsp; How do you know?&nbsp;</strong></span></p>
+<p>As you plan your event are you building in a data collection process so that after the event you can create maps that help you understand who attended?&nbsp; &nbsp;As you view the information shown below, follow the blog articles. I'll be updating this page throughout 2026 and post new blog articles each week.</p>
+<p><img src="/images/stories/1994-2015_conf_-_Kumu_-_IVMOOC.jpg" alt="conference participation" width="1677" height="902" /></p>
+<p>I hosted Tutor/Mentor Leadership and Networking Conferences in Chicago every six months from May 1994 to May 2015. This is a graphic shows an interactive visualization created by students in an Information Visualization (IVMOOC) class at Indiana University. It shows participants at each conference. See images created from this and a description of its purpose in <a href="https://tutormentor.blogspot.com/2025/12/take-another-look-at-tutormentor.html">this article</a>.</p>
+<p>I've used geographic maps since 1990s, and concept maps since 2005, to show how I and everyone else can help draw people to the information available in web libraries, or in face-to-face conferences, that focus on helping youth in high poverty areas move through school and into adult lives with jobs that enable them to raise their own kids free from poverty,</p>
+<p>I do this almost every day, using social media, my blogs, my websites and email newsletter. In the 1990s I also had a printed newsletter and a PR firm helping generate media stories. Yet, the big questions always have been a) who is attending?; b) what networks are they part of? and c) what geography do they represent?.&nbsp;</p>
+<p><img src="/images/stories/1998%20conf%20map.jpg" alt="Nov 2008 conference participation" width="973" height="431" /></p>
+<p>I've used maps since 1993 to show where volunteer-based tutor/mentor programs are most needed, based on indicators such as high poverty, poorly performing schools, crime rates, health disparities, etc. Since 2010 I've attempted to use maps to show participation in the Tutor/Mentor Leadership and Networking Conferences that I hosted in Chicago.&nbsp; The map shown above is from the November 2008 conference.&nbsp; See it and other maps on <a href="/conferences-and-online-forums/conf-maps">this page</a>.</p>
+<p><span style="font-size: 14pt;"><strong>As you plan an event, think of the timeline you'll need. Think of how you might use registration data in more ways.&nbsp;</strong></span>&nbsp;</p>
+<p><img src="/images/stories/Conference_planning.jpg" alt="conference planning cycle" width="1854" height="874" /></p>
+<p>This <a href="https://cmapspublic.ihmc.us/rid=1PPC7S5PV-1KQKDF4-2YCY/Conference%20Planning%20map.cmap">concept map</a> shows the timeline I followed to organize Tutor/Mentor Leadership and Networking Conference in Chicago every six months from May 1994 to May 2015.&nbsp; If you organize events, do you have a timeline like this?&nbsp; At the far right I've added the questions "<strong>Who attended? Who's Missing?</strong>" which is an analysis every event organizer should be doing if the event is part of an on-going effort to solve any specific problem.&nbsp; In my cases, the conferences were part of an on-going, year-round strateg intended to help volunteer-based tutor/mentor programs grow in all high poverty areas of the Chicago region.&nbsp;</p>
+<p><br /><span style="font-size: 14pt;"><strong>Now there is a new open source resource that you can use to collect and analyze data from the events you host.</strong></span></p>
+<p><img src="/images/stories/Open_Source_Network_Mapping_-_IVMOOC.jpg" alt="conference planning cycle" width="1100" height="777" /></p>
+<p>&nbsp;</p>
+<p>In December 2025 a team of students from the Information Visualization (IVMOOC) class at Indiana University shared the project they had been working on for me since September 2025. I'm very impressed with the work they did. The interactive visualization at the top of this page was created by the team to demonstrate how you can convert conference registration data into interactive visualizations using Kumu.io,&nbsp; Gephi or Tablueau. You can see it in <a href="https://tutormentor.blogspot.com/2025/12/take-another-look-at-tutormentor.html">this article</a>. In the article I show several other views that I created from the interactive Kumu project.</p>
+<p>However, this was only a demonstration of what's possible.&nbsp; To understand the value of this project, I urge you to read the IVMOOC team final report (<a href="https://drive.google.com/file/d/1UTIjt3QYqQRlqpJ7m0sT3DEVa9hYQxGN/view">click here</a>). <br /><br />Then take time to study the "Open Source Network Mapping" app created by the team. (<a href="https://mapping-analyzing-participation.netlify.app/">click here</a>).&nbsp; &nbsp;And, view this comprehensive "How to" guide (<a href="https://drive.google.com/file/d/1p8Qcy8gB0ew1NgG6XERdaGIIWhsnEp_e/view?usp=sharing">click here</a>).&nbsp; &nbsp;<br /><br />In <a href="https://tutormentor.blogspot.com/2026/01/planning-conference-building-network.html">this blog article</a> I show some of the pages from the Network Mapping app.&nbsp; I'll be adding more articles like this, which you can find by clicking the <a href="https://tutormentor.blogspot.com/search/label/IVMOOC">IVMOOC tab</a> on the blog.&nbsp;</p>
+<p>&nbsp;</p>
+<p><br /><span style="font-size: 14pt;"><strong>All of this information is FREELY available on GitHub.</strong></span></p>
+<p><img src="/images/stories/Network_Map_-_GITHUB_-_IVMOOC.jpg" alt="conference planning cycle" width="1885" height="897" /></p>
+<p>&nbsp;</p>
+<p>You can find the link to the GitHup page in the menu bar at the top of the Network Mapping app.&nbsp; You can go directly to it <a href="https://github.com/Ramcharxn/Mapping-Analyzing-Participation">at this page</a>.&nbsp; &nbsp;The IVMOOC students did a comprehensive job of describing the benefits of using these tools, as well as the features available and step-by-step instructions for using them.&nbsp; If you connect with<a href="https://www.linkedin.com/in/tutormentor/"> Dan Bassill on LinkedIn</a>, and follow his posts, you'll soon be able to connect directly to IVMOOC team members and to others in the larger network analysis community who Dan has learned from over the past 18 years.&nbsp;&nbsp;</p>
+<p><br /><span style="font-size: 14pt;"><strong>Spend time reading some of the blog articles I've&nbsp; posted about network analysis and mapping participation.&nbsp;&nbsp;</strong></span></p>
+<p><img src="/images/stories/KUMU_-_SNA_Concept_map_2025.jpg" alt="conference planning cycle" width="1265" height="761" /></p>
+<p>This <a href="https://cmapspublic.ihmc.us/rid=219GQ6YVD-1L2B81Y-5NW/Kumu%20based%20concept%20maps.cmap">concept map</a> can be a study guide to deepen&nbsp; your understanding of the use and value of mapping visualization and strategies.&nbsp; Recruit a team of students/volunteers and lead them through this information. As they create and share their own maps they will contribute to a wider acceptance and understanding, and hopefully, better outcomes for those working to solve complex problems.<br /><br /></p>
+<p><!-- Row 9: Article 17 and Article 18 --></p>
+<div class="row mb-4"><!-- Column 1 (Article 17) -->
+<div class="col-md-6 mb-4 mb-md-0">
+<div class="card h-100 shadow-sm rounded-3"><img src="/images/stories/BBBS_Metro_Chi_-_TMC_conf_-_Kumu_-_IVMOOC.jpg" alt="Article 17 Image" width="1780" height="916" class="card-img-top rounded-top" />
+<div class="card-body">
+<h5 class="card-title fw-bold text-dark">Create and Share Your Own Visualizations</h5>
+<p class="card-text text-secondary">If your organization attended one of the past Leadership Conferences you can find it on the interactive Kumu map, then create an image showing all the conferences you were part of. This one shows Big Brothers Big Sisters of Metropolitan Chicago, who participated in many of the conferences.&nbsp;<br /><br />eMail Dan at <joomla-hidden-mail  is-link="1" is-email="1" first="dHV0b3JtZW50b3Iy" last="ZWFydGhsaW5rLm5ldA==" text="dHV0b3JtZW50b3IyQGVhcnRobGluay5uZXQ=" base="" >This email address is being protected from spambots. You need JavaScript enabled to view it.</joomla-hidden-mail>&nbsp;to schedule a ZOOM call and learn more about mapping networks and using the new open source tool.</p>
+</div>
+</div>
+</div>
+<!-- Column 2 (Article 18) -->
+<div class="col-md-6">
+<div class="card h-100 shadow-sm rounded-3">
+<h5 class="card-title fw-bold text-dark">Social Media Connections</h5>
+<p class="card-text text-secondary">Do a web search for "tutor mentor" and you'll find Dan on many platforms.</p>
+<p>BlueSky -&nbsp;<a href="https://bsky.app/profile/tutormentor.bsky.social"></a><a href="https://bsky.app/profile/tutormentor.bsky.social">https://bsky.app/profile/tutormentor.bsky.social</a></p>
+<p>Dan Bassill&nbsp; on&nbsp;<a href="http://www.linkedin.com/groups?gid=41016&amp;trk=hb_side_g">LinkedIn</a><br /><br />Tutor/Mentor Institute, LLC<a href="http://www.facebook.com/pages/chicago-IL/Cabrini-Connections-TutorMentor-Connection/21204119938"></a>on&nbsp;<a href="http://www.facebook.com/groups/225694987463116/?ap=1">Facebook group</a></p>
+<p>Dan Bassill on&nbsp;<a href="http://www.facebook.com/pages/TutorMentor-Institute-LLC/244686602229148?sk=wall">Facebook Page</a></p>
+<p>Dan Bassill on Mastodon -&nbsp;<a href="https://mastodon.social/@tutormentor1"></a><a href="https://mastodon.social/@tutormentor1">https://mastodon.social/@tutormentor1</a>,<br /><a href="https://mastodon.garden/@tutormentor1"></a><a href="https://mastodon.garden/@tutormentor1">https://mastodon.garden/@tutormentor1</a>&nbsp;and&nbsp;<a href="https://mastodon.cloud/web/accounts/133698">@</a><a href="mailto:tutormentor1@mastodon.cloud"></a><joomla-hidden-mail  is-link="1" is-email="1" first="dHV0b3JtZW50b3Ix" last="bWFzdG9kb24uY2xvdWQ=" text="dHV0b3JtZW50b3IxQG1hc3RvZG9uLmNsb3Vk" base="" >This email address is being protected from spambots. You need JavaScript enabled to view it.</joomla-hidden-mail></p>
+<p>Dan Bassill on&nbsp;<a href="https://www.instagram.com/danielf.bassill/">Instagram</a>&nbsp; and on <a href="https://x.com/tutormentorteam">Twitter (X)</a><br /><br />Dan Bassill on Medium -&nbsp;<a href="https://medium.com/@danielfbassill"></a><a href="https://medium.com/@danielfbassill">https://medium.com/@danielfbassill</a></p>
+<p>Dan Bassill on Substack.com -&nbsp;<a href="https://substack.com/@danielbassill319958?">https://substack.com/@danielbassill319958?</a></p>
+</div>
+</div>
+</div>         </div>
+
+        
+        
+        
+    
+
+        
+    
+
+   
+<nav class="pagenavigation" aria-label="Page Navigation">
+    <span class="pagination ms-0">
+                <a class="btn btn-sm btn-secondary previous" href="/2026-newsletters" rel="prev">
+            <span class="visually-hidden">
+                Previous article: 2026 Tutor/Mentor Newsletters            </span>
+            <span class="icon-chevron-left" aria-hidden="true"></span> <span aria-hidden="true">Prev</span>            </a>
+            </span>
+</nav>
+	
+                </div>
+
+
+
+			</div>
+</div>
+<aside id="sp-right" class="col-lg-3 "><div class="sp-column "><div class="sp-module "><h3 class="sp-module-title">Who's Online since 7-7-2025</h3><div class="sp-module-content">
+<div class="mod-whosonline">
+                            <p>We have 2084104&#160;guests and no members online</p>
+    
+    </div>
+</div></div><div class="sp-module _menu"><h3 class="sp-module-title">T/MI & T/MC Blogs</h3><div class="sp-module-content"><ul class="mod-menu mod-list menu">
+<li class="item-775"><a href="http://tutormentor.blogspot.com" >TutorMentor.blogspot.com</a></li><li class="item-776"><a href="http://mappingforjustice.blogspot.com" >Mapping For Justice</a></li><li class="item-777"><a href="https://tutormentorinstitute.tumblr.com/" >Key Concepts from Tutor/Mentor blog</a></li><li class="item-778"><a href="https://tutormentorexchange.wordpress.com" >Tutor/Mentor Exchange on Wordpress</a></li><li class="item-779"><a href="https://tutormentor1.tumblr.com/" >Tutor/Mentor Connection-Tumblr</a></li><li class="item-812"><a href="https://danielbassill319958.substack.com/" >D. Bassill on Substack</a></li><li class="item-780"><a href="https://medium.com/@danielfbassill" >DFBassill on Medium</a></li><li class="item-781"><a href="http://michaelcnt.blogspot.com/" >Interns with Tutor/Mentor Connection</a></li><li class="item-782"><a href="https://tutormentorconnection.ning.com/profiles/blogs" >Blogs on T/MC Community Site</a></li><li class="item-783"><a href="http://chrispip.blogspot.com/" >Making Sense of T/MC (08-09)</a></li><li class="item-784"><a href="http://kalyanimisra.blogspot.com/" >Network Building - Social Network Analysis</a></li></ul>
+</div></div></div></aside></div>
+											</div>
+				</div>
+						
+	</section>
+
+<footer id="sp-footer" >
+
+						<div class="container">
+				<div class="container-inner">
+			
+	
+<div class="row">
+	<div id="sp-footer1" class="col-lg-12 "><div class="sp-column "><span class="sp-copyright">Tutor/Mentor Connection (1993-present); Tutor/Mentor Institute, LLC (2011-present)</span></div></div></div>
+							</div>
+			</div>
+			
+	</footer>
+				</main>
+			</div>
+		</div>
+
+		<!-- Off Canvas Menu -->
+		<div class="offcanvas-overlay"></div>
+		<!-- Rendering the offcanvas style -->
+		<!-- If canvas style selected then render the style -->
+		<!-- otherwise (for old templates) attach the offcanvas module position -->
+					<div class="offcanvas-menu border-menu " tabindex="-1" inert>
+	<div class="d-flex align-items-center justify-content-between p-3 pt-4">
+				<a href="#" class="close-offcanvas" role="button" aria-label="Close Off-canvas">
+			<div class="burger-icon" aria-hidden="true">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</a>
+	</div>
+	<div class="offcanvas-inner"> 
+		<div class="d-flex header-modules mb-3">
+			
+					</div>
+		
+					<div class="sp-module "><div class="sp-module-content"><ul class="mod-menu mod-list menu nav-pills">
+<li class="item-515 default"><a href="/" >Home</a></li><li class="item-516"><a href="/calendar" >Calendar</a></li><li class="item-551"><a href="/contact-us" >Contact us</a></li><li class="item-552"><a href="/tmi-video-1" >Video</a></li><li class="item-553"><a href="/slide-news" >Slide News</a></li><li class="item-554"><a href="/library" >Library</a></li><li class="item-555"><a href="/newsletter-march-2026-e-news" >Newsletters</a></li><li class="item-556"><a href="/getting-started" >Getting Started</a></li><li class="item-625"><a href="https://youtu.be/pRipJPgenFc?list=PLuMPcNCvy863xS79LZh8MdR5MEGbsnZIT" >T/MC Strategy MAP</a></li><li class="item-626"><a href="/interactive-strategy" >Strategy Presentations</a></li><li class="item-627"><a href="http://www.tutormentorexchange.net/conceptmaps" >Concept Maps</a></li><li class="item-785"><a href="/for-phone-viewers" >For Phone Viewers</a></li></ul>
+</div></div>		
+		
+		
+				
+					
+		
+		<!-- custom module position -->
+		
+	</div>
+</div>				
+
+		<script src="https://public.tableau.com/javascripts/api/viz_v1.js" type="text/javascript"></script>
+
+		
+
+		<!-- Go to top -->
+					<a href="#" class="sp-scroll-up" aria-label="Scroll to top"><span class="fas fa-angle-up" aria-hidden="true"></span></a>
+					</body>
+</html>

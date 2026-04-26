@@ -1,455 +1,376 @@
 """
-Generate the Project Plan presentation as a .pptx file.
-Run with: .venv/bin/python build_slides.py
+Build intermediate presentation PPTX — 6 slides.
+Usage: .venv/bin/python build_slides.py
+Output: Intermediate_Presentation.pptx
 """
 
 from pptx import Presentation
-from pptx.util import Inches, Pt, Emu
+from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
-from pptx.util import Inches, Pt
 
-# Brand colors
-NAVY   = RGBColor(0x1A, 0x3A, 0x5C)   # dark blue
-GOLD   = RGBColor(0xF5, 0xA6, 0x23)   # IU-ish amber
-WHITE  = RGBColor(0xFF, 0xFF, 0xFF)
-LIGHT  = RGBColor(0xF0, 0xF4, 0xF8)
-GRAY   = RGBColor(0x55, 0x55, 0x55)
+NAVY   = RGBColor(0x1A, 0x3A, 0x5C)
+BLUE   = RGBColor(0x15, 0x65, 0xC0)
 GREEN  = RGBColor(0x2E, 0x7D, 0x32)
+ORANGE = RGBColor(0xE6, 0x51, 0x00)
+PURPLE = RGBColor(0x6A, 0x1B, 0x9A)
+GREY   = RGBColor(0x54, 0x6E, 0x7A)
+WHITE  = RGBColor(0xFF, 0xFF, 0xFF)
+LIGHT  = RGBColor(0xEE, 0xF2, 0xF7)
+YELLOW = RGBColor(0xF5, 0xA6, 0x23)
+TEAL   = RGBColor(0x00, 0x96, 0x88)
+LTGRN  = RGBColor(0xE8, 0xF5, 0xE9)
+LTBLUE = RGBColor(0xE3, 0xF2, 0xFD)
+LTPUR  = RGBColor(0xF3, 0xE5, 0xF5)
+LTOR   = RGBColor(0xFF, 0xF3, 0xE0)
 
-prs = Presentation()
-prs.slide_width  = Inches(13.33)
-prs.slide_height = Inches(7.5)
 
-BLANK = prs.slide_layouts[6]   # completely blank
+def new_prs():
+    prs = Presentation()
+    prs.slide_width  = Inches(13.33)
+    prs.slide_height = Inches(7.5)
+    return prs
 
 
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
+def blank(prs):
+    return prs.slides.add_slide(prs.slide_layouts[6])
 
-def add_rect(slide, left, top, width, height, fill_rgb=None, line_rgb=None):
-    shape = slide.shapes.add_shape(
-        1,  # MSO_SHAPE_TYPE.RECTANGLE
-        Inches(left), Inches(top), Inches(width), Inches(height)
-    )
-    if fill_rgb:
-        shape.fill.solid()
-        shape.fill.fore_color.rgb = fill_rgb
+
+def box(slide, x, y, w, h, fill=None):
+    s = slide.shapes.add_shape(1, Inches(x), Inches(y), Inches(w), Inches(h))
+    s.line.fill.background()
+    if fill:
+        s.fill.solid(); s.fill.fore_color.rgb = fill
     else:
-        shape.fill.background()
-    if line_rgb:
-        shape.line.color.rgb = line_rgb
-        shape.line.width = Pt(1)
-    else:
-        shape.line.fill.background()
-    return shape
+        s.fill.background()
+    return s
 
 
-def add_text(slide, text, left, top, width, height,
-             font_size=18, bold=False, color=None, align=PP_ALIGN.LEFT,
-             italic=False, wrap=True):
-    txBox = slide.shapes.add_textbox(
-        Inches(left), Inches(top), Inches(width), Inches(height)
-    )
-    tf = txBox.text_frame
-    tf.word_wrap = wrap
-    p = tf.paragraphs[0]
-    p.alignment = align
-    run = p.add_run()
-    run.text = text
-    run.font.size = Pt(font_size)
-    run.font.bold = bold
-    run.font.italic = italic
-    run.font.color.rgb = color or NAVY
-    return txBox
+def tx(slide, text, x, y, w, h, sz=16, bold=False, col=NAVY,
+        align=PP_ALIGN.LEFT, italic=False, wrap=True):
+    tb = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
+    tb.word_wrap = wrap
+    tf = tb.text_frame; tf.word_wrap = wrap
+    p = tf.paragraphs[0]; p.alignment = align
+    r = p.add_run(); r.text = text
+    r.font.size = Pt(sz); r.font.bold = bold
+    r.font.color.rgb = col; r.font.italic = italic
+    return tb
 
 
-def add_bullet_box(slide, items, left, top, width, height,
-                   font_size=16, title=None, title_size=17,
-                   color=None, bullet="▸ "):
-    txBox = slide.shapes.add_textbox(
-        Inches(left), Inches(top), Inches(width), Inches(height)
-    )
-    tf = txBox.text_frame
-    tf.word_wrap = True
-
-    first = True
-    if title:
-        p = tf.paragraphs[0]
-        p.alignment = PP_ALIGN.LEFT
-        run = p.add_run()
-        run.text = title
-        run.font.size = Pt(title_size)
-        run.font.bold = True
-        run.font.color.rgb = NAVY
-        first = False
-
-    for item in items:
-        if first:
-            p = tf.paragraphs[0]
-            first = False
-        else:
-            p = tf.add_paragraph()
-        p.alignment = PP_ALIGN.LEFT
-        run = p.add_run()
-        run.text = f"{bullet}{item}"
-        run.font.size = Pt(font_size)
-        run.font.color.rgb = color or GRAY
-    return txBox
+def buls(slide, items, x, y, w, h, sz=14, col=NAVY, sub=None):
+    tb = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
+    tb.word_wrap = True
+    tf = tb.text_frame; tf.word_wrap = True
+    for i, item in enumerate(items):
+        text, lvl = (item, 0) if isinstance(item, str) else item
+        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        p.level = lvl; p.space_before = Pt(2)
+        r = p.add_run(); r.text = text
+        r.font.size  = Pt(sz if lvl == 0 else sz - 2)
+        r.font.color.rgb = (sub or GREY) if lvl > 0 else col
 
 
-def navy_header(slide, title, subtitle=None):
-    """Full-width navy header bar at top."""
-    add_rect(slide, 0, 0, 13.33, 1.2, fill_rgb=NAVY)
-    add_text(slide, title, 0.4, 0.1, 12.5, 0.7,
-             font_size=28, bold=True, color=WHITE, align=PP_ALIGN.LEFT)
-    if subtitle:
-        add_text(slide, subtitle, 0.4, 0.8, 12.5, 0.4,
-                 font_size=14, color=GOLD, align=PP_ALIGN.LEFT)
-    # gold accent bar
-    add_rect(slide, 0, 1.2, 13.33, 0.06, fill_rgb=GOLD)
+def hdr(slide, label, title, sub=None):
+    """Slide number pill + title bar."""
+    box(slide, 0, 0, 13.33, 1.05, fill=NAVY)
+    box(slide, 0, 0, 0.55, 1.05, fill=BLUE)
+    tx(slide, label, 0.05, 0.2, 0.5, 0.65, sz=22, bold=True,
+       col=WHITE, align=PP_ALIGN.CENTER)
+    tx(slide, title, 0.65, 0.08, 11.5, 0.62, sz=26, bold=True, col=WHITE)
+    if sub:
+        tx(slide, sub, 0.65, 0.7, 11.5, 0.35, sz=12, col=LIGHT, italic=True)
 
 
-def footer(slide, text="Mapping & Analyzing Participation  |  IU Luddy  |  Spring 2026"):
-    add_rect(slide, 0, 7.15, 13.33, 0.35, fill_rgb=NAVY)
-    add_text(slide, text, 0.3, 7.18, 12.7, 0.3,
-             font_size=10, color=LIGHT, align=PP_ALIGN.LEFT)
+# ── SLIDE 1 · Title / Intro ───────────────────────────────────────────────────
+def s1_title(prs):
+    s = blank(prs)
+    box(s, 0, 0, 13.33, 7.5, fill=NAVY)
+    box(s, 0, 0, 13.33, 0.18, fill=YELLOW)
+    box(s, 0, 7.32, 13.33, 0.18, fill=YELLOW)
+    box(s, 0, 4.9, 13.33, 2.42, fill=BLUE)
+
+    tx(s, "Mapping & Analyzing Participation",
+       0.45, 0.55, 12.4, 1.05, sz=40, bold=True, col=WHITE, align=PP_ALIGN.CENTER)
+    tx(s, "Intermediate Results  —  Spring 2026",
+       0.45, 1.65, 12.4, 0.55, sz=20, col=LIGHT, align=PP_ALIGN.CENTER, italic=True)
+
+    # Divider line
+    box(s, 2.0, 2.38, 9.33, 0.05, fill=YELLOW)
+
+    tx(s, "Client:  Daniel F. Bassill  ·  Tutor/Mentor Connection (T/MC)",
+       0.45, 2.55, 12.4, 0.45, sz=16, col=LIGHT, align=PP_ALIGN.CENTER)
+    tx(s, "E583 / E483 Information Visualization  ·  Indiana University  ·  April 6, 2026",
+       0.45, 3.02, 12.4, 0.4, sz=13, col=LIGHT, align=PP_ALIGN.CENTER, italic=True)
+
+    # Photo placeholders — 3 equal columns
+    photo_y = 3.65; photo_h = 1.0; photo_w = 1.0
+    positions = [2.17, 4.8, 7.42]  # adjusted for 3 centered
+    labels = ["[ Photo ]", "[ Photo ]", "[ Photo ]"]
+    roles  = ["Platform Lead", "Data Cleaner", "Data Visualization"]
+    names  = ["Team Member", "Team Member", "Team Member"]
+    affil  = "Indiana University"
+    for i, (px, lbl, role, name) in enumerate(zip(positions, labels, roles, names)):
+        box(s, px, photo_y, photo_w, photo_h, fill=GREY)
+        tx(s, lbl, px, photo_y+0.32, photo_w, 0.38,
+           sz=10, col=LIGHT, align=PP_ALIGN.CENTER, italic=True)
+        tx(s, name, px-0.25, photo_y+photo_h+0.06, photo_w+0.5, 0.3,
+           sz=11, bold=True, col=WHITE, align=PP_ALIGN.CENTER)
+        tx(s, role, px-0.25, photo_y+photo_h+0.38, photo_w+0.5, 0.28,
+           sz=10, col=LIGHT, align=PP_ALIGN.CENTER)
+        tx(s, affil, px-0.25, photo_y+photo_h+0.65, photo_w+0.5, 0.25,
+           sz=9, col=LIGHT, align=PP_ALIGN.CENTER, italic=True)
 
 
-# ---------------------------------------------------------------------------
-# Slide 1 — Title slide
-# ---------------------------------------------------------------------------
+# ── SLIDE 2 · Stakeholder & Needs ────────────────────────────────────────────
+def s2_stakeholder(prs):
+    s = blank(prs)
+    hdr(s, "2", "Stakeholder & Needs",
+        "Daniel F. Bassill · Tutor/Mentor Connection (T/MC)")
 
-slide = prs.slides.add_slide(BLANK)
+    # Left: who
+    box(s, 0.3, 1.15, 6.1, 0.42, fill=NAVY)
+    tx(s, "Who is the Stakeholder?", 0.4, 1.18, 5.9, 0.38,
+       sz=14, bold=True, col=WHITE)
+    buls(s, [
+        "Daniel F. Bassill — founder, Tutor/Mentor Connection",
+        "Hosted 42 Leadership & Networking Conferences, 1994–2015",
+        "Builds coalitions between schools, nonprofits, business, and government to support youth mentoring in Chicago",
+        "tutormentorexchange.net",
+    ], 0.35, 1.62, 6.0, 2.4, sz=13)
 
-# Full navy background top half
-add_rect(slide, 0, 0, 13.33, 4.5, fill_rgb=NAVY)
-add_rect(slide, 0, 4.5, 13.33, 3.0, fill_rgb=LIGHT)
+    box(s, 0.3, 4.15, 6.1, 0.42, fill=NAVY)
+    tx(s, "What problem are we solving?", 0.4, 4.18, 5.9, 0.38,
+       sz=14, bold=True, col=WHITE)
+    buls(s, [
+        "20+ years of conference attendance data exists but has never been fully analyzed",
+        "No system exists to visualize who participated, how often, or across which sectors",
+        "The data is the evidence base for Dan's network-building work",
+    ], 0.35, 4.62, 6.0, 2.5, sz=13)
 
-# Gold accent
-add_rect(slide, 0, 4.5, 13.33, 0.08, fill_rgb=GOLD)
+    # Divider
+    box(s, 6.6, 1.1, 0.05, 5.9, fill=LIGHT)
 
-# Title
-add_text(slide,
-         "Mapping & Analyzing Participation",
-         0.6, 0.7, 12.0, 1.0,
-         font_size=36, bold=True, color=WHITE, align=PP_ALIGN.CENTER)
-add_text(slide,
-         "in Tutor/Mentor Leadership and Networking Conferences",
-         0.6, 1.65, 12.0, 0.8,
-         font_size=24, bold=False, color=GOLD, align=PP_ALIGN.CENTER)
+    # Right: what they need
+    box(s, 6.7, 1.15, 6.28, 0.42, fill=BLUE)
+    tx(s, "What the Client Needs", 6.8, 1.18, 6.1, 0.38,
+       sz=14, bold=True, col=WHITE)
+    needs = [
+        "Kumu.io network map updated with full 1994–2015 dataset",
+        "Organization search — full conference attendance history",
+        "Color-coded by sector type with filtering capability",
+        "Website addresses for participating organizations",
+        "Explanatory section on how to read the Kumu map",
+        "Links to Tutor/Mentor program lists for cross-reference",
+        "Documented, reproducible methodology",
+    ]
+    y = 1.68
+    for need in needs:
+        box(s, 6.7, y, 0.28, 0.28, fill=BLUE)
+        tx(s, "›", 6.72, y+0.01, 0.28, 0.28, sz=14, bold=True,
+           col=WHITE, align=PP_ALIGN.CENTER)
+        tx(s, need, 7.05, y+0.02, 5.9, 0.32, sz=12, col=NAVY)
+        y += 0.42
 
-# Divider
-add_rect(slide, 2.5, 2.7, 8.33, 0.05, fill_rgb=WHITE)
-
-# Team
-add_text(slide,
-         "Brian Hanley  ·  Matthew Ramsey  ·  Timothy Okoye  ·  Patrick Sullivan",
-         0.6, 2.85, 12.0, 0.5,
-         font_size=16, color=WHITE, align=PP_ALIGN.CENTER)
-add_text(slide,
-         "Indiana University  |  Luddy School of Informatics, Computing, and Engineering",
-         0.6, 3.35, 12.0, 0.4,
-         font_size=13, italic=True, color=LIGHT, align=PP_ALIGN.CENTER)
-
-# Lower half
-add_text(slide, "Client:", 1.5, 4.9, 2.0, 0.4,
-         font_size=14, bold=True, color=GRAY)
-add_text(slide, "Daniel F. Bassill  |  Tutor/Mentor Institute, LLC",
-         3.0, 4.9, 9.0, 0.4,
-         font_size=14, color=NAVY)
-
-add_text(slide, "Course:", 1.5, 5.4, 2.0, 0.4,
-         font_size=14, bold=True, color=GRAY)
-add_text(slide, "E483/E583 Information Visualization  |  Spring 2026",
-         3.0, 5.4, 9.0, 0.4,
-         font_size=14, color=NAVY)
-
-add_text(slide, "Submission:", 1.5, 5.9, 2.0, 0.4,
-         font_size=14, bold=True, color=GRAY)
-add_text(slide, "Presentation of Project Plans  —  March 22, 2026",
-         3.0, 5.9, 9.0, 0.4,
-         font_size=14, color=NAVY)
-
-
-# ---------------------------------------------------------------------------
-# Slide 2 — Stakeholders & Their Needs
-# ---------------------------------------------------------------------------
-
-slide = prs.slides.add_slide(BLANK)
-navy_header(slide, "Stakeholders & Their Needs",
-            "Who uses this tool, and what do they need from it?")
-footer(slide)
-add_rect(slide, 0, 1.26, 13.33, 5.89, fill_rgb=LIGHT)
-
-# Four stakeholder cards
-cards = [
-    ("Daniel F. Bassill / T/MC",
-     ["Track who attends and their role in mentorship",
-      "Communicate network history to funders & partners",
-      "Color-coded, searchable Kumu.io map with org hyperlinks"]),
-    ("Nonprofits & Organizations",
-     ["Understand which sectors engage in the network",
-      "Identify peer organizations to contact",
-      "Learn from & replicate Bassill's methodology"]),
-    ("Conference Participants",
-     ["See their own place in the network",
-      "Discover who else attended the same events",
-      "Explore connections within their sector"]),
-    ("Researchers & Civic Advocates",
-     ["Clean, documented, reproducible dataset",
-      "Consistent labels for structural SNA analysis",
-      "Open-source pipeline for future research teams"]),
-]
-
-card_w = 2.9
-card_gap = 0.25
-card_left_start = 0.4
-
-for i, (title, bullets) in enumerate(cards):
-    cl = card_left_start + i * (card_w + card_gap)
-    add_rect(slide, cl, 1.45, card_w, 4.9, fill_rgb=WHITE)
-    add_rect(slide, cl, 1.45, card_w, 0.45, fill_rgb=NAVY)
-    add_text(slide, title, cl + 0.1, 1.52, card_w - 0.2, 0.38,
-             font_size=13, bold=True, color=WHITE)
-    add_bullet_box(slide, bullets,
-                   cl + 0.12, 2.05, card_w - 0.2, 4.1,
-                   font_size=13, color=GRAY, bullet="• ")
+    box(s, 0, 6.85, 13.33, 0.65, fill=LIGHT)
+    tx(s, "Core question: Who shows up to build a community — and what patterns emerge across 20 years?",
+       0.35, 6.94, 12.6, 0.38, sz=13, bold=True, col=NAVY, align=PP_ALIGN.CENTER)
 
 
-# ---------------------------------------------------------------------------
-# Slide 3 — Research Questions
-# ---------------------------------------------------------------------------
+# ── SLIDE 3 · Data & Dashboard ───────────────────────────────────────────────
+def s3_dashboard(prs):
+    s = blank(prs)
+    hdr(s, "3", "Data & Visualization — PowerBI Dashboard",
+        "6,410 records · 42 conferences · 1994–2015 · 11 SNA sectors · 2,179 organizations")
 
-slide = prs.slides.add_slide(BLANK)
-navy_header(slide, "Research Questions",
-            "Drafted by Matthew Guschwan — guiding our analysis and visualization design")
-footer(slide)
-add_rect(slide, 0, 1.26, 13.33, 5.89, fill_rgb=LIGHT)
+    # Large screenshot placeholder — left 2/3
+    box(s, 0.28, 1.18, 8.5, 5.55, fill=RGBColor(0xDD, 0xE3, 0xEA))
+    tx(s, "[ Insert PowerBI Dashboard Screenshot ]",
+       0.28, 3.55, 8.5, 0.55, sz=14, col=GREY,
+       align=PP_ALIGN.CENTER, italic=True)
 
-questions = [
-    ("1",
-     "Network Navigability",
-     "How can the network be organized to be useful to someone who does not know any specific participants — what sectoral or structural entry points make it navigable?"),
-    ("2",
-     "Temporal Progression",
-     "Can we show how the network formed and expanded between 1994 and 2015 — revealing which sectors grew, which stayed consistent, and where gaps appeared?"),
-    ("3",
-     "Supernodes & Bridge Actors",
-     "Are there highly active or influential organizations beyond Bassill himself? How do they function as connectors between sectors and as bridges to under-represented groups?"),
-    ("4",
-     "Geographic & Outreach Gaps",
-     "Are there geographic or organizational gaps in participation that could inform targeted outreach to Chicago high-poverty neighborhoods?"),
-]
+    # Right column: 6 stat cards
+    stats = [
+        ("6,410",  "attendance records",  NAVY),
+        ("42",     "conference events",   BLUE),
+        ("21 yrs", "1994 – 2015",         GREEN),
+        ("11",     "SNA sectors",         PURPLE),
+        ("2,179",  "unique organizations",ORANGE),
+        ("~50%",   "Program sector share",TEAL),
+    ]
+    x = 9.08; y = 1.18
+    for val, lbl, color in stats:
+        box(s, x, y, 4.0, 0.82, fill=color)
+        tx(s, val, x+0.12, y+0.04, 1.8, 0.42,
+           sz=22, bold=True, col=WHITE)
+        tx(s, lbl, x+0.12, y+0.46, 3.75, 0.3,
+           sz=10, col=WHITE)
+        y += 0.92
 
-for i, (num, label, desc) in enumerate(questions):
-    row = i // 2
-    col = i % 2
-    ql = 0.4 + col * 6.55
-    qt = 1.55 + row * 2.65
-    add_rect(slide, ql, qt, 6.2, 2.4, fill_rgb=WHITE)
-    # number circle background
-    add_rect(slide, ql + 0.1, qt + 0.12, 0.55, 0.55, fill_rgb=NAVY)
-    add_text(slide, num, ql + 0.1, qt + 0.12, 0.55, 0.55,
-             font_size=18, bold=True, color=WHITE, align=PP_ALIGN.CENTER)
-    add_text(slide, label, ql + 0.75, qt + 0.12, 5.3, 0.45,
-             font_size=14, bold=True, color=NAVY)
-    add_text(slide, desc, ql + 0.12, qt + 0.75, 5.9, 1.55,
-             font_size=13, color=GRAY)
+    box(s, 0, 6.82, 13.33, 0.68, fill=NAVY)
+    tx(s, "Exports at /export/ feed PowerBI directly — nodes.csv and edges CSVs update with each data reload.",
+       0.35, 6.9, 12.6, 0.42, sz=12, bold=True,
+       col=WHITE, align=PP_ALIGN.CENTER, italic=True)
 
 
-# ---------------------------------------------------------------------------
-# Slide 4 — Dataset Statistics
-# ---------------------------------------------------------------------------
+# ── SLIDE 4 · The Pivot ───────────────────────────────────────────────────────
+def s4_pivot(prs):
+    s = blank(prs)
+    hdr(s, "4", "The Pivot — Methodology First",
+        "Why we changed direction from the previous iteration")
 
-slide = prs.slides.add_slide(BLANK)
-navy_header(slide, "Dataset Statistics",
-            "Source: TeamK-cleaned CSV (updated Feb 11, 2026) — 42 conferences, May 1994 – Nov 2014")
-footer(slide)
-add_rect(slide, 0, 1.26, 13.33, 5.89, fill_rgb=LIGHT)
+    # Left: Team K
+    box(s, 0.28, 1.15, 6.1, 0.42, fill=GREY)
+    tx(s, "Team K  (Previous Iteration — NetworkMap)", 0.38, 1.18, 5.9, 0.38,
+       sz=13, bold=True, col=WHITE)
+    buls(s, [
+        "Built a visual tool for Dan to explore connections himself",
+        "6 typed relationship categories defined in the UI",
+        "Flask + React + MongoDB — interactive, user-driven",
+        "Sector taxonomy: 6 buckets, manually assigned",
+        "Strength: low barrier to entry for a non-technical user",
+        "Gap: no documented pipeline, no reproducible export,\n"
+        "      analysis lived inside the interface",
+    ], 0.35, 1.65, 5.85, 4.0, sz=12, sub=GREY)
 
-# Big metric boxes
-metrics = [
-    ("6,410",  "Attendance Records"),
-    ("41",     "Conference Events"),
-    ("2,163",  "Unique Organizations"),
-    ("20 yrs", "Data Coverage"),
-]
-mx_w = 2.6
-mx_gap = 0.35
-mx_start = 0.5
-for i, (val, lbl) in enumerate(metrics):
-    ml = mx_start + i * (mx_w + mx_gap)
-    add_rect(slide, ml, 1.5, mx_w, 1.5, fill_rgb=NAVY)
-    add_text(slide, val, ml, 1.6, mx_w, 0.75,
-             font_size=30, bold=True, color=WHITE, align=PP_ALIGN.CENTER)
-    add_text(slide, lbl, ml, 2.3, mx_w, 0.55,
-             font_size=13, color=GOLD, align=PP_ALIGN.CENTER)
+    # Divider
+    box(s, 6.58, 1.1, 0.05, 5.9, fill=LIGHT)
 
-# SNA table
-add_text(slide, "SNA Category Distribution (after normalization)",
-         0.5, 3.25, 8.0, 0.4,
-         font_size=14, bold=True, color=NAVY)
+    # Right: Our approach
+    box(s, 6.75, 1.15, 6.28, 0.42, fill=BLUE)
+    tx(s, "Our Approach — Pipeline + Reproducibility", 6.85, 1.18, 6.1, 0.38,
+       sz=13, bold=True, col=WHITE)
+    buls(s, [
+        "Methodology at the forefront — every step is documented",
+        "SNA normalization: 73 raw variants → 11 canonical sectors in code",
+        "Django + SQLite — git clone → make setup → make run",
+        "Three graph models (bipartite, co-attendance, 3-layer directed)",
+        "CSV exports compatible with Kumu.io, Gephi, and PowerBI",
+        "Future classes and solo development can extend the pipeline\n"
+        "      without reverse-engineering what was built",
+    ], 6.82, 1.65, 6.1, 4.0, sz=12, sub=GREY)
 
-rows = [
-    ("Program",      "3,310", "51.6%"),
-    ("Resource",       "612",  "9.5%"),
-    ("College/Univ",   "559",  "8.7%"),
-    ("K-12 School",    "418",  "6.5%"),
-    ("Other",          "572",  "8.9%"),
-    ("T/MC",           "239",  "3.7%"),
-    ("Intermediary",   "227",  "3.5%"),
-    ("Faith",          "148",  "2.3%"),
-    ("Government",     "136",  "2.1%"),
-    ("Business",       "131",  "2.0%"),
-    ("Foundation",      "58",  "0.9%"),
-]
-col_x = [0.5, 4.5, 6.2]
-# header
-for cx, hdr in zip(col_x, ["Category", "Records", "% of Total"]):
-    add_rect(slide, cx, 3.7, 1.8 if cx == 0.5 else 1.5, 0.32, fill_rgb=NAVY)
-    add_text(slide, hdr, cx + 0.05, 3.73, 1.7, 0.28,
-             font_size=11, bold=True, color=WHITE)
+    # Bottom: the why
+    box(s, 0, 5.38, 13.33, 0.05, fill=LIGHT)
+    box(s, 0, 5.45, 13.33, 1.35, fill=LTBLUE)
+    tx(s, "Why this matters to Dan Bassill:", 0.35, 5.52, 5.0, 0.36,
+       sz=13, bold=True, col=NAVY)
+    tx(s, "The Tutor/Mentor Connection's value is its network and its documented approach to building community. "
+       "A reproducible pipeline mirrors that philosophy — it's not just what the data shows, it's that anyone "
+       "can verify how we got there and extend it. That's the methodology Dan wants at the forefront.",
+       0.35, 5.9, 12.6, 0.78, sz=12, col=NAVY, wrap=True)
 
-for r, (cat, cnt, pct) in enumerate(rows):
-    ty = 4.04 + r * 0.27
-    bg = LIGHT if r % 2 == 0 else WHITE
-    for cx, val, cw in zip(col_x, [cat, cnt, pct], [1.8, 1.5, 1.5]):
-        add_rect(slide, cx, ty, cw, 0.27, fill_rgb=bg)
-        add_text(slide, val, cx + 0.05, ty + 0.02, cw - 0.1, 0.24,
-                 font_size=11, color=GRAY)
-
-# Right side note
-add_text(slide,
-         "18 fields per record\n\n"
-         "Geographically concentrated\nin Chicago metro area\n\n"
-         "~70 raw SNA variants\nnormalized to 11\ncanonical categories\n\n"
-         "Significant blank fields\nin Title & Org Name\n(esp. pre-2000)",
-         8.0, 3.25, 4.9, 4.0,
-         font_size=13, color=GRAY)
+    box(s, 0, 6.82, 13.33, 0.68, fill=NAVY)
+    tx(s, "Deliberate scope: substantial work intentionally left for Summer 2026 solo development "
+       "and future E583/E483 classes.",
+       0.35, 6.9, 12.6, 0.42, sz=12, bold=True,
+       col=WHITE, align=PP_ALIGN.CENTER, italic=True)
 
 
-# ---------------------------------------------------------------------------
-# Slide 5 — Visualization Method 1: Frequency Chart
-# ---------------------------------------------------------------------------
+# ── SLIDE 5 · Pipeline Reproducibility ────────────────────────────────
+def s5_insights(prs):
+    s = blank(prs)
+    hdr(s, "5", "Why the Data Pipeline Is the Deliverable",
+        "What makes this process replicable for any conference dataset")
 
-slide = prs.slides.add_slide(BLANK)
-navy_header(slide, "Visualization 1: Participation Frequency Chart",
-            "Interactive Plotly stacked bar — attendance per event, segmented by organization type")
-footer(slide)
-add_rect(slide, 0, 1.26, 13.33, 5.89, fill_rgb=LIGHT)
+    insights = [
+        (BLUE,   LTBLUE,
+         "Normalization is Step Zero: the hardest step",
+         "Any real conference dataset will have messy category data. Mapping 73 raw SNA variants to 11 canonical "
+         "sectors in code means the next team inherits a verified, auditable starting point rather than a manual "
+         "guessing game. This step is what makes cross-conference comparison possible."),
+        (GREEN,  LTGRN,
+         "The graph models work on any org-event attendance dataset",
+         "The bipartite, co-attendance, and three-layer graphs are built from two columns: organization and event. "
+         "Any organization running attendance-tracked conferences can load their spreadsheet into the same pipeline "
+         "and get the same structural analysis out the other side."),
+        (ORANGE, LTOR,
+         "Exports connect to tools stakeholders already use",
+         "nodes.csv and edges CSVs are formatted for Kumu.io, Gephi, and PowerBI directly. The analysis does not "
+         "live inside the platform; it lives in files any stakeholder can open, share, or import into whatever "
+         "tool they already know."),
+        (PURPLE, LTPUR,
+         "One-command setup is the handoff mechanism",
+         "git clone + make setup + make run is how this project passes to the next team. The pipeline is not "
+         "documented separately from the code; the Makefile and load_data command are the documentation. "
+         "A new team can be running in minutes, not weeks."),
+        (GREY,   LIGHT,
+         "Documented data quality is institutional memory",
+         "Knowing 4.2% of records have blank org names, knowing what the 73 raw variants were, means future teams "
+         "inherit a clear picture of the data's limitations rather than re-discovering them. Every quality "
+         "decision is in code or in writing."),
+    ]
 
-# Placeholder for screenshot
-add_rect(slide, 0.4, 1.5, 8.4, 5.3, fill_rgb=WHITE)
-add_rect(slide, 0.4, 1.5, 8.4, 5.3, line_rgb=NAVY)
-add_text(slide,
-         "[INSERT SCREENSHOT]\nhttp://127.0.0.1:8000/chart/",
-         0.4, 3.3, 8.4, 1.2,
-         font_size=14, color=GRAY, align=PP_ALIGN.CENTER, italic=True)
-
-# Callouts
-add_bullet_box(slide,
-    ["Built with Plotly — fully interactive (hover, zoom, filter)",
-     "Stacked bars show contribution of each sector per event",
-     "Filterable by year, sector, and state via dashboard",
-     "Reveals peak attendance years (mid-2000s)",
-     "Program sector dominant across all 20 years",
-     "College & Resource sectors grew steadily over time",
-     "Gaps visible in early (pre-1998) and late (post-2012) years"],
-    9.0, 1.55, 4.1, 5.2,
-    font_size=13, color=GRAY,
-    title="Key Insights", title_size=14)
-
-
-# ---------------------------------------------------------------------------
-# Slide 6 — Visualization Method 2: Network Export (Kumu.io)
-# ---------------------------------------------------------------------------
-
-slide = prs.slides.add_slide(BLANK)
-navy_header(slide, "Visualization 2: Network Export for Kumu.io / Gephi",
-            "Django pipeline generates Nodes + Edges CSVs on-demand in 4 graph modes")
-footer(slide)
-add_rect(slide, 0, 1.26, 13.33, 5.89, fill_rgb=LIGHT)
-
-# Network placeholder
-add_rect(slide, 0.4, 1.5, 7.5, 5.3, fill_rgb=WHITE)
-add_rect(slide, 0.4, 1.5, 7.5, 5.3, line_rgb=NAVY)
-add_text(slide,
-         "[INSERT KUMU NETWORK SCREENSHOT\nor Team K reference map]",
-         0.4, 3.5, 7.5, 1.0,
-         font_size=14, color=GRAY, align=PP_ALIGN.CENTER, italic=True)
-
-# Four modes
-modes = [
-    ("Org ↔ Event",        "Bipartite: each attendance = one edge"),
-    ("Org ↔ Org",          "Co-attendance edges, weighted by shared events"),
-    ("Event→Sector→Org",   "Three-layer cross-sector network"),
-    ("Nodes Only",         "Organizations with sector, event count, record count"),
-]
-add_text(slide, "Export Modes", 8.1, 1.55, 5.0, 0.4,
-         font_size=14, bold=True, color=NAVY)
-for i, (mode, desc) in enumerate(modes):
-    mt = 2.05 + i * 1.0
-    add_rect(slide, 8.1, mt, 5.0, 0.85, fill_rgb=WHITE)
-    add_rect(slide, 8.1, mt, 0.08, 0.85, fill_rgb=GOLD)
-    add_text(slide, mode, 8.28, mt + 0.04, 4.7, 0.35,
-             font_size=13, bold=True, color=NAVY)
-    add_text(slide, desc, 8.28, mt + 0.44, 4.7, 0.35,
-             font_size=12, color=GRAY)
-
-add_text(slide,
-         "Color-coded by SNA category  ·  Search by participant  ·  Org hyperlinks (planned)",
-         8.1, 6.1, 5.0, 0.4,
-         font_size=11, italic=True, color=GRAY)
+    y = 1.18
+    for color, bg, title, desc in insights:
+        box(s, 0.28, y, 12.77, 1.09, fill=bg)
+        box(s, 0.28, y, 0.22, 1.09, fill=color)
+        tx(s, title, 0.65, y+0.06, 12.0, 0.38, sz=12, bold=True, col=color)
+        tx(s, desc,  0.65, y+0.5,  12.2, 0.52, sz=11, col=NAVY, wrap=True)
+        y += 1.16
 
 
-# ---------------------------------------------------------------------------
-# Slide 7 — Key Insights & Next Steps
-# ---------------------------------------------------------------------------
+# ── SLIDE 6 · Next Steps ─────────────────────────────────────────────────────
+def s6_next(prs):
+    s = blank(prs)
+    hdr(s, "6", "What's Next",
+        "Remaining work before April 26 final checkpoint")
 
-slide = prs.slides.add_slide(BLANK)
-navy_header(slide, "Key Insights & Next Steps",
-            "What we've learned from the initial analysis, and where we go from here")
-footer(slide)
-add_rect(slide, 0, 1.26, 13.33, 5.89, fill_rgb=LIGHT)
+    cols = [
+        (0.28,  BLUE,   "Platform  (by Apr 26)",
+         ["Kumu.io step-by-step import guide",
+          "Surface org website URLs in search results",
+          "Final reproducibility audit",
+          "Incorporate peer + instructor feedback"]),
+        (4.58,  GREEN,  "Data Cleaning  (by Apr 26)",
+         ["Trim whitespace — 323 org entries",
+          "Flag/fill 272 blank org records",
+          "Website URLs for top 20–30 orgs",
+          "Reload pipeline with updated XLSX"]),
+        (8.88,  ORANGE, "Writing & Presentation",
+         ["Refine PowerBI charts after today's feedback",
+          "2–3 actionable insights for final report",
+          "Final report — 4 pages, research format",
+          "Final presentation: Apr 28, Fine Arts 102"]),
+    ]
+    for x, color, title, pts in cols:
+        box(s, x, 1.15, 4.05, 0.48, fill=color)
+        tx(s, title, x+0.1, 1.17, 3.9, 0.44,
+           sz=14, bold=True, col=WHITE, align=PP_ALIGN.CENTER)
+        buls(s, pts, x+0.1, 1.72, 3.85, 2.7, sz=13)
 
-# Insights
-add_rect(slide, 0.4, 1.5, 6.0, 5.65, fill_rgb=WHITE)
-add_rect(slide, 0.4, 1.5, 6.0, 0.4, fill_rgb=NAVY)
-add_text(slide, "Initial Insights", 0.55, 1.55, 5.8, 0.32,
-         font_size=14, bold=True, color=WHITE)
-add_bullet_box(slide,
-    ["Program-sector orgs = 52% of all participation — the consistent core of the network",
-     "2,163 unique organizations attended — broad but Chicago-concentrated",
-     "Co-attendance edges reveal candidate 'supernodes' that bridge sectors",
-     "Peak attendance: mid-2000s; visible drops post-2012",
-     "~70 raw SNA variants successfully normalized to 11 canonical categories",
-     "Data quality gaps concentrated in pre-2000 Title & Organization fields"],
-    0.52, 2.05, 5.75, 4.8,
-    font_size=13, color=GRAY)
+    box(s, 0, 4.6, 13.33, 0.05, fill=LIGHT)
 
-# Next steps
-add_rect(slide, 6.9, 1.5, 6.0, 5.65, fill_rgb=WHITE)
-add_rect(slide, 6.9, 1.5, 6.0, 0.4, fill_rgb=GREEN)
-add_text(slide, "Next Steps", 7.05, 1.55, 5.8, 0.32,
-         font_size=14, bold=True, color=WHITE)
-add_bullet_box(slide,
-    ["URL enrichment: cross-reference orgs against tutormentorexchange.net directory",
-     "Identify & label supernodes in the org↔org co-attendance network",
-     "Complete Kumu.io map with color-coding, search, and embedded hyperlinks",
-     "Sector-based graph modes (Event→Sector→Org) fully functional",
-     "Analytics dashboard: degree distribution, top-entity tables, data quality flags",
-     "Meeting with Daniel Bassill to review results and gather feedback",
-     "GitHub repository + Docker image published for future teams"],
-    7.05, 2.05, 5.75, 4.8,
-    font_size=13, color=GRAY)
+    tx(s, "Peer Feedback  (individual — due April 12, 8pm EST)",
+       0.28, 4.72, 6.5, 0.38, sz=13, bold=True)
+    tx(s, "Review 2 other teams across all 5 rubric points. Submit as PDF — not on discussion board.",
+       0.28, 5.1, 12.8, 0.36, sz=12, col=NAVY)
+
+    box(s, 0, 5.6, 13.33, 0.05, fill=LIGHT)
+    tx(s, "Intentionally deferred to Summer 2026 & future classes:",
+       0.28, 5.72, 7.0, 0.36, sz=13, bold=True, col=ORANGE)
+    tx(s, "Kumu live API  ·  Interactive D3 network  ·  SNA centrality metrics  "
+       "·  Admin data upload  ·  Fuzzy org deduplication  ·  Multi-dataset support",
+       0.28, 6.1, 12.8, 0.36, sz=12, col=GREY)
+
+    box(s, 0, 6.75, 13.33, 0.75, fill=NAVY)
+    tx(s, "Roadmap is live at /roadmap/  —  scope decisions are documented, not hidden.",
+       0.35, 6.85, 12.6, 0.42, sz=13, bold=True,
+       col=WHITE, align=PP_ALIGN.CENTER, italic=True)
 
 
-# ---------------------------------------------------------------------------
-# Save
-# ---------------------------------------------------------------------------
+def build():
+    prs = new_prs()
+    s1_title(prs)
+    s2_stakeholder(prs)
+    s3_dashboard(prs)
+    s4_pivot(prs)
+    s5_insights(prs)
+    s6_next(prs)
+    out = "Intermediate_Presentation.pptx"
+    prs.save(out)
+    print(f"Saved: {out}  ({len(prs.slides)} slides)")
 
-out = "MappingAndAnalyzingParticipation_ProjectPlan.pptx"
-prs.save(out)
-print(f"Saved: {out}")
+
+if __name__ == "__main__":
+    build()

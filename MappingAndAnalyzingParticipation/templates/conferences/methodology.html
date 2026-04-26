@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block title %}Methodology – T/MC Conference Network{% endblock %}
+{% block extra_css %}
+<style>
+  .sector-grid { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+  .graph-types { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .6rem; margin-top: .6rem; }
+  .graph-card { background: #eef0fb; border-radius: 6px; padding: .6rem .85rem; font-size: .83rem; color: #333; }
+  .graph-card strong { display: block; color: #2e3192; margin-bottom: .2rem; font-size: .88rem; }
+  .stat-row { display: flex; flex-wrap: wrap; gap: .6rem; margin: .75rem 0; }
+  .viz-links { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .75rem; }
+</style>
+{% endblock %}
+{% block page_banner %}
+<div class="page-banner">
+  <div class="container">
+    <p class="banner-label">T/MC Conference Network</p>
+    <h1 class="banner-title">Methodology</h1>
+  </div>
+</div>
+{% endblock %}
+{% block content %}
+
+<h1>Methodology</h1>
+<p style="max-width:750px; color:#848e9f; margin-bottom:1.5rem; font-size:.93rem; line-height:1.65;">
+  This project documents a reproducible pipeline for transforming raw conference attendance
+  records into analyzable social network data. Each stage below is codified — the inputs,
+  transformations, and outputs are explicit so the process can be repeated, extended, or
+  adapted for future events.
+</p>
+
+<div class="pipeline">
+
+  <!-- STAGE 1: COLLECTION -->
+  <div class="stage">
+    <div class="stage-left">
+      <div class="stage-badge badge-1">1</div>
+      <div class="stage-connector"></div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-title">Data Collection</div>
+      <div class="stage-desc">
+        Attendance was recorded at each Tutor/Mentor Leadership and Networking Conference,
+        capturing each participant's name, organizational affiliation, title, sector type,
+        and location. The dataset spans {{ year_range.first }}–{{ year_range.last }},
+        covering {{ unique_events }} conference events.
+      </div>
+      <div class="stat-row">
+        <div class="stat-chip"><strong>{{ total_records|floatformat:"0" }}</strong>attendance records</div>
+        <div class="stat-chip"><strong>{{ unique_events }}</strong>conference events</div>
+        <div class="stat-chip"><strong>{{ year_range.first }}–{{ year_range.last }}</strong>date range</div>
+      </div>
+      <div class="step-note">
+        <strong>Previous iteration:</strong> TeamK's NetworkMap tool demonstrated real-time
+        at-event collection via a web form, capturing both participant details and
+        self-reported organizational connections. That platform informs how future
+        conferences can feed directly into this pipeline.
+        <a href="{% url 'conferences:previous_iteration' %}" style="color:#b07d00;">View previous iteration &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 2: NORMALIZATION -->
+  <div class="stage">
+    <div class="stage-left">
+      <div class="stage-badge badge-2">2</div>
+      <div class="stage-connector"></div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-title">Normalization &amp; Classification</div>
+      <div class="stage-desc">
+        Raw attendance data contains inconsistent organization names and sector labels
+        accumulated over two decades. Two cleaning passes are applied before analysis:
+        organization names are deduplicated and standardized, and free-text sector labels
+        are mapped to a controlled vocabulary of {{ canonical_count }} canonical SNA categories.
+        {{ raw_variant_count }} distinct raw label variants collapse into this taxonomy.
+      </div>
+      <div class="stat-row">
+        <div class="stat-chip"><strong>{{ unique_orgs }}</strong>unique organizations</div>
+        <div class="stat-chip"><strong>{{ raw_variant_count }}</strong>raw label variants</div>
+        <div class="stat-chip"><strong>{{ canonical_count }}</strong>canonical categories</div>
+      </div>
+      <div class="sector-grid">
+        {% for sc in sector_counts %}
+          {% if sc.sna_category == "Program" %}<span class="sector-tag s-Program">Program ({{ sc.count }})</span>
+          {% elif sc.sna_category == "Resource" %}<span class="sector-tag s-Resource">Resource ({{ sc.count }})</span>
+          {% elif sc.sna_category == "College" %}<span class="sector-tag s-College">College ({{ sc.count }})</span>
+          {% elif sc.sna_category == "Intermediary" %}<span class="sector-tag s-Intermediary">Intermediary ({{ sc.count }})</span>
+          {% elif sc.sna_category == "Business" %}<span class="sector-tag s-Business">Business ({{ sc.count }})</span>
+          {% elif sc.sna_category == "T/MC" %}<span class="sector-tag s-TMC">T/MC ({{ sc.count }})</span>
+          {% elif sc.sna_category == "Government" %}<span class="sector-tag s-Government">Government ({{ sc.count }})</span>
+          {% elif sc.sna_category == "K-12 School" %}<span class="sector-tag s-K12">K-12 School ({{ sc.count }})</span>
+          {% elif sc.sna_category == "Faith" %}<span class="sector-tag s-Faith">Faith ({{ sc.count }})</span>
+          {% elif sc.sna_category == "Foundation" %}<span class="sector-tag s-Foundation">Foundation ({{ sc.count }})</span>
+          {% else %}<span class="sector-tag s-Other">{{ sc.sna_category }} ({{ sc.count }})</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="step-note" style="margin-top:.75rem;">
+        Normalization is defined in <code>sna_normalize.py</code> and applied at
+        load time via the <code>load_data</code> management command, making it
+        deterministic and reusable against any updated source file.
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 3: NETWORK CONSTRUCTION -->
+  <div class="stage">
+    <div class="stage-left">
+      <div class="stage-badge badge-3">3</div>
+      <div class="stage-connector"></div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-title">Network Construction &amp; Export</div>
+      <div class="stage-desc">
+        Normalized attendance records are transformed into graph structures: organizations
+        become nodes (attributed with sector, event count) and relationships become edges
+        (co-attendance, bipartite links, or hierarchical layers). Three graph models
+        are supported, each answering a different analytical question.
+      </div>
+      <div class="graph-types">
+        <div class="graph-card">
+          <strong>Org ↔ Event (Bipartite)</strong>
+          Which organizations attended which events? Node size reflects participation depth.
+        </div>
+        <div class="graph-card">
+          <strong>Org ↔ Org (Co-attendance)</strong>
+          Which organizations share conference history? Edge weight = number of shared events.
+        </div>
+        <div class="graph-card">
+          <strong>Event → Sector → Org (Three-layer)</strong>
+          How does participation flow from events through sector types to individual organizations?
+        </div>
+      </div>
+      <div class="stat-row" style="margin-top:.85rem;">
+        <a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_nodes' %}">nodes.csv</a>
+        <a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_edges_org_event' %}">edges_org_event.csv</a>
+        <a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_edges_org_org' %}">edges_org_org.csv</a>
+        <a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_edges_event_sector_org' %}">edges_3layer.csv</a>
+      </div>
+      <div class="step-note">
+        Exports are formatted for direct import into
+        <a href="https://kumu.io" target="_blank" rel="noopener">Kumu.io</a> or
+        <a href="https://gephi.org" target="_blank" rel="noopener">Gephi</a> —
+        no post-processing required.
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 4: VISUALIZATION -->
+  <div class="stage">
+    <div class="stage-left">
+      <div class="stage-badge badge-4">4</div>
+      <div class="stage-connector"></div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-title">Visualization &amp; Analysis</div>
+      <div class="stage-desc">
+        Network exports feed into two visualization tracks: in-platform rendered maps
+        (built with NetworkX and Matplotlib) and interactive external tools (Kumu, Gephi).
+        The analytics dashboard surfaces aggregate patterns (sector distribution, top
+        organizations, attendance trends over time) providing the interpretive layer
+        that turns the network into insight.
+      </div>
+      <div class="viz-links">
+        <a class="btn-app" href="{% url 'conferences:network_maps' %}">Network Maps</a>
+        <a class="btn-app" href="{% url 'conferences:dashboard' %}">Analytics Dashboard</a>
+        <a class="btn-app" href="{% url 'conferences:chart' %}">Frequency Chart</a>
+      </div>
+      <div class="step-note" style="margin-top:.85rem;">
+        Because every prior stage is reproducible (the same source CSV always produces
+        the same normalized records, the same graph exports, and the same visualizations)
+        results can be independently verified or regenerated as the dataset is updated.
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

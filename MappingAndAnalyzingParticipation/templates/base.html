@@ -1,67 +1,173 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}Tutor/Mentor Conference Network{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+  <link rel="stylesheet" href="{% static 'provetta/css/libraries.css' %}">
+  <link rel="stylesheet" href="{% static 'provetta/css/style.css' %}">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: #f5f7fa; color: #222; }
-    nav {
-      background: #1a3a5c; color: #fff; padding: 0.75rem 1.5rem;
-      display: flex; align-items: center; gap: 2rem;
-    }
-    nav a { color: #cde; text-decoration: none; font-size: 0.9rem; }
-    nav a:hover { color: #fff; text-decoration: underline; }
-    nav .brand { font-weight: 700; font-size: 1rem; color: #fff; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
-    h1 { font-size: 1.6rem; margin-bottom: 1rem; color: #1a3a5c; }
-    h2 { font-size: 1.2rem; margin: 1.2rem 0 0.6rem; color: #1a3a5c; }
-    .card {
-      background: #fff; border-radius: 8px; padding: 1rem 1.25rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 1rem;
-    }
-    .metrics { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
-    .metric {
-      background: #fff; border-radius: 8px; padding: 1rem 1.5rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08); min-width: 150px; text-align: center;
-    }
-    .metric .value { font-size: 2rem; font-weight: 700; color: #1a3a5c; }
-    .metric .label { font-size: 0.8rem; color: #666; margin-top: 0.25rem; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
-    th { background: #1a3a5c; color: #fff; padding: 0.5rem 0.75rem; text-align: left; }
-    td { padding: 0.45rem 0.75rem; border-bottom: 1px solid #eee; }
-    tr:hover td { background: #f0f4f8; }
-    .filters { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; margin-bottom: 1rem; }
-    .filters label { font-size: 0.82rem; color: #555; display: block; margin-bottom: 0.2rem; }
-    .filters select, .filters input {
-      padding: 0.4rem 0.6rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem;
-    }
-    .btn {
-      display: inline-block; padding: 0.4rem 1rem; border-radius: 4px;
-      background: #1a3a5c; color: #fff; text-decoration: none; font-size: 0.85rem;
-      border: none; cursor: pointer;
-    }
-    .btn:hover { background: #255080; }
-    .btn-sm { padding: 0.3rem 0.7rem; font-size: 0.8rem; }
-    .btn-green { background: #2e7d32; }
-    .btn-green:hover { background: #1b5e20; }
+    body { font-family: 'Titillium Web', sans-serif; }
+    section { padding-top: 0; padding-bottom: 0; }
+    .page-content { padding: 2.5rem 0 3.5rem; background: #f5f7fa; min-height: calc(100vh - 200px); }
+
+    h1 { font-size: 1.75rem; font-weight: 700; color: #1a1f3c; margin-bottom: 1rem; }
+    h2 { font-size: 1.2rem; font-weight: 700; color: #1a1f3c; margin-bottom: .6rem; }
+
+    /* Tables */
+    .tbl { width: 100%; border-collapse: collapse; font-size: .87rem; }
+    .tbl th { background: #2e3192; color: #fff; padding: .5rem .75rem; text-align: left; font-weight: 600; }
+    .tbl td { padding: .45rem .75rem; border-bottom: 1px solid #eee; color: #444; }
+    .tbl tr:hover td { background: #eef0fb; }
+
+    /* Cards */
+    .data-card { background: #fff; border-radius: 8px; padding: 1.25rem 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,.07); margin-bottom: 1.25rem; }
+
+    /* Metric cards */
+    .metric-card { background: #fff; border-radius: 8px; padding: 1.25rem 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,.07); text-align: center; }
+    .metric-card .value { font-size: 2rem; font-weight: 700; color: #2e3192; line-height: 1.1; }
+    .metric-card .label { font-size: .8rem; color: #848e9f; margin-top: .3rem; }
+
+    /* Filters */
+    .filter-bar { background: #fff; border-radius: 8px; padding: 1rem 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,.07); margin-bottom: 1.25rem; display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end; }
+    .filter-bar label { font-size: .82rem; color: #555; display: block; margin-bottom: .2rem; font-weight: 600; }
+    .filter-bar select, .filter-bar input { padding: .4rem .6rem; border: 1px solid #d0d5dd; border-radius: 4px; font-size: .85rem; font-family: inherit; }
+
+    /* Buttons */
+    .btn-app { display: inline-block; padding: .42rem 1.1rem; border-radius: 4px; background: #2e3192; color: #fff !important; text-decoration: none; font-size: .85rem; border: none; cursor: pointer; transition: background .2s; }
+    .btn-app:hover { background: #232580; color: #fff !important; }
+    .btn-app-sm { padding: .28rem .7rem; font-size: .78rem; }
+    .btn-app-green { background: #2e7d32; }
+    .btn-app-green:hover { background: #1b5e20; }
+    .btn-app-grey { background: #607d8b; }
+    .btn-app-grey:hover { background: #455a64; }
+
+    /* Stat chips */
+    .stat-chip { background: #eef0fb; border-radius: 6px; padding: .35rem .75rem; font-size: .82rem; color: #2e3192; display: inline-block; margin: .2rem .2rem .2rem 0; }
+    .stat-chip strong { font-size: 1rem; display: block; }
+
+    /* Step notes / callouts */
+    .step-note { background: #fffbea; border-left: 3px solid #f5a623; padding: .5rem .75rem; font-size: .83rem; color: #555; border-radius: 0 4px 4px 0; margin-top: .75rem; line-height: 1.55; }
+
+    /* Pipeline stages */
+    .pipeline { display: flex; flex-direction: column; gap: 0; margin: 1.5rem 0; }
+    .stage { display: grid; grid-template-columns: 56px 1fr; gap: 0 1.25rem; position: relative; }
+    .stage-left { display: flex; flex-direction: column; align-items: center; }
+    .stage-badge { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; color: #fff; flex-shrink: 0; z-index: 1; }
+    .stage-connector { flex: 1; width: 3px; background: #d0d9e8; margin: 4px 0; }
+    .stage:last-child .stage-connector { display: none; }
+    .stage-body { padding-bottom: 2rem; }
+    .stage-title { font-size: 1.1rem; font-weight: 700; color: #1a1f3c; margin: .6rem 0 .4rem; }
+    .stage-desc { font-size: .9rem; color: #444; line-height: 1.6; margin-bottom: .75rem; }
+    .badge-1 { background: #2e3192; }
+    .badge-2 { background: #1565C0; }
+    .badge-3 { background: #2e7d32; }
+    .badge-4 { background: #6a1b9a; }
+
+    /* Sector tags — domain-meaningful colors preserved */
+    .sector-tag { padding: .25rem .65rem; border-radius: 4px; font-size: .78rem; color: #fff; font-weight: 600; display: inline-block; }
+    .s-Program      { background: #2196F3; }
+    .s-Resource     { background: #4CAF50; }
+    .s-College      { background: #9C27B0; }
+    .s-Intermediary { background: #FF9800; }
+    .s-Business     { background: #F44336; }
+    .s-TMC          { background: #009688; }
+    .s-Government   { background: #607D8B; }
+    .s-K12          { background: #E91E63; }
+    .s-Faith        { background: #795548; }
+    .s-Foundation   { background: #FFC107; color: #333 !important; }
+    .s-Other        { background: #9E9E9E; }
+
+    /* Roadmap */
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; display: inline-block; }
+    .dot.done   { background: #2e7d32; }
+    .dot.next   { background: #2e3192; }
+    .dot.summer { background: #e65100; }
+    .dot.future { background: #9E9E9E; }
+
+    /* Metric card icon */
+    .metric-card .mc-icon { font-size: 1.4rem; color: #c8cef0; margin-bottom: .4rem; }
+
+    /* Page banner (inner pages) */
+    .page-banner { background: linear-gradient(135deg, #1a1f3c 0%, #2e3192 100%); padding: 1.75rem 0; margin-bottom: 0; }
+    .page-banner .banner-label { color: #848e9f; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .25rem; }
+    .page-banner .banner-title { color: #fff; font-size: 1.5rem; font-weight: 700; margin: 0; }
+
+    /* Misc */
     .warning { color: #b71c1c; font-weight: 600; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+    .result-count { font-size: .82rem; color: #848e9f; margin-bottom: .75rem; }
+    .empty { color: #848e9f; font-size: .9rem; padding: .5rem 0; }
   </style>
+  {% block extra_css %}{% endblock %}
 </head>
-<body>
-<nav>
-  <span class="brand">T/MC Conference Network</span>
-  <a href="{% url 'conferences:index' %}">Home</a>
-  <a href="{% url 'conferences:dashboard' %}">Dashboard</a>
-  <a href="{% url 'conferences:network_maps' %}">Network Maps</a>
-  <a href="{% url 'conferences:chart' %}">Frequency Chart</a>
-  <a href="{% url 'conferences:data_quality' %}">Data Quality</a>
-</nav>
-<div class="container">
-  {% block content %}{% endblock %}
-</div>
+<body class="wrapper">
+
+  <header class="header header-layout1">
+    <nav class="navbar navbar-expand-lg sticky-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'conferences:index' %}" style="display:flex; align-items:center; gap:.55rem;">
+          <span style="width:32px; height:32px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <i class="fas fa-share-alt" style="color:#2e3192; font-size:.9rem;"></i>
+          </span>
+          <span style="font-weight:700; font-size:.95rem; color:#fff; letter-spacing:.02em; line-height:1.2;">T/MC Conference<br><span style="font-weight:300; font-size:.8rem; opacity:.8;">Network Platform</span></span>
+        </a>
+        <button class="navbar-toggler" type="button">
+          <span class="menu-lines"><span></span></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavigation">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="{% url 'conferences:index' %}" class="nav-item-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'conferences:methodology' %}" class="nav-item-link">Methodology</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'conferences:dashboard' %}" class="nav-item-link">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'conferences:participant_search' %}" class="nav-item-link">Search</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'conferences:network_maps' %}" class="nav-item-link">Network Maps</a>
+            </li>
+            <li class="nav-item has-dropdown">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-item-link">More</a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a href="{% url 'conferences:chart' %}" class="nav-item-link">Frequency Chart</a></li>
+                <li class="nav-item"><a href="{% url 'conferences:data_quality' %}" class="nav-item-link">Data Quality</a></li>
+                <li class="nav-item"><a href="{% url 'conferences:previous_iteration' %}" class="nav-item-link">Previous Iteration</a></li>
+                <li class="nav-item"><a href="{% url 'roadmap' %}" class="nav-item-link">Roadmap</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  {% block page_banner %}{% endblock %}
+
+  <main class="page-content">
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <footer style="background:#1a1f3c; padding:1.5rem 0;">
+    <div class="container text-center">
+      <p class="mb-0" style="color:#848e9f; font-size:.85rem;">
+        Tutor/Mentor Conference Network &mdash; E583/E483 Information Visualization, Spring 2026
+      </p>
+    </div>
+  </footer>
+
+  <script src="{% static 'provetta/js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'provetta/js/plugins.js' %}"></script>
+  <script src="{% static 'provetta/js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

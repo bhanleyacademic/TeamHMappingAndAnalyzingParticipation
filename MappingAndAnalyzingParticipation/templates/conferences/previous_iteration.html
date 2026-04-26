@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Previous Iteration – T/MC Conference Network{% endblock %}
+{% block extra_css %}
+<style>
+  .learned-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .75rem; margin: .75rem 0 1.25rem; }
+  .learned-card { background: #fff; border-radius: 8px; padding: .85rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.07); font-size: .85rem; color: #333; line-height: 1.55; }
+  .learned-card .lc-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .3rem; }
+  .lc-green  .lc-label { color: #2e7d32; }
+  .lc-blue   .lc-label { color: #2e3192; }
+  .lc-orange .lc-label { color: #e65100; }
+  .lc-purple .lc-label { color: #6a1b9a; }
+  .compare-table td, .compare-table th { vertical-align: top; }
+  .compare-table td:first-child { color: #555; font-size: .85rem; font-weight: 600; width: 160px; }
+  .compare-table td:not(:first-child) { font-size: .85rem; }
+  .tag-prev { display:inline-block; background:#eee; color:#555; border-radius:4px; padding:.15rem .5rem; font-size:.78rem; }
+  .tag-curr { display:inline-block; background:#2e3192; color:#fff; border-radius:4px; padding:.15rem .5rem; font-size:.78rem; }
+</style>
+{% endblock %}
+{% block page_banner %}
+<div class="page-banner">
+  <div class="container">
+    <p class="banner-label">T/MC Conference Network</p>
+    <h1 class="banner-title">Previous Iteration</h1>
+  </div>
+</div>
+{% endblock %}
+{% block content %}
+
+<!-- Hero -->
+<div class="data-card mb-4" style="background:#1a1f3c; border:none;">
+  <p style="color:#848e9f; font-size:.85rem; margin-bottom:.3rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em;">Project lineage</p>
+  <h1 style="color:#fff; margin-bottom:.75rem;">NetworkMap — Previous Iteration</h1>
+  <p style="font-size:.9rem; line-height:1.65; color:#c8d8ea; margin-bottom:0;">
+    Before this platform, a student team (Team K) built NetworkMap: a web application for
+    collecting participant data at live events and converting it into network-ready exports.
+    That work established the core problem statement — how do you get from a conference
+    sign-in sheet to a social network graph? — and demonstrated one viable answer. This
+    platform picks up where it left off, extending the pipeline toward rigorous analysis
+    and reproducible visualization.
+  </p>
+</div>
+
+<h2 class="mb-3">What Team K Built</h2>
+<div class="learned-grid mb-4">
+  <div class="learned-card lc-green">
+    <div class="lc-label">Form builder + collection</div>
+    Admins create custom event registration forms with a shareable URL. Fixed fields
+    (name, org, sector, location, contact) plus admin-defined custom fields. Responses
+    stored in MongoDB in real time.
+  </div>
+  <div class="learned-card lc-blue">
+    <div class="lc-label">Self-reported connections</div>
+    Participants record up to 5 organizational connections per submission, each with
+    a connection type (Met for first time, Reconnected, Shared info, Funding, Referral,
+    Other) — capturing declared relationships, not just inferred co-attendance.
+  </div>
+  <div class="learned-card lc-orange">
+    <div class="lc-label">Network export</div>
+    Responses convert to Gephi- or Kumu-compatible <code>nodes.csv</code> and
+    <code>edges.csv</code>. Two edge types are produced: attendance edges (org → event)
+    and connection edges (org → org). Visualization itself happens in external tools.
+  </div>
+  <div class="learned-card lc-purple">
+    <div class="lc-label">Educational content</div>
+    A <code>/learn</code> section walks users through network analysis concepts,
+    and an <code>/examples</code> page shows static Kumu/Gephi visualizations — making
+    the tool useful for teaching the methodology, not just running it.
+  </div>
+</div>
+
+<h2 class="mb-3">How This Platform Extends It</h2>
+<div class="data-card mb-4">
+  <table class="tbl compare-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th><span class="tag-prev">NetworkMap (Team K)</span></th>
+        <th><span class="tag-curr">This platform</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Data scope</td>
+        <td>Live event collection, new data only</td>
+        <td>25-year longitudinal dataset (1994–2015, 42 events)</td>
+      </tr>
+      <tr>
+        <td>Sector taxonomy</td>
+        <td>6 generic options (Education, Business, Non-profit, Government, Community, Other)</td>
+        <td>11 canonical SNA categories mapped from 70+ raw variants</td>
+      </tr>
+      <tr>
+        <td>Normalization</td>
+        <td>Uppercase + whitespace strip on ingest; deduplication via canonical keys at export</td>
+        <td>Full taxonomy normalization — deterministic, re-runnable against updated source data</td>
+      </tr>
+      <tr>
+        <td>Graph models</td>
+        <td>One nodes file + one edges file (attendance + connection edge types)</td>
+        <td>Three distinct graph types: bipartite, co-attendance weighted, three-layer</td>
+      </tr>
+      <tr>
+        <td>Visualization</td>
+        <td>Basic Recharts analytics (sector, location, connection type counts); no network rendering</td>
+        <td>Rendered network maps (NetworkX/Matplotlib) + interactive Plotly charts</td>
+      </tr>
+      <tr>
+        <td>Methodology</td>
+        <td>Implicit in the code</td>
+        <td>Documented pipeline, each stage explicit and reproducible</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="mb-3">Visit the Previous Iteration</h2>
+<div class="data-card" style="max-width:620px;">
+  <p style="font-size:.9rem; color:#848e9f; margin-bottom:1rem; line-height:1.6;">
+    Team K's NetworkMap is still hosted and demonstrates the real-time collection
+    workflow. It serves as the reference implementation for the collection stage of
+    this pipeline.
+  </p>
+  <a class="btn-app" href="https://mapping-analyzing-participation.netlify.app/" target="_blank" rel="noopener">
+    Open NetworkMap &rarr;
+  </a>
+  <p style="font-size:.78rem; color:#848e9f; margin-top:.6rem; margin-bottom:0;">
+    Source: <a href="https://github.com/kishuxz/info_viz" target="_blank" rel="noopener" style="color:#2e3192;">github.com/kishuxz/info_viz</a>
+  </p>
+</div>
+
+{% endblock %}

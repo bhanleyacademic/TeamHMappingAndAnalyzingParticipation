@@ -1,2 +1,0 @@
-# Self-hosted requirements — SQLite, no billing, no cloud storage
--r base.txt

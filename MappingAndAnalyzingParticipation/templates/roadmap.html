@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% block title %}Roadmap – T/MC Conference Network{% endblock %}
+{% block extra_css %}
+<style>
+  .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin: 1rem 0 2rem; }
+  .phase-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.07); overflow: hidden; }
+  .phase-header { padding: .75rem 1rem; color: #fff; font-weight: 700; font-size: .85rem; display: flex; justify-content: space-between; align-items: center; }
+  .phase-header .phase-label { font-size: .7rem; opacity: .85; font-weight: 400; }
+  .phase-body { padding: .85rem 1rem; }
+  .item { display: flex; gap: .5rem; align-items: flex-start; font-size: .83rem; color: #333; padding: .3rem 0; border-bottom: 1px solid #f0f0f0; line-height: 1.5; }
+  .item:last-child { border-bottom: none; }
+  .item-note { font-size: .75rem; color: #848e9f; display: block; margin-top: .1rem; }
+  .legend { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; font-size: .82rem; color: #555; }
+  .legend-item { display: flex; align-items: center; gap: .4rem; }
+  .h-data      { background: #1565C0; }
+  .h-cleaning  { background: #00695C; }
+  .h-analysis  { background: #6a1b9a; }
+  .h-network   { background: #2e7d32; }
+  .h-powerbi   { background: #c62828; }
+  .h-research  { background: #4527a0; }
+  .h-platform  { background: #1a1f3c; }
+  .section-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin: .6rem 0 .25rem; }
+  .section-label:first-child { margin-top: 0; }
+</style>
+{% endblock %}
+{% block page_banner %}
+<div class="page-banner">
+  <div class="container">
+    <p class="banner-label">T/MC Conference Network</p>
+    <h1 class="banner-title">Roadmap</h1>
+  </div>
+</div>
+{% endblock %}
+{% block content %}
+
+<h1>Project Roadmap</h1>
+
+<div class="step-note mb-4" style="max-width:980px;">
+  This roadmap reflects intentional scoping. Each phase is complete enough to demonstrate
+  the pipeline and support further development — by this team in the final sprint,
+  in summer 2026, or by future classes. Scope decisions prioritize
+  <strong>depth over breadth</strong> and <strong>reproducibility over features</strong>.
+  Items added during peer review will be incorporated into the appropriate phase.
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="dot done"></div> Completed — Spring 2026</div>
+  <div class="legend-item"><div class="dot next"></div> Final checkpoint — April 26</div>
+  <div class="legend-item"><div class="dot summer"></div> Summer 2026</div>
+  <div class="legend-item"><div class="dot future"></div> Future classes</div>
+</div>
+
+<div class="roadmap-grid">
+
+  <!-- DATA PIPELINE -->
+  <div class="phase-card">
+    <div class="phase-header h-data">
+      Data Pipeline
+      <span class="phase-label">Spring 2026</span>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">Ingestion</div>
+      <div class="item"><div class="dot done"></div><span>Load 6,410 attendance records from cleaned XLSX via management command<span class="item-note">python manage.py load_data</span></span></div>
+      <div class="item"><div class="dot done"></div><span>One-command reproducible setup<span class="item-note">make setup — venv, deps, migrate, load in sequence</span></span></div>
+      <div class="item"><div class="dot done"></div><span>Deterministic reload against updated source file<span class="item-note">make reload — wipes and re-ingests cleanly</span></span></div>
+      <div class="section-label">Normalization</div>
+      <div class="item"><div class="dot done"></div><span>SNA category normalization — 73 raw variants → 11 canonical sectors<span class="item-note">Verified against full dataset; strip().lower() before lookup</span></span></div>
+      <div class="item"><div class="dot done"></div><span>Organization name whitespace cleaning on ingest</span></div>
+      <div class="item"><div class="dot next"></div><span>Website URL column added to source data<span class="item-note">Client requirement — currently no URL field exists</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Reload pipeline with data cleaner's updated XLSX</span></div>
+      <div class="section-label">Future</div>
+      <div class="item"><div class="dot summer"></div><span>Fuzzy deduplication for org name variants<span class="item-note">~323 whitespace issues + compound name variants identified</span></span></div>
+      <div class="item"><div class="dot summer"></div><span>Geocoding for organization addresses<span class="item-note">Enable map-based visualization of participation geography</span></span></div>
+      <div class="item"><div class="dot summer"></div><span>Cross-reference with Tutor/Mentor program directory</span></div>
+      <div class="item"><div class="dot future"></div><span>Live form collection feeding directly into pipeline<span class="item-note">Connect TeamK's NetworkMap collection layer to this analysis layer</span></span></div>
+      <div class="item"><div class="dot future"></div><span>API endpoint for programmatic dataset access</span></div>
+    </div>
+  </div>
+
+  <!-- DATA CLEANING -->
+  <div class="phase-card">
+    <div class="phase-header h-cleaning">
+      Data Cleaning
+      <span class="phase-label">Spring 2026</span>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">Completed</div>
+      <div class="item"><div class="dot done"></div><span>SNA Category - CLEANED column — all 73 variants accounted for in normalization code<span class="item-note">No further spreadsheet edits needed for this column</span></span></div>
+      <div class="item"><div class="dot done"></div><span>Conference date column validated — 42 events, May/Nov pattern 1994–2014</span></div>
+      <div class="section-label">By April 5</div>
+      <div class="item"><div class="dot next"></div><span>Trim whitespace from Organization - CLEANED<span class="item-note">323 entries have leading/trailing spaces</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Flag or fill 272 blank Organization records<span class="item-note">4.2% of dataset — document decisions made</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Add Website URL column for top 20–30 organizations<span class="item-note">Client requirement; prioritize highest-attendance orgs</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Document data quality decisions in draft report<span class="item-note">What was fixed, what was left, and why</span></span></div>
+      <div class="section-label">Future</div>
+      <div class="item"><div class="dot summer"></div><span>Resolve obvious org name duplicates<span class="item-note">e.g. "Fourth Presbyterian Church" variants, Epworth variants</span></span></div>
+      <div class="item"><div class="dot summer"></div><span>Fill remaining blank orgs where source records exist</span></div>
+      <div class="item"><div class="dot summer"></div><span>Expand website URL coverage to full organization list</span></div>
+      <div class="item"><div class="dot future"></div><span>Standardize Title - CLEANED column<span class="item-note">33.5% null despite Title having values</span></span></div>
+    </div>
+  </div>
+
+  <!-- ANALYSIS & VISUALIZATION -->
+  <div class="phase-card">
+    <div class="phase-header h-analysis">
+      Analysis &amp; Visualization
+      <span class="phase-label">Spring 2026</span>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">Completed</div>
+      <div class="item"><div class="dot done"></div><span>Analytics dashboard — sector distribution, top 15 orgs, attendance trends<span class="item-note">Filterable by year, sector, state</span></span></div>
+      <div class="item"><div class="dot done"></div><span>Participation frequency chart (Plotly stacked bar by sector)</span></div>
+      <div class="item"><div class="dot done"></div><span>Three network maps — org↔event bipartite, org↔org co-attendance, event→sector→org three-layer<span class="item-note">Rendered PNG via NetworkX/Matplotlib</span></span></div>
+      <div class="item"><div class="dot done"></div><span>Data quality view — missing orgs, unmapped categories, raw vs. normalized distribution</span></div>
+      <div class="item"><div class="dot done"></div><span>Organization search — attendance history by org name with conference chips</span></div>
+      <div class="section-label">By April 26</div>
+      <div class="item"><div class="dot next"></div><span>Kumu.io explainer — step-by-step import guide for exported CSVs</span></div>
+      <div class="item"><div class="dot next"></div><span>Surface org website URLs in search results once data is updated</span></div>
+      <div class="section-label">Future</div>
+      <div class="item"><div class="dot summer"></div><span>Interactive network visualization<span class="item-note">Replace static PNG maps with D3.js or Plotly graph</span></span></div>
+      <div class="item"><div class="dot summer"></div><span>SNA centrality metrics — betweenness, closeness, degree per org</span></div>
+      <div class="item"><div class="dot summer"></div><span>Year-over-year sector trend analysis</span></div>
+      <div class="item"><div class="dot summer"></div><span>Network density and cohesion metrics over time</span></div>
+      <div class="item"><div class="dot future"></div><span>Multi-event comparison tools</span></div>
+      <div class="item"><div class="dot future"></div><span>Attendance prediction / gap analysis</span></div>
+    </div>
+  </div>
+
+  <!-- NETWORK EXPORTS -->
+  <div class="phase-card">
+    <div class="phase-header h-network">
+      Network Exports
+      <span class="phase-label">Spring 2026</span>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">Completed</div>
+      <div class="item"><div class="dot done"></div><span>Nodes CSV — organizations with sector, event count, record count</span></div>
+      <div class="item"><div class="dot done"></div><span>Org ↔ Event bipartite edges (from/to, type, year, month)</span></div>
+      <div class="item"><div class="dot done"></div><span>Org ↔ Org co-attendance edges (weighted by shared conferences)</span></div>
+      <div class="item"><div class="dot done"></div><span>Event → Sector → Org three-layer edges (layer labeled)</span></div>
+      <div class="item"><div class="dot done"></div><span>All exports filterable by year, sector, state via query params</span></div>
+      <div class="section-label">By April 26</div>
+      <div class="item"><div class="dot next"></div><span>Kumu.io step-by-step import guide<span class="item-note">Map column names to Kumu element/connection fields; color by sector</span></span></div>
+      <div class="section-label">Future</div>
+      <div class="item"><div class="dot summer"></div><span>Kumu live API integration<span class="item-note">Push updated exports directly to a hosted Kumu map</span></span></div>
+      <div class="item"><div class="dot summer"></div><span>Pre-built Gephi project file (.gephi) with layout and color presets</span></div>
+      <div class="item"><div class="dot summer"></div><span>Per-year snapshot exports<span class="item-note">Downloadable network state for any single conference year</span></span></div>
+      <div class="item"><div class="dot future"></div><span>GEXF / GraphML format support for broader tool compatibility</span></div>
+      <div class="item"><div class="dot future"></div><span>Declared-connection edges from NetworkMap form submissions</span></div>
+    </div>
+  </div>
+
+  <!-- POWERBI -->
+  <div class="phase-card">
+    <div class="phase-header h-powerbi">
+      PowerBI Visualizations
+      <span class="phase-label">Spring 2026</span>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">By April 5</div>
+      <div class="item"><div class="dot next"></div><span>Attendance per conference over time (bar/line)<span class="item-note">Show the arc — peak years 2004–2010, decline pattern</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Sector distribution — total and over time<span class="item-note">Program dominates; did diversity change across 20 years?</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Top 15 organizations by total attendance</span></div>
+      <div class="item"><div class="dot next"></div><span>Geographic distribution<span class="item-note">Chicago-centric; how far did participation reach?</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Active vs. returning organizations<span class="item-note">Single-event vs. multi-year participation frequency</span></span></div>
+      <div class="section-label">By April 26</div>
+      <div class="item"><div class="dot next"></div><span>Refine charts based on peer and instructor feedback</span></div>
+      <div class="item"><div class="dot next"></div><span>Export final charts for inclusion in written report</span></div>
+      <div class="section-label">Future</div>
+      <div class="item"><div class="dot summer"></div><span>Embed PowerBI report in platform via iframe</span></div>
+      <div class="item"><div class="dot summer"></div><span>Cross-filter between sector, year, and geography</span></div>
+      <div class="item"><div class="dot future"></div><span>Live-connected PowerBI dashboard (when data pipeline goes live)</span></div>
+    </div>
+  </div>
+
+  <!-- RESEARCH & WRITING -->
+  <div class="phase-card">
+    <div class="phase-header h-research">
+      Research &amp; Writing
+      <span class="phase-label">Spring 2026</span>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">Completed</div>
+      <div class="item"><div class="dot done"></div><span>Dataset statistics computed and verified<span class="item-note">6,410 records, 42 events, 1994–2015, 11 sectors</span></span></div>
+      <div class="item"><div class="dot done"></div><span>SNA category taxonomy defined and documented</span></div>
+      <div class="item"><div class="dot done"></div><span>Previous iteration (Team K) documented and compared</span></div>
+      <div class="section-label">By April 5</div>
+      <div class="item"><div class="dot next"></div><span>Intermediate draft report — methodology, data quality, early insights</span></div>
+      <div class="item"><div class="dot next"></div><span>5-minute presentation slides (April 6, Luddy Hall 1106, 5:30pm)<span class="item-note">Title, team, stakeholders, dataset stats, methods, key insights</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Discussion thread updated with links to all current results</span></div>
+      <div class="section-label">April 6–13</div>
+      <div class="item"><div class="dot next"></div><span>Peer feedback — review 2 other teams' work<span class="item-note">Due April 12; individual submission, not group</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Incorporate instructor feedback from April 6 presentation</span></div>
+      <div class="section-label">By April 26</div>
+      <div class="item"><div class="dot next"></div><span>Final report — 4 pages max, research paper format<span class="item-note">Reproducibility, data quality, insights, acknowledgments, references</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Incorporate peer feedback received April 12</span></div>
+      <div class="item"><div class="dot next"></div><span>Client discussion and approval<span class="item-note">Dan Bassill — request peer review before submission</span></span></div>
+      <div class="item"><div class="dot next"></div><span>Final presentation slides (April 28, Fine Arts Room 102, 3pm)</span></div>
+    </div>
+  </div>
+
+  <!-- PLATFORM & METHODOLOGY -->
+  <div class="phase-card">
+    <div class="phase-header h-platform">
+      Platform &amp; Methodology
+      <span class="phase-label">Spring 2026</span>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">Completed</div>
+      <div class="item"><div class="dot done"></div><span>Methodology page — 4-stage pipeline with live DB stats</span></div>
+      <div class="item"><div class="dot done"></div><span>Previous iteration page — Team K's NetworkMap, honest comparison table</span></div>
+      <div class="item"><div class="dot done"></div><span>Home page reframed around research question and pipeline</span></div>
+      <div class="item"><div class="dot done"></div><span>Roadmap page (this page)</span></div>
+      <div class="item"><div class="dot done"></div><span>One-command setup via Makefile<span class="item-note">make setup / make run / make reload / make clean</span></span></div>
+      <div class="section-label">By April 26</div>
+      <div class="item"><div class="dot next"></div><span>Kumu.io explainer page — import workflow, color-coding guide</span></div>
+      <div class="item"><div class="dot next"></div><span>Final reproducibility audit — confirm make setup produces identical results from clean state</span></div>
+      <div class="section-label">Future</div>
+      <div class="item"><div class="dot summer"></div><span>Admin interface — update source data without touching code</span></div>
+      <div class="item"><div class="dot summer"></div><span>Automated data reload on file upload</span></div>
+      <div class="item"><div class="dot summer"></div><span>GitHub Actions CI — run make setup on every push to verify reproducibility</span></div>
+      <div class="item"><div class="dot future"></div><span>Multi-dataset support — other T/MC initiatives or partner organizations</span></div>
+      <div class="item"><div class="dot future"></div><span>Public-facing tutorial and methodology guide</span></div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

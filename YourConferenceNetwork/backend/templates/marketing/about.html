@@ -1,0 +1,73 @@
+{% extends "base_marketing.html" %}
+{% load static %}
+
+{% block title %}About — YourConferenceNetwork{% endblock %}
+
+{% block content %}
+<section class="page__banner pt-120 pb-60" style="background: linear-gradient(135deg, #0D1B2A 0%, #1A3A5C 100%);">
+  <div class="container" data-aos="fade-up">
+    <div class="text-center">
+      <h1 class="text-white mb-20">About YourConferenceNetwork</h1>
+      <p class="text-white-50">Built from 20+ years of real conference participation data.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about__section pt-100 pb-100" data-aos="fade-up">
+  <div class="container">
+    <div class="row mb-60">
+      <div class="col-xl-6">
+        <h5 class="section__sub__title">THE ORIGIN</h5>
+        <h2 class="section__title__main mb-30">Built on Real Methodology</h2>
+        <p class="mb-20">YourConferenceNetwork grew out of analysis of 42 Tutor/Mentor Leadership and Networking Conferences held in Chicago between 1994 and 2015 — 6,410 individual attendance records across 2,179 unique organizations.</p>
+        <p class="mb-20">The methodology maps <strong>who shows up</strong> to build community. Not just counts, but networks: which organizations co-attended, which sectors were consistently present or absent, and how those patterns shifted over two decades.</p>
+        <p>We've packaged this methodology so any conference organizer, foundation, or community builder can apply the same network analysis to their own attendance data.</p>
+      </div>
+      <div class="col-xl-6">
+        <div class="row">
+          <div class="col-6 mb-30">
+            <div class="single__fact text-center p-30" style="background:#f8f9fa;border-radius:12px;">
+              <h2 class="mb-10">11</h2>
+              <p>Canonical sector categories</p>
+            </div>
+          </div>
+          <div class="col-6 mb-30">
+            <div class="single__fact text-center p-30" style="background:#f8f9fa;border-radius:12px;">
+              <h2 class="mb-10">3</h2>
+              <p>Graph models per dataset</p>
+            </div>
+          </div>
+          <div class="col-6 mb-30">
+            <div class="single__fact text-center p-30" style="background:#f8f9fa;border-radius:12px;">
+              <h2 class="mb-10">73→11</h2>
+              <p>Raw variants normalized</p>
+            </div>
+          </div>
+          <div class="col-6 mb-30">
+            <div class="single__fact text-center p-30" style="background:#f8f9fa;border-radius:12px;">
+              <h2 class="mb-10">4</h2>
+              <p>Export formats (CSV, JSON, PNG)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-4 mb-30">
+        <h4 class="mb-20">The Sectors</h4>
+        <p>Every organization is mapped to one of 11 canonical sectors: Program, Resource, College, Intermediary, Business, T/MC, Government, K-12 School, Faith, Foundation, or Other.</p>
+        <p>The normalization pipeline handles typos, compound categories, and case variants automatically — so "program/faith" and "Program-Faith" both map cleanly to "Program".</p>
+      </div>
+      <div class="col-xl-4 mb-30">
+        <h4 class="mb-20">The Networks</h4>
+        <p>Three graph models answer different questions: the bipartite org–event model asks <em>who attended what</em>; the co-attendance model asks <em>who attended together</em>; the three-layer model asks <em>how events connect sectors and organizations</em>.</p>
+      </div>
+      <div class="col-xl-4 mb-30">
+        <h4 class="mb-20">The Tools</h4>
+        <p>Export Kumu.io blueprints for interactive web-based network visualization, Gephi CSV files for academic network analysis, or use our built-in interactive charts to explore participation trends over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

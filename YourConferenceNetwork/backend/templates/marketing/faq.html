@@ -1,0 +1,108 @@
+{% extends "base_marketing.html" %}
+{% load static %}
+
+{% block title %}FAQ — YourConferenceNetwork{% endblock %}
+
+{% block content %}
+<section class="page__banner pt-120 pb-60" style="background: linear-gradient(135deg, #0D1B2A 0%, #1A3A5C 100%);">
+  <div class="container" data-aos="fade-up">
+    <div class="text-center">
+      <h1 class="text-white mb-20">Frequently Asked Questions</h1>
+    </div>
+  </div>
+</section>
+
+<section class="faq__section pt-100 pb-100" data-aos="fade-up">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8">
+        <div class="accordion" id="faqAccordion">
+
+          <div class="accordion-item mb-20">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                What kind of data do I need to upload?
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                You need attendance records from conferences or events. Each row should represent one attendee at one event. Required fields: Organization name, Sector/category, and Conference date (MM/YYYY format). Optional: Individual name, title, address/city/state. Download our CSV template from your dashboard for the exact column format.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item mb-20">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                What are "sectors" and how does normalization work?
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Sectors classify the type of organization attending (e.g., Program, Business, Government, College, Faith, Foundation). In real data, the same sector gets recorded many ways — "program/faith", "Program-Faith", "Program (faith)" — our normalization pipeline maps all variants to a standard set of 11 canonical categories automatically. You can also provide pre-cleaned sector data in the "SNA Category - CLEANED" column if you've already standardized it.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item mb-20">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                How long does processing take?
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Small datasets (under 1,000 rows) process in seconds. Large datasets (10,000+ rows) typically complete within 1–2 minutes. Your dashboard polls for status automatically — you'll see a progress indicator and then your charts appear when ready.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item mb-20">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                What is Kumu.io and why would I use it?
+              </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Kumu.io is a web-based interactive network visualization platform. YourConferenceNetwork exports JSON blueprints that you can import directly into Kumu.io to create interactive, shareable network maps that stakeholders can explore in a browser — with filtering, zooming, and dynamic labels. This is a paid feature (Starter plan and above).
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item mb-20">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                Is my data private and secure?
+              </button>
+            </h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes. Each user's datasets are completely isolated — no other user can see or access your data. Uploaded files are stored securely and are only accessible to you and authorized YourConferenceNetwork support staff (who can view your account to help with technical issues, but cannot make payment changes). All data is transmitted over HTTPS.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item mb-20">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                Can I cancel my subscription?
+              </button>
+            </h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes, anytime. Cancel from your billing settings — your subscription stays active through the end of the billing period. After cancellation you revert to the free tier (1 dataset, no exports), but your existing datasets remain accessible and searchable.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-60">
+          <p>Still have questions? <a href="{% url 'contact' %}">Contact us</a> or <a href="{% url 'spa-shell' %}">sign in to your dashboard</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

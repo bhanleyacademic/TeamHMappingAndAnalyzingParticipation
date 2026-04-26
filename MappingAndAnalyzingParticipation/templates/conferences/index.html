@@ -1,55 +1,140 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Tutor/Mentor Conference Network – Home{% endblock %}
 {% block content %}
-<h1>Mapping &amp; Analyzing Participation</h1>
-<div class="card" style="max-width:700px;">
-  <p style="margin-bottom:0.75rem;">
-    This tool visualizes participation in <strong>Tutor/Mentor Leadership and Networking Conferences</strong>
-    hosted by Daniel F. Bassill from May 1994 through November 2015.
-    It covers <strong>{{ total }} attendance records</strong> across 42 conference events.
-  </p>
-  <p style="margin-bottom:1rem; color:#555; font-size:0.9rem;">
-    Use the dashboard to explore who participated, which organizations were most active,
-    and how engagement changed over time. Export nodes and edges for network visualization
-    in <a href="https://kumu.io" target="_blank" rel="noopener">Kumu.io</a> or
-    <a href="https://gephi.org" target="_blank" rel="noopener">Gephi</a>.
-  </p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a class="btn" href="{% url 'conferences:dashboard' %}">Analytics Dashboard</a>
-    <a class="btn" href="{% url 'conferences:chart' %}">Frequency Chart</a>
-    <a class="btn" href="{% url 'conferences:data_quality' %}">Data Quality</a>
+
+<!-- Hero intro -->
+<div class="data-card mb-4" style="border-left: 5px solid #2e3192; padding: 1.5rem;">
+  <div class="row align-items-center">
+    <div class="col-lg-7">
+      <h1 class="mb-2">Mapping &amp; Analyzing Participation</h1>
+      <p style="font-size:.97rem; color:#555; line-height:1.7; margin-bottom:1.25rem;">
+        Who shows up to build a community? Which organizations sustain engagement over years,
+        and which sectors are consistently absent? This platform answers those questions using
+        <strong>{{ total }} attendance records</strong> from <strong>42 Tutor/Mentor Leadership and
+        Networking Conferences</strong> hosted by Daniel F. Bassill between 1994 and 2015.
+      </p>
+      <p style="color:#848e9f; font-size:.9rem; line-height:1.65; margin-bottom:1.5rem;">
+        Raw attendance sheets are transformed through a documented pipeline — normalization,
+        network construction, and visualization — so findings can be reproduced, extended,
+        and applied to future events. The methodology is explicit at every stage.
+      </p>
+      <div class="d-flex flex-wrap" style="gap:.75rem;">
+        <a class="btn-app" href="{% url 'conferences:methodology' %}">Explore the Methodology</a>
+        <a class="btn-app" href="{% url 'conferences:network_maps' %}">View Network Maps</a>
+        <a class="btn-app" href="{% url 'conferences:dashboard' %}">Analytics Dashboard</a>
+      </div>
+    </div>
+    <div class="col-lg-5 mt-4 mt-lg-0 text-center">
+      <a href="{% url 'conferences:network_maps' %}">
+        <img src="{% static 'img/kumu-network.png' %}" alt="T/MC Conference Network Graph"
+             style="width:100%; max-width:420px; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,.15);">
+      </a>
+      <p style="font-size:.75rem; color:#848e9f; margin-top:.5rem; margin-bottom:0;">
+        Co-attendance network — 42 events, color-coded by sector
+      </p>
+    </div>
   </div>
 </div>
 
-<h2>Export Network Data</h2>
-<div class="card" style="max-width:700px;">
-  <p style="margin-bottom:0.75rem; font-size:0.9rem; color:#555;">
+<!-- Key stats row -->
+<div class="row mb-4">
+  <div class="col-6 col-md-3 mb-3">
+    <div class="metric-card">
+      <div class="mc-icon"><i class="fas fa-users"></i></div>
+      <div class="value">{{ total }}</div>
+      <div class="label">Attendance Records</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3 mb-3">
+    <div class="metric-card">
+      <div class="mc-icon"><i class="fas fa-calendar-alt"></i></div>
+      <div class="value">42</div>
+      <div class="label">Conference Events</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3 mb-3">
+    <div class="metric-card">
+      <div class="mc-icon"><i class="fas fa-clock"></i></div>
+      <div class="value">21</div>
+      <div class="label">Years of Data</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3 mb-3">
+    <div class="metric-card">
+      <div class="mc-icon"><i class="fas fa-tags"></i></div>
+      <div class="value">11</div>
+      <div class="label">Sector Categories</div>
+    </div>
+  </div>
+</div>
+
+<!-- Pipeline overview -->
+<h2 class="mb-3">Pipeline Overview</h2>
+<div class="row mb-4">
+  <div class="col-sm-6 col-lg-3 mb-3">
+    <div class="data-card h-100 mb-0" style="border-top: 4px solid #2e3192;">
+      <div style="font-size:.7rem; font-weight:700; color:#848e9f; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.3rem;">Stage 1</div>
+      <div style="font-weight:700; color:#1a1f3c; margin-bottom:.4rem; font-size:1rem;">Collection</div>
+      <div style="font-size:.85rem; color:#555; line-height:1.55;">Conference attendance records captured across 42 events, 1994–2015.</div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3 mb-3">
+    <div class="data-card h-100 mb-0" style="border-top: 4px solid #1565C0;">
+      <div style="font-size:.7rem; font-weight:700; color:#848e9f; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.3rem;">Stage 2</div>
+      <div style="font-weight:700; color:#1a1f3c; margin-bottom:.4rem; font-size:1rem;">Normalization</div>
+      <div style="font-size:.85rem; color:#555; line-height:1.55;">Organizations deduplicated; sector labels mapped to 11 canonical SNA categories.</div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3 mb-3">
+    <div class="data-card h-100 mb-0" style="border-top: 4px solid #2e7d32;">
+      <div style="font-size:.7rem; font-weight:700; color:#848e9f; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.3rem;">Stage 3</div>
+      <div style="font-weight:700; color:#1a1f3c; margin-bottom:.4rem; font-size:1rem;">Network Construction</div>
+      <div style="font-size:.85rem; color:#555; line-height:1.55;">Attendance becomes nodes and edges — exportable for Kumu or Gephi.</div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3 mb-3">
+    <div class="data-card h-100 mb-0" style="border-top: 4px solid #6a1b9a;">
+      <div style="font-size:.7rem; font-weight:700; color:#848e9f; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.3rem;">Stage 4</div>
+      <div style="font-weight:700; color:#1a1f3c; margin-bottom:.4rem; font-size:1rem;">Visualization</div>
+      <div style="font-size:.85rem; color:#555; line-height:1.55;">Network maps and dashboards make participation patterns visible and interpretable.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Export network data -->
+<h2 class="mb-3">Export Network Data</h2>
+<div class="data-card">
+  <p style="font-size:.9rem; color:#848e9f; margin-bottom:1rem;">
     Download nodes and edges CSVs ready for Kumu.io or Gephi. Four graph modes are supported:
   </p>
-  <table>
-    <thead><tr><th>Mode</th><th>Description</th><th>Download</th></tr></thead>
+  <table class="tbl">
+    <thead>
+      <tr><th>Mode</th><th>Description</th><th>Download</th></tr>
+    </thead>
     <tbody>
       <tr>
-        <td>Nodes</td>
+        <td><strong>Nodes</strong></td>
         <td>Organizations with sector, event count, record count</td>
-        <td><a class="btn btn-green btn-sm" href="{% url 'conferences:export_nodes' %}">nodes.csv</a></td>
+        <td><a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_nodes' %}">nodes.csv</a></td>
       </tr>
       <tr>
-        <td>Org ↔ Event</td>
+        <td><strong>Org ↔ Event</strong></td>
         <td>Bipartite edges: organization to conference event</td>
-        <td><a class="btn btn-green btn-sm" href="{% url 'conferences:export_edges_org_event' %}">edges_org_event.csv</a></td>
+        <td><a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_edges_org_event' %}">edges_org_event.csv</a></td>
       </tr>
       <tr>
-        <td>Org ↔ Org</td>
+        <td><strong>Org ↔ Org</strong></td>
         <td>Co-attendance edges: orgs connected by shared events (weighted)</td>
-        <td><a class="btn btn-green btn-sm" href="{% url 'conferences:export_edges_org_org' %}">edges_org_org.csv</a></td>
+        <td><a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_edges_org_org' %}">edges_org_org.csv</a></td>
       </tr>
       <tr>
-        <td>Event → Sector → Org</td>
+        <td><strong>Event → Sector → Org</strong></td>
         <td>Three-layer network for cross-sector analysis</td>
-        <td><a class="btn btn-green btn-sm" href="{% url 'conferences:export_edges_event_sector_org' %}">edges_3layer.csv</a></td>
+        <td><a class="btn-app btn-app-green btn-app-sm" href="{% url 'conferences:export_edges_event_sector_org' %}">edges_3layer.csv</a></td>
       </tr>
     </tbody>
   </table>
 </div>
+
 {% endblock %}
