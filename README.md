@@ -2,7 +2,11 @@
 
 This repository contains two web applications built for Indiana University's ENGR-E483 course. Both are designed so that future teams can pick them up, run them, and extend them without needing to rebuild anything from scratch.
 
-[Future Suggestions](/ProjectFiles/future_team_suggestions.pdf)
+---
+
+## For Future Teams
+
+[Future Suggestions](/ProjectFiles/future_team_suggestions.pdf) (As of submission 4/28/26)
 
 ---
 
