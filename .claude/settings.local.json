@@ -23,7 +23,20 @@
       "Bash(rm \"/Users/bhanley/PycharmProjects/YourConferenceNetwork/ntec-saas-it-solution-html-template-2024-04-03-17-28-54-utc.zip\")",
       "Bash(rm \"/Users/bhanley/PycharmProjects/YourConferenceNetwork/rasket-vue-js-admin-dashboard-template-2025-01-15-04-14-22-utc.zip\")",
       "Bash(rsync -a --delete --exclude=.DS_Store --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.env --exclude=.claude/ --exclude=data/ --exclude=staticfiles/ --exclude=out/ --exclude=db.sqlite3 --exclude=.git/ /Users/bhanley/WebstormProjects/MappingAndAnalyzingParticipation/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/MappingAndAnalyzingParticipation/)",
-      "Bash(rsync -a --delete --exclude=.DS_Store --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.claude/ --exclude=backend/db.sqlite3 --exclude=backend/media/ --exclude=backend/staticfiles/ --exclude=.git/ /Users/bhanley/PycharmProjects/YourConferenceNetwork/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/YourConferenceNetwork/)"
+      "Bash(rsync -a --delete --exclude=.DS_Store --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.claude/ --exclude=backend/db.sqlite3 --exclude=backend/media/ --exclude=backend/staticfiles/ --exclude=.git/ /Users/bhanley/PycharmProjects/YourConferenceNetwork/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/YourConferenceNetwork/)",
+      "Bash(python3 *)",
+      "Bash(rsync -a --dry-run --exclude=.git/ --exclude=.claude/ --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.DS_Store --exclude=.env --exclude=db.sqlite3 --exclude=staticfiles/ --exclude=media/ --exclude=out/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/ '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/')",
+      "Bash(grep -v \"^sending\\\\|^sent\\\\|^total\\\\|^$\")",
+      "Bash(rsync -av --dry-run --exclude=.git/ --exclude=.claude/ --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.DS_Store --exclude=.env --exclude=db.sqlite3 --exclude=staticfiles/ --exclude=media/ --exclude=out/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/ '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/')",
+      "Bash(rsync -a --exclude=.git/ --exclude=.claude/ --exclude=.idea/ --exclude=.venv/ --exclude=__pycache__/ '--exclude=*.pyc' '--exclude=*.pyo' --exclude=.DS_Store --exclude=.env --exclude=db.sqlite3 --exclude=staticfiles/ --exclude=media/ --exclude=out/ /Users/bhanley/PycharmProjects/IUSPR26/ENGR-E483/ '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/')",
+      "Bash(mv '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/client_project_report.gdoc' '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/ProjectFiles/')",
+      "Bash(mv '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/client_project_report.pdf' '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/ProjectFiles/')",
+      "Bash(mv '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/Fig1E483.drawio' '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/ProjectFiles/')",
+      "Bash(mv '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/Mapping and Analyzing Participation - Client Project.docx' '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/ProjectFiles/')",
+      "Bash(mv '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/Presentation of Project Plans.gslides' '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/ProjectFiles/')",
+      "Bash(grep \"\\\\.py$\")",
+      "Bash(xargs ls *)",
+      "Bash(xargs cat *)"
     ]
   }
 }
