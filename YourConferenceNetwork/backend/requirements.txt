@@ -28,6 +28,7 @@ openpyxl==3.1.5
 
 # Utilities
 pillow==12.2.0
+python-dotenv==1.1.0
 
 # Production (uncomment when deploying)
 # psycopg2-binary==2.9.9
