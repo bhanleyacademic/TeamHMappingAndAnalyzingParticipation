@@ -36,7 +36,8 @@
       "Bash(mv '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/Presentation of Project Plans.gslides' '/Users/bhanley/Library/CloudStorage/GoogleDrive-hanleyb@iu.edu/My Drive/E483 583 Data Viz Project/ProjectFiles/')",
       "Bash(grep \"\\\\.py$\")",
       "Bash(xargs ls *)",
-      "Bash(xargs cat *)"
+      "Bash(xargs cat *)",
+      "Bash(xargs -I{} git show -s --format=\"%H %B\" {})"
     ]
   }
 }
